@@ -43,19 +43,19 @@ void Boid::Draw()
 {
 	ofSetBackgroundColor(255, 0, 0);
 
-	ofPushMatrix();
-
-	ofTranslate(boidKinematicData.Position);
-	ofRotateZRad(boidKinematicData.Orientation);
-
-	ofPopMatrix();
+	ofPushMatrix(); 
 
 	circleRadius = 10;
 	triangleDimensions[0] = boidKinematicData.Position + ofVec2f(0,10);
 	triangleDimensions[1] = boidKinematicData.Position + ofVec2f(20,0);
 	triangleDimensions[2] = boidKinematicData.Position - ofVec2f(0, 10);
+
+	//ofTranslate(20, 10);
+	ofRotateZ(boidKinematicData.Orientation);
+
 	ofDrawCircle(boidKinematicData.Position, circleRadius);
 	ofDrawTriangle(triangleDimensions[0], triangleDimensions[1], triangleDimensions[2]);
+	ofPopMatrix();
 
 	if (boidKinematicData.Position != initialPosition)
 	{

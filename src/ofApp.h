@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "basic-motion.h"
 #include "KinematicSeek.h"
+#include "Seek-Steering.h"
 
 class ofApp : public ofBaseApp{
 
@@ -27,4 +28,5 @@ class ofApp : public ofBaseApp{
 private:
 	KinematicSeek kSeek;
 	BasicMotion* basic = new BasicMotion(5000);
+	SeekSteering* seek = new SeekSteering(5000);
 };

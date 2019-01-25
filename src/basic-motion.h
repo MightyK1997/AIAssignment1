@@ -9,6 +9,7 @@ public:
 	~BasicMotion() {}
 
 	KinematicSteeringOutput GetSteering(Kinematic i_Boid, Kinematic i_Target, float i_MaxSpeed);
+	float GetNewOrientation(float i_CurrentOrientation, ofVec2f i_Velocity);
 	void Update();
 	void Draw();
 

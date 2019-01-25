@@ -6,12 +6,14 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
-	basic->Update();
+	//basic->Update();
+	seek->Update();
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-	basic->Draw();
+	//basic->Draw();
+	seek->Draw();
 }
 
 //--------------------------------------------------------------
@@ -36,6 +38,7 @@ void ofApp::mouseDragged(int x, int y, int button){
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
+	seek->SetPosition(ofVec2f(x, y));
 }
 
 //--------------------------------------------------------------

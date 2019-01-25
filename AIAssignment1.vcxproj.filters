@@ -16,6 +16,10 @@
     <ClCompile Include="src\KinematicSeek.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\basic-motion.cpp" />
+    <ClCompile Include="src\Seek-Steering.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -33,6 +37,10 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="src\KinematicSeek.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\basic-motion.h" />
+    <ClInclude Include="src\Seek-Steering.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

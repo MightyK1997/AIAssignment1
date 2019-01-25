@@ -4,7 +4,7 @@
 void Kinematic::Update(KinematicSteeringOutput i_SteeringInput)
 {
 	Position += (Velocity * ofGetLastFrameTime());
-	Orientation = (Rotation * ofGetLastFrameTime());
+	Orientation += (Rotation * ofGetLastFrameTime());
 	Velocity = (i_SteeringInput.Velocity * ofGetLastFrameTime());
 	Rotation = (i_SteeringInput.Rotation * ofGetLastFrameTime());
 }

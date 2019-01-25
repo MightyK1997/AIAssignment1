@@ -18,14 +18,14 @@ KinematicSteeringOutput BasicMotion::GetSteering(Kinematic i_Boid, Kinematic i_T
 	outputKinematicSteering.Velocity = i_Target.Position - i_Boid.Position;
 
 	outputKinematicSteering.Velocity = outputKinematicSteering.Velocity.normalize() * i_MaxSpeed;
-	//outputKinematicSteering.Rotation = GetNewOrientation(i_Boid.Orientation, outputKinematicSteering.Velocity);
-
+	outputKinematicSteering.Rotation = 0;
+	//m_Boid.SetBoidOrientation(GetNewOrientation(i_Boid.Orientation, outputKinematicSteering.Velocity));
 	return outputKinematicSteering;
 }
 
-float GetNewOrientation(float i_Orientation, ofVec2f i_Velocity)
+float BasicMotion::GetNewOrientation(float i_CurrentOrientation, ofVec2f i_Velocity)
 {
-	return (i_Velocity.length() > 0) ? atan2(i_Velocity.y, i_Velocity.x) : i_Orientation;
+	return (i_Velocity.length() > 0) ? atan2(i_Velocity.y, i_Velocity.x) : i_CurrentOrientation;
 }
 
 void BasicMotion::Update()
@@ -35,14 +35,17 @@ void BasicMotion::Update()
 	targetKinematicData.Position = screenPositions[0];
 	if ((currentPosition.x > screenPositions[0].x))
 	{
+		m_Boid.SetBoidOrientation(90);
 		targetKinematicData.Position = screenPositions[1];
 	}
 	if ( (currentPosition.y < screenPositions[1].y))
 	{
+		m_Boid.SetBoidOrientation(180);
 		targetKinematicData.Position = screenPositions[2];
 	}
 	if ((currentPosition.x < screenPositions[2].x))
 	{
+		m_Boid.SetBoidOrientation(270);
 		targetKinematicData.Position = screenPositions[3];
 	}
 
