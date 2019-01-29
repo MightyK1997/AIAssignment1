@@ -20,6 +20,13 @@
     <ClCompile Include="src\Seek-Steering.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\Seek-Steering-Arrive.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Wander-Steering-Kinematic.cpp" />
+    <ClCompile Include="src\Wander-Steering-Dynamic.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -41,6 +48,15 @@
     </ClInclude>
     <ClInclude Include="src\basic-motion.h" />
     <ClInclude Include="src\Seek-Steering.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Seek-Steering-Arrive.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Wander-Steering-Kinematic.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Wander-Steering-Dynamic.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

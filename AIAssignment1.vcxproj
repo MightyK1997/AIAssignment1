@@ -186,7 +186,10 @@
     <ClCompile Include="src\KinematicSeek.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
+    <ClCompile Include="src\Seek-Steering-Arrive.cpp" />
     <ClCompile Include="src\Seek-Steering.cpp" />
+    <ClCompile Include="src\Wander-Steering-Dynamic.cpp" />
+    <ClCompile Include="src\Wander-Steering-Kinematic.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\basic-motion.h" />
@@ -194,7 +197,10 @@
     <ClInclude Include="src\DataTypes.h" />
     <ClInclude Include="src\KinematicSeek.h" />
     <ClInclude Include="src\ofApp.h" />
+    <ClInclude Include="src\Seek-Steering-Arrive.h" />
     <ClInclude Include="src\Seek-Steering.h" />
+    <ClInclude Include="src\Wander-Steering-Dynamic.h" />
+    <ClInclude Include="src\Wander-Steering-Kinematic.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="$(OF_ROOT)\libs\openFrameworksCompiled\project\vs\openframeworksLib.vcxproj">

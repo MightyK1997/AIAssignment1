@@ -1,7 +1,4 @@
-﻿  main.cpp
-  ofApp.cpp
-  Seek-Steering.cpp
-     Creating library bin\AIAssignment1_debug.lib and object bin\AIAssignment1_debug.exp
+﻿  DataTypes.cpp
   AIAssignment1.vcxproj -> C:\Users\ukoun\source\repos\of_v0.10.1_vs2017_release\apps\myApps\AIAssignment1\bin\AIAssignment1_debug.exe
   
   	                   2	C:\Users\ukoun\source\repos\of_v0.10.1_vs2017_release\libs\fmodex\lib\vs\Win32\

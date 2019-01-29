@@ -35,17 +35,17 @@ void BasicMotion::Update()
 	targetKinematicData.Position = screenPositions[0];
 	if ((currentPosition.x > screenPositions[0].x))
 	{
-		m_Boid.SetBoidOrientation(90);
+		m_Boid.SetBoidOrientation(4.7123);
 		targetKinematicData.Position = screenPositions[1];
 	}
 	if ( (currentPosition.y < screenPositions[1].y))
 	{
-		m_Boid.SetBoidOrientation(180);
+		m_Boid.SetBoidOrientation(3.1415);
 		targetKinematicData.Position = screenPositions[2];
 	}
 	if ((currentPosition.x < screenPositions[2].x))
 	{
-		m_Boid.SetBoidOrientation(270);
+		m_Boid.SetBoidOrientation(1.5707);
 		targetKinematicData.Position = screenPositions[3];
 	}
 

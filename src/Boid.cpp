@@ -42,19 +42,28 @@ void Boid::SetBoidOrientation(float i_Orientation)
 void Boid::Draw()
 {
 	ofSetBackgroundColor(255, 0, 0);
+	ofDrawCircle(boidKinematicData.Position, circleRadius);
+
+	auto triangleHeight = sqrt(3) * 10;
+
+	auto ax = circleRadius;
+	auto ay = triangleHeight;
+	auto bx = circleRadius;
+	auto by = -triangleHeight;
+	auto cx = circleRadius + triangleHeight;
+	auto cy = 0.0f;
 
 	ofPushMatrix(); 
-
-	circleRadius = 10;
-	triangleDimensions[0] = boidKinematicData.Position + ofVec2f(0,10);
+	ofTranslate(boidKinematicData.Position);
+	ofRotateRad(boidKinematicData.Orientation);
+	ofDrawTriangle(ax, ay, bx, by, cx, cy);
+	/*triangleDimensions[0] = boidKinematicData.Position + ofVec2f(0,10);
 	triangleDimensions[1] = boidKinematicData.Position + ofVec2f(20,0);
 	triangleDimensions[2] = boidKinematicData.Position - ofVec2f(0, 10);
 
-	//ofTranslate(20, 10);
 	ofRotateZ(boidKinematicData.Orientation);
 
-	ofDrawCircle(boidKinematicData.Position, circleRadius);
-	ofDrawTriangle(triangleDimensions[0], triangleDimensions[1], triangleDimensions[2]);
+	ofDrawTriangle(triangleDimensions[0], triangleDimensions[1], triangleDimensions[2]);*/
 	ofPopMatrix();
 
 	if (boidKinematicData.Position != initialPosition)
@@ -93,7 +102,7 @@ void Boid::Update(DynamicSteeringOutput i_DynamicSteeringInput)
 		i_DynamicSteeringInput.LinearAcceleration = ofVec2f(0, 0);
 		i_DynamicSteeringInput.AngularAcceleration = 0;
 	}
-	else if (boidKinematicData.Position.x > (ofGetHeight() - 10))
+	else if (boidKinematicData.Position.y > (ofGetHeight() - 10))
 	{
 		i_DynamicSteeringInput.LinearAcceleration = ofVec2f(0, 0);
 		i_DynamicSteeringInput.AngularAcceleration = 0;

@@ -3,14 +3,14 @@
 
 struct DynamicSteeringOutput
 {
-	ofVec2f LinearAcceleration;
-	float AngularAcceleration;
+	ofVec2f LinearAcceleration = ofVec2f(0,0);
+	float AngularAcceleration = 0;
 };
 
 struct KinematicSteeringOutput
 {
-	ofVec2f Velocity;
-	float Rotation;
+	ofVec2f Velocity = ofVec2f(0, 0);
+	float Rotation = 0;
 };
 
 class Kinematic

@@ -4,6 +4,8 @@
 #include "basic-motion.h"
 #include "KinematicSeek.h"
 #include "Seek-Steering.h"
+#include "Seek-Steering-Arrive.h"
+#include "Wander-Steering-Kinematic.h"
 
 class ofApp : public ofBaseApp{
 
@@ -29,4 +31,6 @@ private:
 	KinematicSeek kSeek;
 	BasicMotion* basic = new BasicMotion(5000);
 	SeekSteering* seek = new SeekSteering(5000);
+	SeekSteeringArrive* seek2 = new SeekSteeringArrive(5, 5000, 10);
+	WanderKinematic* w1 = new WanderKinematic();
 };
