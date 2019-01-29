@@ -6,6 +6,7 @@
 #include "Seek-Steering.h"
 #include "Seek-Steering-Arrive.h"
 #include "Wander-Steering-Kinematic.h"
+#include "Wander-Steering-Dynamic.h"
 
 class ofApp : public ofBaseApp{
 
@@ -33,4 +34,5 @@ private:
 	SeekSteering* seek = new SeekSteering(5000);
 	SeekSteeringArrive* seek2 = new SeekSteeringArrive(5, 5000, 10);
 	WanderKinematic* w1 = new WanderKinematic();
+	WanderDynamic* w2 = new WanderDynamic();
 };

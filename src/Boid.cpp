@@ -82,15 +82,11 @@ void Boid::Update(KinematicSteeringOutput i_KinematicSteeringInput)
 {
 	if (boidKinematicData.Position.x > (ofGetWidth()))
 	{
-		i_KinematicSteeringInput.Velocity = ofVec2f(0, 0);
-		i_KinematicSteeringInput.Rotation = 0;
-		boidKinematicData.Position.x = (ofGetWidth() - 20);
+		boidKinematicData.Position.x -= ofGetWidth();
 	}
 	else if (boidKinematicData.Position.y > (ofGetHeight()))
 	{
-		i_KinematicSteeringInput.Velocity = ofVec2f(0, 0);
-		i_KinematicSteeringInput.Rotation = 0;
-		boidKinematicData.Position.y = ofGetHeight() - 10;
+		boidKinematicData.Position.y -= ofGetHeight();
 	}
 	boidKinematicData.Update(i_KinematicSteeringInput);
 }
@@ -99,13 +95,11 @@ void Boid::Update(DynamicSteeringOutput i_DynamicSteeringInput)
 {
 	if (boidKinematicData.Position.x > (ofGetWidth() - 20))
 	{
-		i_DynamicSteeringInput.LinearAcceleration = ofVec2f(0, 0);
-		i_DynamicSteeringInput.AngularAcceleration = 0;
+		boidKinematicData.Position.x -= ofGetWidth();
 	}
 	else if (boidKinematicData.Position.y > (ofGetHeight() - 10))
 	{
-		i_DynamicSteeringInput.LinearAcceleration = ofVec2f(0, 0);
-		i_DynamicSteeringInput.AngularAcceleration = 0;
+		boidKinematicData.Position.y -= ofGetHeight();
 	}
 	boidKinematicData.Update(i_DynamicSteeringInput);
 }

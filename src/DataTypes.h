@@ -3,8 +3,14 @@
 
 struct DynamicSteeringOutput
 {
+	DynamicSteeringOutput(){}
+	~DynamicSteeringOutput() {}
+	DynamicSteeringOutput(ofVec2f linear, float angular) : LinearAcceleration(linear), AngularAcceleration(angular){}
 	ofVec2f LinearAcceleration = ofVec2f(0,0);
 	float AngularAcceleration = 0;
+
+	DynamicSteeringOutput operator+ (DynamicSteeringOutput& i_Dymamic);
+	DynamicSteeringOutput operator- (DynamicSteeringOutput& i_Dymamic);
 };
 
 struct KinematicSteeringOutput

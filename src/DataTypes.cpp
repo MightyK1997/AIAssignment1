@@ -29,3 +29,13 @@ void Kinematic::Update(DynamicSteeringOutput i_SteeringInput)
 		Velocity = Velocity.normalize() * 5000;
 	}
 }
+
+DynamicSteeringOutput DynamicSteeringOutput::operator+(DynamicSteeringOutput & i_Dymamic)
+{
+	return DynamicSteeringOutput(LinearAcceleration + i_Dymamic.LinearAcceleration , AngularAcceleration + i_Dymamic.AngularAcceleration);
+}
+
+DynamicSteeringOutput DynamicSteeringOutput::operator-(DynamicSteeringOutput & i_Dymamic)
+{
+	return DynamicSteeringOutput(LinearAcceleration - i_Dymamic.LinearAcceleration, AngularAcceleration - i_Dymamic.AngularAcceleration);
+}
