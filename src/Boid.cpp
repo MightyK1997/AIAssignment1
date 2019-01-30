@@ -57,13 +57,6 @@ void Boid::Draw()
 	ofTranslate(boidKinematicData.Position);
 	ofRotateRad(boidKinematicData.Orientation);
 	ofDrawTriangle(ax, ay, bx, by, cx, cy);
-	/*triangleDimensions[0] = boidKinematicData.Position + ofVec2f(0,10);
-	triangleDimensions[1] = boidKinematicData.Position + ofVec2f(20,0);
-	triangleDimensions[2] = boidKinematicData.Position - ofVec2f(0, 10);
-
-	ofRotateZ(boidKinematicData.Orientation);
-
-	ofDrawTriangle(triangleDimensions[0], triangleDimensions[1], triangleDimensions[2]);*/
 	ofPopMatrix();
 
 	if (boidKinematicData.Position != initialPosition)

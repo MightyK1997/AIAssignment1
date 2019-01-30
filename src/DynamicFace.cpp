@@ -9,8 +9,8 @@ DynamicSteeringOutput DynamicFace::GetSteering(Kinematic i_Character, Kinematic 
 
 	Kinematic arriveTarget;
 	arriveTarget = i_Target;
-	arriveTarget.Orientation = atan2(-direction.x, direction.y);
+	arriveTarget.Orientation = atan2(direction.y, direction.x);
 
 	DynamicAlign align;
-	return align.GetSteering(i_Character, 0.5f, 0.5f, 1.0f, 0.5f, 10, i_Target);
+	return align.GetSteering(i_Character, 0.5f, 0.5f, 2.f, 1.f, 10, i_Target);
 }

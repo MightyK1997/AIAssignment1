@@ -7,15 +7,15 @@ void Kinematic::Update(KinematicSteeringOutput i_SteeringInput)
 	Orientation += (Rotation * ofGetLastFrameTime());
 	Velocity += (i_SteeringInput.Velocity * ofGetLastFrameTime());
 	Rotation += (i_SteeringInput.Rotation * ofGetLastFrameTime());
-	if (Velocity.length() > 5000)
+	if (Velocity.length() > 250)
 	{
-		Velocity = Velocity.normalize() * 5000;
+		Velocity = Velocity.normalize() * 250;
 	}
 }
 
 void Kinematic::Update(DynamicSteeringOutput i_SteeringInput)
 {
-	if ((i_SteeringInput.LinearAcceleration == ofVec2f(0,0)) && (i_SteeringInput.AngularAcceleration ==0))
+	if ((i_SteeringInput.LinearAcceleration == ofVec2f(0,0)) && (i_SteeringInput.AngularAcceleration == 0))
 	{
 		Velocity = ofVec2f(0, 0);
 		Rotation = 0;
@@ -24,9 +24,9 @@ void Kinematic::Update(DynamicSteeringOutput i_SteeringInput)
 	Orientation += (Rotation * ofGetLastFrameTime());
 	Velocity += (i_SteeringInput.LinearAcceleration * ofGetLastFrameTime());
 	Rotation += (i_SteeringInput.AngularAcceleration * ofGetLastFrameTime());
-	if (Velocity.length() > 5000)
+	if (Velocity.length() > 100)
 	{
-		Velocity = Velocity.normalize() * 5000;
+		Velocity = Velocity.normalize() * 100;
 	}
 }
 

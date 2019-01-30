@@ -19,7 +19,7 @@ void SeekSteeringArrive::Update()
 	targetKinematicData.Position = finalPosition;
 	DynamicArrive dArrive;
 	DLookWhereYouAreGoing lwyg;
-	auto dArriveOutput = dArrive.GetSteering(m_Boid.GetBoidKinematicData(), targetKinematicData, m_MaxSpeed, 25.f, 45.f, m_MaxAcceleration, m_TimeToTarget);
+	auto dArriveOutput = dArrive.GetSteering(m_Boid.GetBoidKinematicData(), targetKinematicData, m_MaxSpeed, 25.0f, 100.0f, m_MaxAcceleration, m_TimeToTarget);
 	auto dLookWhereYouAreGoingOutput = lwyg.GetSteering(m_Boid.GetBoidKinematicData());
 	m_Boid.Update(dArriveOutput + dLookWhereYouAreGoingOutput);
 }
