@@ -8,15 +8,9 @@ public:
 	SeekSteeringArrive() {}
 	SeekSteeringArrive(float i_MaxAcceleration, float i_MaxSpeed, float i_TimeToTarget);
 	~SeekSteeringArrive() {}
-
-	DynamicSteeringOutput GetSteering(Kinematic i_Character, Kinematic i_Boid, float i_maxSpeed, float i_TargetRadius, float i_SlowRadius,
-		float i_MaxAcceleration, float i_TimeToTarget);
-
-	DynamicSteeringOutput GetSteering(Kinematic i_Character, float i_MaxAngularSpeed, float i_MaxAngularAcceleration, float i_SlowAngle,
-		float i_TargetAngle, float i_TimeToTarget, Kinematic i_Target);
-
 	void Update();
 	void SetPosition(ofVec2f i_Position);
+	ofVec2f GetPosition() { return m_Boid.GetBoidKinematicData().Position; }
 	void Draw();
 
 private:

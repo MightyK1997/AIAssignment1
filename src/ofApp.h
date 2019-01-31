@@ -6,6 +6,8 @@
 #include "Seek-Steering.h"
 #include "Seek-Steering-Arrive.h"
 #include "Wander-Steering-Kinematic.h"
+#include "Wander-Steering-Dynamic.h"
+#include "Flocking.h"
 
 class ofApp : public ofBaseApp{
 
@@ -29,8 +31,10 @@ class ofApp : public ofBaseApp{
 
 private:
 	KinematicSeek kSeek;
-	BasicMotion* basic = new BasicMotion(5000);
-	SeekSteering* seek = new SeekSteering(5000);
-	SeekSteeringArrive* seek2 = new SeekSteeringArrive(5, 5000, 10);
+	BasicMotion* basic = new BasicMotion(50);
+	SeekSteering* seek = new SeekSteering(50);
+	SeekSteeringArrive* seek2 = new SeekSteeringArrive(5, 50, 10);
 	WanderKinematic* w1 = new WanderKinematic();
+	WanderDynamic* w2 = new WanderDynamic();
+	Flocking* f = new Flocking(5);
 };

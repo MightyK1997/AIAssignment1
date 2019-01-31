@@ -8,14 +8,16 @@ void ofApp::setup(){
 void ofApp::update(){
 	//basic->Update();
 	//seek2->Update();
-	w1->Update();
+	//w2->Update();
+	f->Update();
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
 	//basic->Draw();
 	//seek2->Draw();
-	w1->Draw();
+	//w2->Draw();
+	f->Draw();
 }
 
 //--------------------------------------------------------------
@@ -40,7 +42,7 @@ void ofApp::mouseDragged(int x, int y, int button){
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
-	seek2->SetPosition(ofVec2f(x, y));
+	f->SetLeaderPosition(ofVec2f(x, y));
 }
 
 //--------------------------------------------------------------

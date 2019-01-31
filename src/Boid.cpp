@@ -41,6 +41,7 @@ void Boid::SetBoidOrientation(float i_Orientation)
 
 void Boid::Draw()
 {
+	ofSetColor(m_Color.x, m_Color.y, m_Color.z);
 	ofSetBackgroundColor(255, 0, 0);
 	ofDrawCircle(boidKinematicData.Position, circleRadius);
 
@@ -57,13 +58,6 @@ void Boid::Draw()
 	ofTranslate(boidKinematicData.Position);
 	ofRotateRad(boidKinematicData.Orientation);
 	ofDrawTriangle(ax, ay, bx, by, cx, cy);
-	/*triangleDimensions[0] = boidKinematicData.Position + ofVec2f(0,10);
-	triangleDimensions[1] = boidKinematicData.Position + ofVec2f(20,0);
-	triangleDimensions[2] = boidKinematicData.Position - ofVec2f(0, 10);
-
-	ofRotateZ(boidKinematicData.Orientation);
-
-	ofDrawTriangle(triangleDimensions[0], triangleDimensions[1], triangleDimensions[2]);*/
 	ofPopMatrix();
 
 	if (boidKinematicData.Position != initialPosition)
@@ -82,15 +76,11 @@ void Boid::Update(KinematicSteeringOutput i_KinematicSteeringInput)
 {
 	if (boidKinematicData.Position.x > (ofGetWidth()))
 	{
-		i_KinematicSteeringInput.Velocity = ofVec2f(0, 0);
-		i_KinematicSteeringInput.Rotation = 0;
-		boidKinematicData.Position.x = (ofGetWidth() - 20);
+		boidKinematicData.Position.x -= ofGetWidth();
 	}
 	else if (boidKinematicData.Position.y > (ofGetHeight()))
 	{
-		i_KinematicSteeringInput.Velocity = ofVec2f(0, 0);
-		i_KinematicSteeringInput.Rotation = 0;
-		boidKinematicData.Position.y = ofGetHeight() - 10;
+		boidKinematicData.Position.y -= ofGetHeight();
 	}
 	boidKinematicData.Update(i_KinematicSteeringInput);
 }
@@ -99,15 +89,18 @@ void Boid::Update(DynamicSteeringOutput i_DynamicSteeringInput)
 {
 	if (boidKinematicData.Position.x > (ofGetWidth() - 20))
 	{
-		i_DynamicSteeringInput.LinearAcceleration = ofVec2f(0, 0);
-		i_DynamicSteeringInput.AngularAcceleration = 0;
+		boidKinematicData.Position.x -= ofGetWidth();
 	}
 	else if (boidKinematicData.Position.y > (ofGetHeight() - 10))
 	{
-		i_DynamicSteeringInput.LinearAcceleration = ofVec2f(0, 0);
-		i_DynamicSteeringInput.AngularAcceleration = 0;
+		boidKinematicData.Position.y -= ofGetHeight();
 	}
 	boidKinematicData.Update(i_DynamicSteeringInput);
+}
+
+void Boid::SetBoidColor(ofVec3f rgb)
+{
+	m_Color = rgb;
 }
 
 void Boid::DrawBreadCrumbs()

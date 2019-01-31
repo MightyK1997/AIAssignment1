@@ -27,6 +27,25 @@
     <ClCompile Include="src\Wander-Steering-Dynamic.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\DynamicAlign.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DynamicArrive.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DynamicLookWhereYouAreGoing.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DynamicFace.cpp" />
+    <ClCompile Include="src\DynamicSeek.cpp" />
+    <ClCompile Include="src\DynamicVelocityMatch.cpp" />
+    <ClCompile Include="src\DynamicWander.cpp" />
+    <ClCompile Include="src\DynamicSeperation.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Flocking.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -57,6 +76,25 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="src\Wander-Steering-Dynamic.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DynamicAlign.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DynamicArrive.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DynamicLookWhereYouAreGoing.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DynamicFace.h" />
+    <ClInclude Include="src\DynamicSeek.h" />
+    <ClInclude Include="src\DynamicVelocityMatch.h" />
+    <ClInclude Include="src\DynamicWander.h" />
+    <ClInclude Include="src\DynamicSeperation.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Flocking.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
