@@ -35,5 +35,5 @@ private:
 	SeekSteeringArrive* seekArrive = new SeekSteeringArrive(50, 50, 0.1);
 	WanderDynamic* dynamicWander = new WanderDynamic();
 	Flocking* flock = new Flocking(10);
-	int SelectedIndex = 1;
+	int SelectedIndex = 3;
 };

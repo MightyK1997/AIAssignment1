@@ -1,5 +1,10 @@
-﻿  DataTypes.cpp
-     Creating library bin\AIAssignment1_debug.lib and object bin\AIAssignment1_debug.exp
+﻿  DynamicFace.cpp
+  DynamicWander.cpp
+  Wander-Steering-Dynamic.cpp
+  main.cpp
+  ofApp.cpp
+c:\users\u1141916\source\repos\of_v0.10.1_vs2017_release\apps\myapps\aiassignment1\src\flocking-behavior.h(13): warning C4018: '<': signed/unsigned mismatch (compiling source file src\main.cpp)
+c:\users\u1141916\source\repos\of_v0.10.1_vs2017_release\apps\myapps\aiassignment1\src\flocking-behavior.h(13): warning C4018: '<': signed/unsigned mismatch (compiling source file src\ofApp.cpp)
   AIAssignment1.vcxproj -> C:\Users\u1141916\source\repos\of_v0.10.1_vs2017_release\apps\myApps\AIAssignment1\bin\AIAssignment1_debug.exe
   
   	                   2	C:\Users\u1141916\source\repos\of_v0.10.1_vs2017_release\libs\fmodex\lib\vs\Win32\

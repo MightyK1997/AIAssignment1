@@ -3,10 +3,16 @@
 
 float MapToRange(float i_Rotation)
 {
-	if (i_Rotation == 0) return 0;
+	/*if (i_Rotation == 0) return 0;
 	float someVal = abs(i_Rotation);
 	float mapValue = i_Rotation / someVal;
-	return mapValue * (someVal - floor(abs(i_Rotation) / PI) * PI);
+	return mapValue * (someVal - floor(abs(i_Rotation) / PI) * PI);*/
+	while (i_Rotation > PI)
+		i_Rotation -= 2 * PI;
+	while (i_Rotation < -PI)
+		i_Rotation += 2 * PI;
+
+	return i_Rotation;
 }
 
 

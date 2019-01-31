@@ -3,7 +3,7 @@
 KinematicSteeringOutput WanderKinematic::getSteering(Kinematic i_Character, float i_MaxSpeed, float i_MaxRotation)
 {
 	KinematicSteeringOutput steering;
-	steering.Velocity = ofVec2f(sin(i_Character.Orientation), cos(i_Character.Orientation)) * i_MaxSpeed;
+	steering.Velocity = ofVec2f(cos(i_Character.Orientation), sin(i_Character.Orientation)) * i_MaxSpeed;
 	steering.Rotation = i_MaxRotation * (((double)rand() / (RAND_MAX)) - ((double)rand() / (RAND_MAX)));
 	return steering;
 }
