@@ -6,10 +6,26 @@ void Kinematic::Update(KinematicSteeringOutput i_SteeringInput)
 	Position += (Velocity * ofGetLastFrameTime());
 	Orientation += (Rotation * ofGetLastFrameTime());
 	Velocity += (i_SteeringInput.Velocity * ofGetLastFrameTime());
-	Rotation += (i_SteeringInput.Rotation * ofGetLastFrameTime());
-	if (Velocity.length() > 250)
+	Rotation = (i_SteeringInput.Rotation * ofGetLastFrameTime());
+	if (Velocity.length() > 50)
 	{
-		Velocity = Velocity.normalize() * 250;
+		Velocity = Velocity.normalize() * 50;
+	}
+	if (Position.x > (ofGetWidth() - 20))
+	{
+		Position.x = (ofGetWidth() - 20);
+	}
+	else if (Position.y > (ofGetHeight() - 20))
+	{
+		Position.y = ofGetHeight() - 20;
+	}
+	if (Position.x < 20)
+	{
+		Position.x = 20;
+	}
+	else if (Position.y < 20)
+	{
+		Position.y = 20;
 	}
 }
 

@@ -74,14 +74,6 @@ void Boid::Draw()
 
 void Boid::Update(KinematicSteeringOutput i_KinematicSteeringInput)
 {
-	if (boidKinematicData.Position.x > (ofGetWidth()))
-	{
-		boidKinematicData.Position.x -= ofGetWidth();
-	}
-	else if (boidKinematicData.Position.y > (ofGetHeight()))
-	{
-		boidKinematicData.Position.y -= ofGetHeight();
-	}
 	boidKinematicData.Update(i_KinematicSteeringInput);
 }
 

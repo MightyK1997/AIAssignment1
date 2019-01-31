@@ -43,10 +43,7 @@
     <ClCompile Include="src\DynamicSeperation.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\Flocking.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Flocking-Behaviour.cpp">
+    <ClCompile Include="src\Flocking-behavior.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
@@ -97,10 +94,7 @@
     <ClInclude Include="src\DynamicSeperation.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\Flocking.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Flocking-Behaviour.h">
+    <ClInclude Include="src\Flocking-Behavior.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
