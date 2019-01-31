@@ -8,21 +8,24 @@ void ofApp::setup(){
 void ofApp::update(){
 	//basic->Update();
 	//seek2->Update();
-	w2->Update();
-	//f->Update();
+	//w2->Update();
+	f->Update();
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
 	//basic->Draw();
 	//seek2->Draw();
-	w2->Draw();
-	//f->Draw();
+	//w2->Draw();
+	f->Draw();
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-
+	if (key == 'n')
+	{
+		f->SetNextLeader();
+	}
 }
 
 //--------------------------------------------------------------

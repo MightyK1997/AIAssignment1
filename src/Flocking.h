@@ -15,21 +15,25 @@ public:
 			Boid* boid = new Boid();
 			boid->SetBoidPosition(ofVec2f(ofGetWidth()/ 2 + (100 * i), ofGetHeight() / 2 + (10*i)));
 			m_Boids.push_back(boid);
-			//m_BoidswLeader.push_back(boid);
 		}
-		//m_BoidswLeader.push_back(m_Leader);
+		SetNextLeader();
+		m_LeaderPosition = m_LeaderBoid->GetBoidKinematicData().Position;
 	}
 	~Flocking(){}
 	void Update();
 	void Draw();
 	void SetLeaderPosition(ofVec2f i_Position);
+	void SetNextLeader();
 
 private:
 	std::vector<Boid*> m_Boids;
-	std::vector<Boid*> m_BoidswLeader;
+	Boid* m_LeaderBoid;
 	SeekSteeringArrive* m_Leader;
 	int m_NumberOfBoidsInFlock;
-	float m_AvoidWeight = 5.5f;
-	float m_MatchWeight = 0.6f;
-	float m_CenterWeight = 1.f;
+	float m_AvoidWeight = 1;
+	float m_MatchWeight = 2;
+	float m_CenterWeight = 3;
+	float m_LookWeight = 2;
+	int m_LeaderIndex = 0;
+	ofVec2f m_LeaderPosition;
 };

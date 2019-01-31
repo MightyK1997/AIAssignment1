@@ -46,6 +46,9 @@
     <ClCompile Include="src\Flocking.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\Flocking-Behaviour.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -95,6 +98,9 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="src\Flocking.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Flocking-Behaviour.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

@@ -191,6 +191,7 @@
     <ClCompile Include="src\DynamicSeperation.cpp" />
     <ClCompile Include="src\DynamicVelocityMatch.cpp" />
     <ClCompile Include="src\DynamicWander.cpp" />
+    <ClCompile Include="src\Flocking-Behaviour.cpp" />
     <ClCompile Include="src\Flocking.cpp" />
     <ClCompile Include="src\KinematicSeek.cpp" />
     <ClCompile Include="src\main.cpp" />
@@ -212,6 +213,7 @@
     <ClInclude Include="src\DynamicSeperation.h" />
     <ClInclude Include="src\DynamicVelocityMatch.h" />
     <ClInclude Include="src\DynamicWander.h" />
+    <ClInclude Include="src\Flocking-Behaviour.h" />
     <ClInclude Include="src\Flocking.h" />
     <ClInclude Include="src\KinematicSeek.h" />
     <ClInclude Include="src\ofApp.h" />

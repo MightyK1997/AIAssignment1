@@ -7,7 +7,7 @@ DynamicSteeringOutput DynamicSeperation::GetSteering(Kinematic i_Character, Boid
 
 	for (size_t i = 0; i < i_NumberOfTargets; i++)
 	{
-		ofVec2f direction = i_Targets[i]->GetBoidKinematicData().Position - i_Character.Position;
+		ofVec2f direction = i_Character.Position - i_Targets[i]->GetBoidKinematicData().Position ;
 		float distance = direction.length();
 		float strength = 0;
 		if (distance >= i_DistanceThreshold) continue;

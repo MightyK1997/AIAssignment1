@@ -33,8 +33,8 @@ private:
 	KinematicSeek kSeek;
 	BasicMotion* basic = new BasicMotion(50);
 	SeekSteering* seek = new SeekSteering(50);
-	SeekSteeringArrive* seek2 = new SeekSteeringArrive(5, 50, 10);
+	SeekSteeringArrive* seek2 = new SeekSteeringArrive(50, 50, 0.1);
 	WanderKinematic* w1 = new WanderKinematic();
 	WanderDynamic* w2 = new WanderDynamic();
-	Flocking* f = new Flocking(5);
+	Flocking* f = new Flocking(10);
 };
