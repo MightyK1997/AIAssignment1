@@ -2,11 +2,15 @@
 #include "Boid.h"
 #include "Seek-Steering-Arrive.h"
 #include "DynamicWander.h"
+#include "of3dPrimitives.h"
 
 class WanderDynamic
 {
 public:
-	WanderDynamic() {}
+	WanderDynamic()
+	{
+		m_Boid.SetBoidPosition(ofVec2f(ofGetWidth() / 2, ofGetHeight() / 2));
+	}
 	~WanderDynamic() {}
 
 	void Update();

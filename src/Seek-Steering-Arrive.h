@@ -10,6 +10,7 @@ public:
 	~SeekSteeringArrive() {}
 	void Update();
 	void SetPosition(ofVec2f i_Position);
+	ofVec2f GetPosition() { return m_Boid.GetBoidKinematicData().Position; }
 	void Draw();
 
 private:

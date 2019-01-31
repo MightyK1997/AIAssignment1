@@ -1,16 +1,26 @@
 #include "DataTypes.h"
 #include "of3dPrimitives.h"
+#include "ofMain.h"
 
 void Kinematic::Update(KinematicSteeringOutput i_SteeringInput)
 {
+	Velocity = (i_SteeringInput.Velocity * ofGetLastFrameTime());
+	Rotation = (i_SteeringInput.Rotation * ofGetLastFrameTime());
+	if (Velocity.length() > 500.0f)
+	{
+		Velocity = Velocity.normalize() * 500.0f;
+	}
+
 	Position += (Velocity * ofGetLastFrameTime());
 	Orientation += (Rotation * ofGetLastFrameTime());
-	Velocity += (i_SteeringInput.Velocity * ofGetLastFrameTime());
-	Rotation += (i_SteeringInput.Rotation * ofGetLastFrameTime());
-	if (Velocity.length() > 250)
+	
+	
+	if (Position.x > (ofGetViewportWidth() - 20.0f) || Position.y > (ofGetViewportHeight() - 20.0f) || Position.x < 20.0f || Position.y < 20.0f)
 	{
-		Velocity = Velocity.normalize() * 250;
+		Position -= Velocity * ofGetLastFrameTime() * 10.0f;
+		Orientation -= glm::radians(90.f);
 	}
+
 }
 
 void Kinematic::Update(DynamicSteeringOutput i_SteeringInput)
@@ -24,9 +34,9 @@ void Kinematic::Update(DynamicSteeringOutput i_SteeringInput)
 	Orientation += (Rotation * ofGetLastFrameTime());
 	Velocity += (i_SteeringInput.LinearAcceleration * ofGetLastFrameTime());
 	Rotation += (i_SteeringInput.AngularAcceleration * ofGetLastFrameTime());
-	if (Velocity.length() > 100)
+	if (Velocity.length() > 50)
 	{
-		Velocity = Velocity.normalize() * 100;
+		Velocity = Velocity.normalize() * 50;
 	}
 }
 

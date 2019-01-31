@@ -16,7 +16,7 @@ KinematicSteeringOutput SeekSteering::GetSteering(Kinematic i_Boid, Kinematic i_
 
 	outputKinematicSteering.Velocity = outputKinematicSteering.Velocity.normalize() * i_MaxSpeed;
 	outputKinematicSteering.Rotation = 0;
-	//m_Boid.SetBoidOrientation(GetNewOrientation(i_Boid.Orientation, outputKinematicSteering.Velocity));
+	m_Boid.SetBoidOrientation(GetNewOrientation(i_Boid.Orientation, outputKinematicSteering.Velocity));
 	return outputKinematicSteering;
 }
 

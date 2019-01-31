@@ -6,21 +6,56 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
-	//basic->Update();
-	seek2->Update();
-	//w2->Update();
+	switch (SelectedIndex)
+	{
+	case 1:
+		basicMotion->Update();
+		break;
+	case 2:
+		seekArrive->Update();
+		break;
+	case 3:
+		dynamicWander->Update();
+		break;
+	case 4:
+		flock->Update();
+		break;
+	default:
+		basicMotion->Update();
+		break;
+	}
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-	//basic->Draw();
-	seek2->Draw();
-	//w2->Draw();
+	switch (SelectedIndex)
+	{
+	case 1:
+		basicMotion->Draw();
+		break;
+	case 2:
+		seekArrive->Draw();
+		break;
+	case 3:
+		dynamicWander->Draw();
+		break;
+	case 4:
+		flock->Draw();
+		break;
+	default:
+		basicMotion->Draw();
+		break;
+	}
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-
+	if (key == 'n' && SelectedIndex == 4)
+	{
+		flock->SetNextLeader();
+	}
+	else
+		SelectedIndex = key > 48 && key < 53 ? key - 48 : 0;
 }
 
 //--------------------------------------------------------------
@@ -40,7 +75,15 @@ void ofApp::mouseDragged(int x, int y, int button){
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
-	seek2->SetPosition(ofVec2f(x, y));
+	if (SelectedIndex == 2)
+	{
+		seekArrive->SetPosition(ofVec2f(x, y));
+	}
+	if (SelectedIndex == 4)
+	{
+		flock->SetLeaderPosition(ofVec2f(x, y));
+	}
+	
 }
 
 //--------------------------------------------------------------

@@ -11,6 +11,8 @@ struct DynamicSteeringOutput
 
 	DynamicSteeringOutput operator+ (DynamicSteeringOutput& i_Dymamic);
 	DynamicSteeringOutput operator- (DynamicSteeringOutput& i_Dymamic);
+	template <typename T>
+	DynamicSteeringOutput operator* (T i_Other);
 };
 
 struct KinematicSteeringOutput
@@ -35,3 +37,9 @@ private:
 
 	float mMaxVelocity;
 };
+
+template<typename T>
+inline DynamicSteeringOutput DynamicSteeringOutput::operator*(T i_Other)
+{
+	return DynamicSteeringOutput(LinearAcceleration * i_Other, AngularAcceleration * i_Other);
+}

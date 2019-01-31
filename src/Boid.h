@@ -1,6 +1,7 @@
 #pragma once
 
 #include "DataTypes.h"
+#include <ofVec3f.h>
 
 class Boid
 {
@@ -15,6 +16,7 @@ public:
 	void Draw();
 	void Update(KinematicSteeringOutput i_KinematicSteeringInput);
 	void Update(DynamicSteeringOutput i_DynamicSteeringInput);
+	void SetBoidColor(ofVec3f rgb);
 
 	Kinematic GetBoidKinematicData() { return boidKinematicData; }
 
@@ -31,5 +33,6 @@ private:
 	std::vector<ofVec2f> breadCrumbPositions;
 	float breadcrumbTimer = 0;
 	ofVec2f initialPosition;
+	ofVec3f m_Color;
 };
 

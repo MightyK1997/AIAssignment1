@@ -1,9 +1,14 @@
-﻿  Seek-Steering-Arrive.cpp
+﻿  DataTypes.cpp
+     Creating library bin\AIAssignment1_debug.lib and object bin\AIAssignment1_debug.exp
   AIAssignment1.vcxproj -> C:\Users\u1141916\source\repos\of_v0.10.1_vs2017_release\apps\myApps\AIAssignment1\bin\AIAssignment1_debug.exe
   
   	                   2	C:\Users\u1141916\source\repos\of_v0.10.1_vs2017_release\libs\fmodex\lib\vs\Win32\
+  	  *EXTRA File 		 1503232	C:\Users\u1141916\source\repos\of_v0.10.1_vs2017_release\apps\myApps\AIAssignment1\bin\fmodex64.dll
+  	  *EXTRA File 		 1552384	C:\Users\u1141916\source\repos\of_v0.10.1_vs2017_release\apps\myApps\AIAssignment1\bin\fmodexL64.dll
   	  *EXTRA File 		 6018560	C:\Users\u1141916\source\repos\of_v0.10.1_vs2017_release\apps\myApps\AIAssignment1\bin\FreeImage.dll
   
   	                   1	C:\Users\u1141916\source\repos\of_v0.10.1_vs2017_release\libs\FreeImage\lib\vs\Win32\
   	  *EXTRA File 		 1266176	C:\Users\u1141916\source\repos\of_v0.10.1_vs2017_release\apps\myApps\AIAssignment1\bin\fmodex.dll
+  	  *EXTRA File 		 1503232	C:\Users\u1141916\source\repos\of_v0.10.1_vs2017_release\apps\myApps\AIAssignment1\bin\fmodex64.dll
   	  *EXTRA File 		 1312768	C:\Users\u1141916\source\repos\of_v0.10.1_vs2017_release\apps\myApps\AIAssignment1\bin\fmodexL.dll
+  	  *EXTRA File 		 1552384	C:\Users\u1141916\source\repos\of_v0.10.1_vs2017_release\apps\myApps\AIAssignment1\bin\fmodexL64.dll

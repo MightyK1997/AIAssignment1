@@ -188,7 +188,10 @@
     <ClCompile Include="src\DynamicFace.cpp" />
     <ClCompile Include="src\DynamicLookWhereYouAreGoing.cpp" />
     <ClCompile Include="src\DynamicSeek.cpp" />
+    <ClCompile Include="src\DynamicSeperation.cpp" />
+    <ClCompile Include="src\DynamicVelocityMatch.cpp" />
     <ClCompile Include="src\DynamicWander.cpp" />
+    <ClCompile Include="src\Flocking-behavior.cpp" />
     <ClCompile Include="src\KinematicSeek.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
@@ -206,7 +209,10 @@
     <ClInclude Include="src\DynamicFace.h" />
     <ClInclude Include="src\DynamicLookWhereYouAreGoing.h" />
     <ClInclude Include="src\DynamicSeek.h" />
+    <ClInclude Include="src\DynamicSeperation.h" />
+    <ClInclude Include="src\DynamicVelocityMatch.h" />
     <ClInclude Include="src\DynamicWander.h" />
+    <ClInclude Include="src\Flocking-Behavior.h" />
     <ClInclude Include="src\KinematicSeek.h" />
     <ClInclude Include="src\ofApp.h" />
     <ClInclude Include="src\Seek-Steering-Arrive.h" />
