@@ -27,9 +27,9 @@ void Flocking::Update()
 		DLookWhereYouAreGoing lwyg;
 		Kinematic target;
 		target.Position = flockCenter;
-		auto avoidSteering = seperation.GetSteering(m_Boid->GetBoidKinematicData(), &(m_Boids[0]), m_Boids.size(), 100, 100.f, 500);
+		auto avoidSteering = seperation.GetSteering(m_Boid->GetBoidKinematicData(), &(m_Boids[0]), m_Boids.size(), 50, 50.f, 5000);
 		auto velocitySteering = velocity.GetSteering(m_Boid->GetBoidKinematicData(), target);
-		auto arriveSteering = arrive.GetSteering(m_Boid->GetBoidKinematicData(), target, 500, 50, 100, 100, 0.1);
+		auto arriveSteering = arrive.GetSteering(m_Boid->GetBoidKinematicData(), target, 500, 20, 50, 100, 0.1);
 		auto lookSteering = lwyg.GetSteering(m_Boid->GetBoidKinematicData());
 		m_Boid->Update((avoidSteering * m_AvoidWeight) + (velocitySteering * m_MatchWeight) + (arriveSteering * m_CenterWeight) + lookSteering * 2);
 	}

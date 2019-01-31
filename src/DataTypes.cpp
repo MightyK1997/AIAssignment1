@@ -24,9 +24,9 @@ void Kinematic::Update(DynamicSteeringOutput i_SteeringInput)
 	Orientation += (Rotation * ofGetLastFrameTime());
 	Velocity += (i_SteeringInput.LinearAcceleration * ofGetLastFrameTime());
 	Rotation += (i_SteeringInput.AngularAcceleration * ofGetLastFrameTime());
-	if (Velocity.length() > 100)
+	if (Velocity.length() > 50)
 	{
-		Velocity = Velocity.normalize() * 100;
+		Velocity = Velocity.normalize() * 50;
 	}
 }
 

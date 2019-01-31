@@ -1,7 +1,7 @@
 #include "DynamicSeperation.h"
 #include <algorithm>
 
-DynamicSteeringOutput DynamicSeperation:: (Kinematic i_Character, Boid* i_Targets[100], float i_NumberOfTargets, float i_DistanceThreshold, float i_DecayCoefficient, float i_MaxAcceleration)
+DynamicSteeringOutput DynamicSeperation::GetSteering(Kinematic i_Character, Boid* i_Targets[100], float i_NumberOfTargets, float i_DistanceThreshold, float i_DecayCoefficient, float i_MaxAcceleration)
 {
 	DynamicSteeringOutput steering;
 

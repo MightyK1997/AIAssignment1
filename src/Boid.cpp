@@ -87,13 +87,21 @@ void Boid::Update(KinematicSteeringOutput i_KinematicSteeringInput)
 
 void Boid::Update(DynamicSteeringOutput i_DynamicSteeringInput)
 {
-	if (boidKinematicData.Position.x > (ofGetWidth() - 20))
+	if (boidKinematicData.Position.x > (ofGetWidth()))
 	{
 		boidKinematicData.Position.x -= ofGetWidth();
 	}
-	else if (boidKinematicData.Position.y > (ofGetHeight() - 10))
+	else if (boidKinematicData.Position.y > (ofGetHeight()))
 	{
 		boidKinematicData.Position.y -= ofGetHeight();
+	}
+	else if (boidKinematicData.Position.x < 0)
+	{
+		boidKinematicData.Position.x += ofGetWidth();
+	}
+	else if (boidKinematicData.Position.y < 0)
+	{
+		boidKinematicData.Position.y += ofGetHeight();
 	}
 	boidKinematicData.Update(i_DynamicSteeringInput);
 }

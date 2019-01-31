@@ -5,7 +5,7 @@
 
 SeekSteeringArrive::SeekSteeringArrive(float i_MaxAcceleration, float i_MaxSpeed, float i_TimeToTarget)
 {
-	m_Boid.SetBoidPosition(ofVec2f(20, ofGetHeight() - 20));
+	m_Boid.SetBoidPosition(ofVec2f(ofGetWidth()/2 +20, ofGetHeight() /2 + 20));
 	m_Boid.SetBoidColor(ofVec3f(0, 0, 255));
 	m_MaxSpeed = i_MaxSpeed;
 	m_MaxAcceleration = i_MaxAcceleration;
