@@ -83,10 +83,4 @@ void Flocking::SetNextLeader()
 	m_LeaderIndex = (m_LeaderIndex++)%m_Boids.size();
 	m_LeaderBoid = m_Boids[m_LeaderIndex];
 	m_LeaderBoid->SetBoidColor(ofVec3f(0, 0, 255));
-	if (m_EnableSecondLeader)
-	{
-		m_Leader2Index = (m_Leader2Index++) % m_Boids.size();
-		m_Leader2 = m_Boids[m_Leader2Index];
-		m_Leader2->SetBoidColor(ofVec3f(0, 255, 0));
-	}
 }

@@ -1,11 +1,7 @@
 ﻿  Flocking-behavior.cpp
-  main.cpp
-  ofApp.cpp
-c:\users\u1141916\source\repos\of_v0.10.1_vs2017_release\apps\myapps\aiassignment1\src\flocking-behavior.h(12): warning C4018: '<': signed/unsigned mismatch (compiling source file src\Flocking-behavior.cpp)
+c:\users\u1141916\source\repos\of_v0.10.1_vs2017_release\apps\myapps\aiassignment1\src\flocking-behavior.h(12): warning C4018: '<': signed/unsigned mismatch
 c:\users\u1141916\source\repos\of_v0.10.1_vs2017_release\apps\myapps\aiassignment1\src\flocking-behavior.cpp(11): warning C4018: '<': signed/unsigned mismatch
 c:\users\u1141916\source\repos\of_v0.10.1_vs2017_release\apps\myapps\aiassignment1\src\flocking-behavior.cpp(18): warning C4018: '<': signed/unsigned mismatch
-c:\users\u1141916\source\repos\of_v0.10.1_vs2017_release\apps\myapps\aiassignment1\src\flocking-behavior.h(12): warning C4018: '<': signed/unsigned mismatch (compiling source file src\main.cpp)
-c:\users\u1141916\source\repos\of_v0.10.1_vs2017_release\apps\myapps\aiassignment1\src\flocking-behavior.h(12): warning C4018: '<': signed/unsigned mismatch (compiling source file src\ofApp.cpp)
   AIAssignment1.vcxproj -> C:\Users\u1141916\source\repos\of_v0.10.1_vs2017_release\apps\myApps\AIAssignment1\bin\AIAssignment1_debug.exe
   
   	                   2	C:\Users\u1141916\source\repos\of_v0.10.1_vs2017_release\libs\fmodex\lib\vs\Win32\
