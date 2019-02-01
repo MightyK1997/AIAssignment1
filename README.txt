@@ -30,4 +30,4 @@ which is used to implement the click to move seek steering behavior. The update 
 
 
 
-Special Instructions for compilation: None
+Special Instructions for compilation: 1. Requires openframeworks to be installed in the destination computer.

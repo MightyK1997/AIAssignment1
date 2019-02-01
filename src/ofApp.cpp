@@ -54,6 +54,14 @@ void ofApp::keyPressed(int key){
 	{
 		flock->SetNextLeader();
 	}
+	else if (key == 'k' && SelectedIndex == 4)
+	{
+		flock->EnableSecondLeader(true);
+	}
+	else if (key == 'l' && SelectedIndex == 4)
+	{
+		flock->EnableSecondLeader(false);
+	}
 	else
 		SelectedIndex = key > 48 && key < 53 ? key - 48 : 0;
 }
