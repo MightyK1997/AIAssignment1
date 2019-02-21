@@ -5,5 +5,8 @@
 class Dijkstra
 {
 public:
-	NodeRecord GetSteering(Graph i_WorldGraph, NodeRecord i_Start, NodeRecord i_End);
+	Path* GetSteering(Graph i_WorldGraph, uint64_t i_Start, uint64_t i_End);
+
+private:
+	NodeRecord* GetElementWithLowestCost(NodeRecord* i_OpenList[100], size_t i_NumberOfElementsInList);
 };
