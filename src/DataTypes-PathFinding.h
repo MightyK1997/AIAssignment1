@@ -42,16 +42,22 @@ struct Path
 	std::vector<DirectedWeightedEdge*> m_Path;
 };
 
-class Graph
+//class Graph
+//{
+//public:
+//	//Getter
+//	std::vector<DirectedWeightedEdge*> GetConnectionFromNode(NodeRecord* i_Node);
+//
+//	//Setter
+//
+//	void SetConnectionsFromNode(NodeRecord* i_Node, int i_NumberOfConnections, DirectedWeightedEdge* i_Connections[100]);
+//
+//private:
+//	std::unordered_map<NodeRecord*, std::vector<DirectedWeightedEdge*>> m_Graph;
+//};
+
+struct Huristics
 {
-public:
-	//Getter
-	std::vector<DirectedWeightedEdge*> GetConnectionFromNode(NodeRecord* i_Node);
-
-	//Setter
-
-	void SetConnectionsFromNode(NodeRecord* i_Node, int i_NumberOfConnections, DirectedWeightedEdge* i_Connections[100]);
-
-private:
-	std::unordered_map<NodeRecord*, std::vector<DirectedWeightedEdge*>> m_Graph;
+	static float Manhattan(float dx, float dy) { return dx + dy; }
+	static float Euclidean(float dx, float dy) { return sqrt(dx * dx + dy * dy); }
 };
