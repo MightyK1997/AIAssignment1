@@ -180,6 +180,7 @@
     <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\AStarPathFollow.cpp" />
     <ClCompile Include="src\basic-motion.cpp" />
     <ClCompile Include="src\Boid.cpp" />
     <ClCompile Include="src\DataTypes-PathFinding.cpp" />
@@ -189,6 +190,7 @@
     <ClCompile Include="src\DynamicArrive.cpp" />
     <ClCompile Include="src\DynamicFace.cpp" />
     <ClCompile Include="src\DynamicLookWhereYouAreGoing.cpp" />
+    <ClCompile Include="src\DynamicPathFollow.cpp" />
     <ClCompile Include="src\DynamicSeek.cpp" />
     <ClCompile Include="src\DynamicSeperation.cpp" />
     <ClCompile Include="src\DynamicVelocityMatch.cpp" />
@@ -204,6 +206,7 @@
     <ClCompile Include="src\Wander-Steering-Kinematic.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\AStarPathFollow.h" />
     <ClInclude Include="src\basic-motion.h" />
     <ClInclude Include="src\Boid.h" />
     <ClInclude Include="src\DataTypes-PathFinding.h" />
@@ -213,6 +216,7 @@
     <ClInclude Include="src\DynamicArrive.h" />
     <ClInclude Include="src\DynamicFace.h" />
     <ClInclude Include="src\DynamicLookWhereYouAreGoing.h" />
+    <ClInclude Include="src\DynamicPathFollow.h" />
     <ClInclude Include="src\DynamicSeek.h" />
     <ClInclude Include="src\DynamicSeperation.h" />
     <ClInclude Include="src\DynamicVelocityMatch.h" />

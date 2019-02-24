@@ -5,28 +5,6 @@ namespace
 {
 	bool SortHelperFunction(Node* n1, Node* n2) { return n1->m_TotalCostOfGettingToGoalThroughNode < n2->m_TotalCostOfGettingToGoalThroughNode; }
 
-	bool DoesContainElement(std::vector<NodeRecord*> i_List, NodeRecord* i_Value)
-	{
-		return(std::find(i_List.begin(), i_List.end(), i_Value) != i_List.end());
-	}
-
-	bool DoesContainElement(std::vector<NodeRecord*> i_List, uint64_t i_Node)
-	{
-		for (auto x: i_List)
-		{
-			return x->m_NodeValue == i_Node;
-		}
-	}
-
-	NodeRecord* GetMatchingElementFromList(std::vector<NodeRecord*>i_List, uint64_t i_Node)
-	{
-		for (auto x : i_List)
-		{
-			if (x->m_NodeValue == i_Node) return x;
-		}
-		return nullptr;
-	}
-
 	void RemoveElementFromList(std::vector<Node*>& i_List, Node* i_Node)
 	{
 		auto it = i_List.begin();
@@ -42,8 +20,9 @@ namespace
 	}
 }
 
-std::vector<ofVec2f> AStar::GetPath(Graph* i_WorldGraph, Node* i_StartNode, Node* i_EndNode)
+Path AStar::GetPath(Graph* i_WorldGraph, Node* i_StartNode, Node* i_EndNode)
 {
+	Path returnPath;
 	auto startNode = i_StartNode;
 	auto endNode = i_EndNode;
 	auto openList = std::vector<Node*>();
@@ -56,10 +35,11 @@ std::vector<ofVec2f> AStar::GetPath(Graph* i_WorldGraph, Node* i_StartNode, Node
 	{
 		auto node = openList[0];
 		RemoveElementFromList(openList, node);
-		node->b_InOpenList = true;
+		node->b_InClosedList = true;
 		if ((node->x == i_EndNode->x) && (node->y == i_EndNode->y))
 		{
-			return Node::GetPathFromNode(node);
+			returnPath.m_Path = Node::GetPathFromNode(node);
+			return returnPath;
 		}
 		auto neighbors = i_WorldGraph->GetNeighborsOfNode(node);
 		for (auto neighbor:neighbors)
@@ -93,7 +73,7 @@ std::vector<ofVec2f> AStar::GetPath(Graph* i_WorldGraph, Node* i_StartNode, Node
 			}
 		}
 	}
-	return std::vector<ofVec2f>();
+	return returnPath;
 }
 
 float AStar::GetHeuristic(float dx, float dy)

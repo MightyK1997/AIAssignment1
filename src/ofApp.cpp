@@ -2,12 +2,13 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-	astar->GetPath(worldGraph, new Node(0, 0), new Node(1, 1));
+	Path p = astar->GetPath(worldGraph, new Node(0, 0), new Node(50, 0));
+	pathfollow->SetPath(p);
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-	switch (SelectedIndex)
+	/*switch (SelectedIndex)
 	{
 	case 1:
 		basicMotion->Update();
@@ -24,47 +25,49 @@ void ofApp::update(){
 	default:
 		basicMotion->Update();
 		break;
-	}
+	}*/
+	pathfollow->Update();
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-	switch (SelectedIndex)
-	{
-	case 1:
-		basicMotion->Draw();
-		break;
-	case 2:
-		seekArrive->Draw();
-		break;
-	case 3:
-		dynamicWander->Draw();
-		break;
-	case 4:
-		flock->Draw();
-		break;
-	default:
-		basicMotion->Draw();
-		break;
-	}
+	pathfollow->Draw();
+	//switch (SelectedIndex)
+	//{
+	//case 1:
+	//	basicMotion->Draw();
+	//	break;
+	//case 2:
+	//	seekArrive->Draw();
+	//	break;
+	//case 3:
+	//	dynamicWander->Draw();
+	//	break;
+	//case 4:
+	//	flock->Draw();
+	//	break;
+	//default:
+	//	basicMotion->Draw();
+	//	break;
+	//}
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-	if (key == 'n' && SelectedIndex == 4)
-	{
-		flock->SetNextLeader();
-	}
-	else if (key == 'k' && SelectedIndex == 4)
-	{
-		flock->EnableSecondLeader(true);
-	}
-	else if (key == 'l' && SelectedIndex == 4)
-	{
-		flock->EnableSecondLeader(false);
-	}
-	else
-		SelectedIndex = key > 48 && key < 53 ? key - 48 : 0;
+	//if (key == 'n' && SelectedIndex == 4)
+	//{
+	//	flock->SetNextLeader();
+	//}
+	//else if (key == 'k' && SelectedIndex == 4)
+	//{
+	//	flock->EnableSecondLeader(true);
+	//}
+	//else if (key == 'l' && SelectedIndex == 4)
+	//{
+	//	flock->EnableSecondLeader(false);
+	//}
+	//else
+	//	SelectedIndex = key > 48 && key < 53 ? key - 48 : 0;
 }
 
 //--------------------------------------------------------------

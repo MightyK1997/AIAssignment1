@@ -55,6 +55,12 @@
     <ClCompile Include="src\Graph.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\DynamicPathFollow.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AStarPathFollow.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -113,6 +119,12 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="src\Graph.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DynamicPathFollow.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AStarPathFollow.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
