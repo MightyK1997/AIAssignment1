@@ -56,7 +56,15 @@ struct Path
 //	std::unordered_map<NodeRecord*, std::vector<DirectedWeightedEdge*>> m_Graph;
 //};
 
-struct Huristics
+enum class Heuristic
+{
+	Manhattan,
+	Euclidean,
+	Default,
+	Zero
+};
+
+struct Heuristics
 {
 	static float Manhattan(float dx, float dy) { return dx + dy; }
 	static float Euclidean(float dx, float dy) { return sqrt(dx * dx + dy * dy); }

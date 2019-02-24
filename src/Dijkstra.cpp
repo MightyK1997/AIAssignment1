@@ -1,7 +1,10 @@
 #include "Dijkstra.h"
+#include <algorithm>
 
 namespace
 {
+	bool SortHelperFunction(Node* n1, Node* n2) { return n1->m_TotalCostOfGettingToGoalThroughNode < n2->m_TotalCostOfGettingToGoalThroughNode; }
+
 	bool DoesContainElement(std::vector<NodeRecord*> i_List, NodeRecord* i_Value)
 	{
 		return(std::find(i_List.begin(), i_List.end(), i_Value) != i_List.end());
@@ -24,7 +27,7 @@ namespace
 		return nullptr;
 	}
 
-	void RemoveElementFromList(std::vector<NodeRecord*> i_List, NodeRecord* i_Node)
+	void RemoveElementFromList(std::vector<Node*>& i_List, Node* i_Node)
 	{
 		auto it = i_List.begin();
 		while (it!=i_List.end())
@@ -39,57 +42,71 @@ namespace
 	}
 }
 
-Path* Dijkstra::GetSteering(Graph i_WorldGraph, uint64_t i_Start, uint64_t i_End)
+std::vector<ofVec2f> AStar::GetPath(Graph* i_WorldGraph, Node* i_StartNode, Node* i_EndNode)
 {
+	auto startNode = i_StartNode;
+	auto endNode = i_EndNode;
+	auto openList = std::vector<Node*>();
+	auto closeList = std::vector<Node*>();
+	startNode->m_CostOfGettingFromStartToNode = 0;
+	startNode->m_TotalCostOfGettingToGoalThroughNode = 0;
 
-	auto startRecord = new NodeRecord(i_Start, nullptr, 0);
-	std::vector<NodeRecord*> openList, closeList;
-	openList.push_back(startRecord);
-	NodeRecord* current = nullptr;
+	openList.emplace_back(startNode);
 	while (!openList.empty())
 	{
-		current = GetElementWithLowestCost(&openList[0], openList.size());
-		if (current->m_NodeValue == i_End) break;
-		auto connections = i_WorldGraph.GetConnectionFromNode(current);
-		for (auto connection:connections)
+		auto node = openList[0];
+		RemoveElementFromList(openList, node);
+		node->b_InOpenList = true;
+		if ((node->x == i_EndNode->x) && (node->y == i_EndNode->y))
 		{
-			auto endNode = connection->GetSinkNode();
-			auto endNodeCost = current->m_CostSoFar + connection->GetCost();
-			if (DoesContainElement(closeList, endNode)) continue;
-			if (DoesContainElement(openList, endNode))
+			return Node::GetPathFromNode(node);
+		}
+		auto neighbors = i_WorldGraph->GetNeighborsOfNode(node);
+		for (auto neighbor:neighbors)
+		{
+			if (neighbor->b_InClosedList)
 			{
-				auto endRecord = GetMatchingElementFromList(openList, endNode);
-				if (endRecord->m_CostSoFar <= endNodeCost) continue;
+				continue;
 			}
-			else
+			auto x = neighbor->x;
+			auto y = neighbor->y;
+
+			auto distanceBetweenCurrentAndNeighbor = node->m_CostOfGettingFromStartToNode + ((x - node->x == 0 || y - node->y == 0) ? 1 : sqrt(2));
+
+			if (neighbor->b_InOpenList || distanceBetweenCurrentAndNeighbor < neighbor->m_CostOfGettingFromStartToNode)
 			{
-				auto endNodeRecord = new NodeRecord(endNode, connection, endNodeCost);
-				openList.push_back(endNodeRecord);
+				neighbor->m_CostOfGettingFromStartToNode = distanceBetweenCurrentAndNeighbor;
+				neighbor->m_NodeHeuristic = neighbor->m_NodeHeuristic || (m_Weight * GetHeuristic(abs(x - i_EndNode->x), abs(y - i_EndNode->y)));
+				neighbor->m_TotalCostOfGettingToGoalThroughNode = neighbor->m_CostOfGettingFromStartToNode + neighbor->m_NodeHeuristic;
+				neighbor->m_Parent = node;
+
+				if (!neighbor->b_InOpenList)
+				{
+					openList.emplace_back(neighbor);
+					neighbor->b_InOpenList = true;
+					std::sort(openList.begin(), openList.end(), SortHelperFunction);
+				}
+				else
+				{
+					std::sort(openList.begin(), openList.end(), SortHelperFunction);
+				}
 			}
 		}
-		closeList.push_back(current);
-		RemoveElementFromList(openList, current);
 	}
-	if (current && current->m_NodeValue != i_End) return nullptr;
-	Path* returnPath = new Path();
-	while (current->m_NodeValue != i_Start)
-	{
-		returnPath->m_Path.push_back(current->m_IncomingEdge);
-		current = current->m_IncomingEdge->GetSourceNode();
-	}
-	std::reverse(returnPath->m_Path.begin(), returnPath->m_Path.end());
-	return returnPath;
+	return std::vector<ofVec2f>();
 }
 
-NodeRecord* Dijkstra::GetElementWithLowestCost(NodeRecord* i_OpenList[100], size_t i_NumberOfElementsInList)
+float AStar::GetHeuristic(float dx, float dy)
 {
-	auto retNode = i_OpenList[0];
-	for(size_t x=0;x<i_NumberOfElementsInList;x++)
+	switch (m_Heuristic)
 	{
-		if (i_OpenList[x]->m_CostSoFar < retNode->m_CostSoFar)
-		{
-			retNode = i_OpenList[x];
-		}
+	case Heuristic::Euclidean:
+		return Heuristics::Euclidean(dx, dy);
+	case Heuristic::Manhattan:
+	case Heuristic::Default:
+		return Heuristics::Manhattan(dx, dy);
+	case Heuristic::Zero:
+		return Heuristics::Manhattan(0, 0);
 	}
-	return retNode;
+	return 0;
 }

@@ -1,12 +1,18 @@
 #pragma once
 
+#include "Graph.h"
 #include "DataTypes-PathFinding.h"
 
-class Dijkstra
+class AStar
 {
 public:
-	Path* GetSteering(Graph i_WorldGraph, uint64_t i_Start, uint64_t i_End);
+	AStar(){}
+	AStar(Heuristic i_Heuristic, float i_Weight) : m_Heuristic(i_Heuristic), m_Weight(i_Weight){}
+	~AStar() = default;
+	std::vector<ofVec2f> GetPath(Graph* i_WorldGraph, Node* i_StartNode, Node* i_EndNode);
 
 private:
-	NodeRecord* GetElementWithLowestCost(NodeRecord* i_OpenList[100], size_t i_NumberOfElementsInList);
+	float GetHeuristic(float dx, float dy);
+	Heuristic m_Heuristic = Heuristic::Euclidean;
+	float m_Weight = 0;
 };

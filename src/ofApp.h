@@ -9,6 +9,8 @@
 #include "Wander-Steering-Dynamic.h"
 #include "Flocking-behavior.h"
 
+#include "Dijkstra.h"
+
 class ofApp : public ofBaseApp{
 
 	public:
@@ -36,4 +38,7 @@ private:
 	WanderDynamic* dynamicWander = new WanderDynamic();
 	Flocking* flock = new Flocking(10);
 	int SelectedIndex = 4;
+
+	Graph* worldGraph = new Graph(ofGetWidth() / 2, ofGetHeight() / 2);
+	AStar* astar = new AStar(Heuristic::Default, 50);
 };
