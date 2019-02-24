@@ -12,9 +12,9 @@ public:
 	uint64_t m_NodeValue;
 
 	//G
-	float m_CostOfGettingFromStartToNode = 100.0f;
+	float m_CostOfGettingFromStartToNode = 1000.0f;
 	//F
-	float m_TotalCostOfGettingToGoalThroughNode = 100.0f;
+	float m_TotalCostOfGettingToGoalThroughNode = 1000.0f;
 	//H
 	float m_NodeHeuristic = 0.0f;
 
@@ -41,6 +41,7 @@ public:
 		return (i_X >= 0 && i_X < m_Width) && (i_Y >= 0 && i_Y < m_Height);
 	}
 	inline bool IsNodeWalkable(float i_X, float i_Y);
+	void ResetNodeData();
 
 	std::vector<Node*> GetNeighborsOfNode(Node* i_Node);
 

@@ -2,8 +2,9 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-	Path p = astar->GetPath(worldGraph, new Node(0, 0), new Node(50, 0));
-	pathfollow->SetPath(p);
+	pathfollow->CreateGraph(1000, 1000);
+	pathfollow->AddNewTargetForBoid(0, 0);
+	pathfollow->CreateAndSetPathToFollow();
 }
 
 //--------------------------------------------------------------
@@ -87,15 +88,16 @@ void ofApp::mouseDragged(int x, int y, int button){
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
-	if (SelectedIndex == 2)
-	{
-		seekArrive->SetPosition(ofVec2f(x, y));
-	}
-	if (SelectedIndex == 4)
-	{
-		flock->SetLeaderPosition(ofVec2f(x, y));
-	}
-	
+	//if (SelectedIndex == 2)
+	//{
+	//	seekArrive->SetPosition(ofVec2f(x, y));
+	//}
+	//if (SelectedIndex == 4)
+	//{
+	//	flock->SetLeaderPosition(ofVec2f(x, y));
+	//}
+	pathfollow->AddNewTargetForBoid(x, y);
+	pathfollow->CreateAndSetPathToFollow();
 }
 
 //--------------------------------------------------------------

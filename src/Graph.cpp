@@ -41,6 +41,18 @@ bool Graph::IsNodeWalkable(float i_X, float i_Y)
 	return  IsNodeInsideGraph(i_X, i_Y) && m_GraphNodes[i_Y][i_X]->b_IsWalkable;
 }
 
+void Graph::ResetNodeData()
+{
+	for (auto a:m_GraphNodes)
+	{
+		for (auto b:a)
+		{
+			b->b_InClosedList = false;
+			b->b_InOpenList = false;
+		}
+	}
+}
+
 std::vector<Node*> Graph::GetNeighborsOfNode(Node* i_Node)
 {
 	auto x = i_Node->x;
@@ -64,6 +76,24 @@ std::vector<Node*> Graph::GetNeighborsOfNode(Node* i_Node)
 
 		neighbors.push_back(m_GraphNodes[y][x - 1]);
 	}
+	if (IsNodeWalkable(x-1, y - 1))
+	{
+		neighbors.push_back(m_GraphNodes[y - 1][x-1]);
+	}
+	if (IsNodeWalkable(x + 1, y+1)) {
+
+		neighbors.push_back(m_GraphNodes[y+1][x + 1]);
+	}
+	if (IsNodeWalkable(x-1, y + 1)) {
+
+		neighbors.push_back(m_GraphNodes[y + 1][x-1]);
+	}
+	if (IsNodeWalkable(x + 1, y-1)) {
+
+		neighbors.push_back(m_GraphNodes[y-1][x + 1]);
+	}
+
+
 
 	return neighbors;
 }

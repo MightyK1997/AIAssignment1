@@ -33,14 +33,11 @@ class ofApp : public ofBaseApp{
 
 
 private:
-	AStarPathFollow* pathfollow = new AStarPathFollow(50, 50, 0.1);
+	AStarPathFollow* pathfollow = new AStarPathFollow(Heuristic::Default, 50,50, 50, 0.1);
 	KinematicSeek kSeek;
 	BasicMotion* basicMotion = new BasicMotion(5000);
 	SeekSteeringArrive* seekArrive = new SeekSteeringArrive(50, 50, 0.1);
 	WanderDynamic* dynamicWander = new WanderDynamic();
 	Flocking* flock = new Flocking(10);
 	int SelectedIndex = 4;
-
-	Graph* worldGraph = new Graph(100, 100);
-	AStar* astar = new AStar(Heuristic::Default, 50);
 };

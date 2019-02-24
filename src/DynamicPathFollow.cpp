@@ -9,6 +9,8 @@ bool IsPointInsideSlowRadius(ofVec2f i_Point, ofVec2f i_CharPos, float i_SlowRad
 
 DynamicSteeringOutput DynamicPathFollow::GetSteering(Path i_Path, Kinematic i_Character, float i_maxSpeed, float i_TargetRadius, float i_SlowRadius, float i_MaxAcceleration, float i_TimeToTarget)
 {
+	DynamicSteeringOutput output;
+	if (i_Path.m_Path.empty()) return output;
 	auto tempPoint = i_Path.m_Path[currentPointCount];
 	Kinematic tempKinematic;
 	tempKinematic.Position = tempPoint;
