@@ -72,9 +72,11 @@ void ofApp::setup(){
 		DirectedWeightedEdge* p14 = new DirectedWeightedEdge(8, nodeList[7], nodeList[0]);
 		m_Graph->AddEdgeToGraph(p14);
 	}
-	AStar* astar = new AStar();
+	pathfollow->UpdateGraph(m_Graph);
+	pathfollow->SetStartNode(nodeList[1]);
+	pathfollow->AddNewTargetForBoid(nodeList[5]);
+	pathfollow->CreateAndSetPathToFollow();
 
-	o_path = astar->GetPath(m_Graph, nodeList[1], nodeList[5]);
 }
 
 //--------------------------------------------------------------
@@ -97,12 +99,12 @@ void ofApp::update(){
 		basicMotion->Update();
 		break;
 	}*/
-	//pathfollow->Update();
+	pathfollow->Update();
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-	//pathfollow->Draw();
+	pathfollow->Draw();
 	//switch (SelectedIndex)
 	//{
 	//case 1:

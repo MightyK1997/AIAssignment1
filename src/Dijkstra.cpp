@@ -112,6 +112,7 @@ Path AStar::GetPath(Graph* i_WorldGraph, Node* i_StartNode, Node* i_EndNode)
 			currentNode = GetNodeRecordForNode(closeList, currentNode->m_IncomingEdge->m_Source);
 		}
 		std::reverse(returnPath.m_Path.begin(), returnPath.m_Path.end());
+		delete(currentNode);
 		return returnPath;
 	}
 }
