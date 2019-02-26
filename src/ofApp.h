@@ -10,7 +10,6 @@
 #include "Flocking-behavior.h"
 
 #include "Dijkstra.h"
-#include "AStarPathFollow.h"
 
 class ofApp : public ofBaseApp{
 
@@ -33,7 +32,8 @@ class ofApp : public ofBaseApp{
 
 
 private:
-	AStarPathFollow* pathfollow = new AStarPathFollow(Heuristic::Default, 50,50, 50, 0.1);
+	//AStarPathFollow* pathfollow = new AStarPathFollow(Heuristic::Default, 50,50, 50, 0.1);
+	Graph* m_Graph = new Graph();
 	KinematicSeek kSeek;
 	BasicMotion* basicMotion = new BasicMotion(5000);
 	SeekSteeringArrive* seekArrive = new SeekSteeringArrive(50, 50, 0.1);

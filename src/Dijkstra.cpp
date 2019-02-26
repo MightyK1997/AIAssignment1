@@ -3,9 +3,9 @@
 
 namespace
 {
-	bool SortHelperFunction(Node* n1, Node* n2) { return n1->m_TotalCostOfGettingToGoalThroughNode < n2->m_TotalCostOfGettingToGoalThroughNode; }
+	bool SortHelperFunction(NodeRecord* n1, NodeRecord* n2) { return n1->m_EstimatedTotalCost < n2->m_EstimatedTotalCost; }
 
-	void RemoveElementFromList(std::vector<Node*>& i_List, Node* i_Node)
+	void RemoveElementFromList(std::vector<NodeRecord*>& i_List, NodeRecord* i_Node)
 	{
 		auto it = i_List.begin();
 		while (it!=i_List.end())
@@ -18,75 +18,115 @@ namespace
 			++it;
 		}
 	}
+
+	bool DoesListContainElement(std::vector<NodeRecord*> i_List, NodeRecord* i_NodeRecord)
+	{
+		for (auto listelement:i_List)
+		{
+			if (listelement == i_NodeRecord)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	bool DoesListContainElement(std::vector<NodeRecord*> i_List, Node* i_NodeRecord)
+	{
+		for (auto listelement : i_List)
+		{
+			if (listelement->m_Node == i_NodeRecord)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	NodeRecord* GetNodeRecordForNode(std::vector<NodeRecord*> i_List, Node* i_Node)
+	{
+		for (auto listelement:i_List)
+		{
+			if (listelement->m_Node == i_Node)
+			{
+				return listelement;
+			}
+		}
+		return nullptr;
+	}
 }
 
 Path AStar::GetPath(Graph* i_WorldGraph, Node* i_StartNode, Node* i_EndNode)
 {
 	Path returnPath;
-	auto startNode = i_StartNode;
-	auto endNode = i_EndNode;
-	auto openList = std::vector<Node*>();
-	auto closeList = std::vector<Node*>();
-	startNode->m_CostOfGettingFromStartToNode = 0;
-	startNode->m_TotalCostOfGettingToGoalThroughNode = 0;
+	NodeRecord* startRecord = new NodeRecord(i_StartNode, nullptr, 0, GetHeuristic(i_StartNode, i_EndNode));
 
-	openList.emplace_back(startNode);
+	auto openList = std::vector<NodeRecord*>();
+	auto closeList = std::vector<NodeRecord*>();
+
+	openList.emplace_back(startRecord);
+	NodeRecord* currentNode;
+
 	while (!openList.empty())
 	{
-		auto node = openList[0];
-		RemoveElementFromList(openList, node);
-		node->b_InClosedList = true;
-		if ((node->x == i_EndNode->x) && (node->y == i_EndNode->y))
+		currentNode = openList[0];
+		if (currentNode->m_Node == i_EndNode) break;
+		std::vector<DirectedWeightedEdge*> connections = i_WorldGraph->GetConnections(currentNode->m_Node);
+		for (auto connection:connections)
 		{
-			returnPath.m_Path = Node::GetPathFromNode(node);
-			return returnPath;
-		}
-		auto neighbors = i_WorldGraph->GetNeighborsOfNode(node);
-		for (auto neighbor:neighbors)
-		{
-			if (neighbor->b_InClosedList)
-			{
-				continue;
-			}
-			auto x = neighbor->x;
-			auto y = neighbor->y;
-
-			auto distanceBetweenCurrentAndNeighbor = node->m_CostOfGettingFromStartToNode + ((x - node->x == 0 || y - node->y == 0) ? 1 : sqrt(2));
-
-			if (neighbor->b_InOpenList || distanceBetweenCurrentAndNeighbor < neighbor->m_CostOfGettingFromStartToNode)
-			{
-				neighbor->m_CostOfGettingFromStartToNode = distanceBetweenCurrentAndNeighbor;
-				neighbor->m_NodeHeuristic = neighbor->m_NodeHeuristic || (m_Weight * GetHeuristic(abs(x - i_EndNode->x), abs(y - i_EndNode->y)));
-				neighbor->m_TotalCostOfGettingToGoalThroughNode = neighbor->m_CostOfGettingFromStartToNode + neighbor->m_NodeHeuristic;
-				neighbor->m_Parent = node;
-
-				if (!neighbor->b_InOpenList)
-				{
-					openList.emplace_back(neighbor);
-					neighbor->b_InOpenList = true;
-					std::sort(openList.begin(), openList.end(), SortHelperFunction);
-				}
-				else
-				{
-					std::sort(openList.begin(), openList.end(), SortHelperFunction);
-				}
-			}
+			Node* endNode = connection->m_Sink;
+			float endNodeCost = currentNode->m_CostSoFar + connection->m_Cost;
+			//if (DoesListContainElement(closeList, endNode))
+			//{
+			//	NodeRecord* endNodeRecord = GetNodeRecordForNode(closeList, endNode);
+			//	if (endNodeRecord && (endNodeRecord->m_CostSoFar < endNodeCost))
+			//		continue;
+			//	RemoveElementFromList(closeList, endNodeRecord);
+			//}
+			//else if (DoesListContainElement(openList, endNode))
+			//{
+			//	NodeRecord* endNodeRecord = GetNodeRecordForNode(closeList, endNode);
+			//	if (endNodeRecord && (endNodeRecord->m_CostSoFar < endNodeCost))
+			//		continue;
+			//}
+			//else
+			//{
+				NodeRecord* newRecord = new NodeRecord(endNode, connection, endNodeCost, endNodeCost + GetHeuristic(endNode, i_EndNode));
+				openList.emplace_back(newRecord);
+				std::sort(openList.begin(), openList.end(), SortHelperFunction);
+			//}
+			RemoveElementFromList(openList, currentNode);
+			closeList.emplace_back(currentNode);
+			std::sort(closeList.begin(), closeList.end(), SortHelperFunction);
 		}
 	}
-	return returnPath;
+	if (currentNode->m_Node->m_Index != i_EndNode->m_Index)
+	{
+		return returnPath;
+	}
+	else
+	{
+		while (currentNode->m_Node->m_Index != i_StartNode->m_Index)
+		{
+			returnPath.m_Path.emplace_back(currentNode->m_IncomingEdge);
+			currentNode = GetNodeRecordForNode(closeList, currentNode->m_IncomingEdge->m_Source);
+		}
+		std::reverse(returnPath.m_Path.begin(), returnPath.m_Path.end());
+		return returnPath;
+	}
 }
 
-float AStar::GetHeuristic(float dx, float dy)
+float AStar::GetHeuristic(Node* i_StartNode, Node* i_EndNode)
 {
 	switch (m_Heuristic)
 	{
 	case Heuristic::Euclidean:
-		return Heuristics::Euclidean(dx, dy);
+		return Heuristics::Euclidean(i_StartNode, i_EndNode);
 	case Heuristic::Manhattan:
 	case Heuristic::Default:
-		return Heuristics::Manhattan(dx, dy);
+		return Heuristics::Manhattan(i_StartNode, i_EndNode);
 	case Heuristic::Zero:
-		return Heuristics::Manhattan(0, 0);
+		return 0;
 	}
 	return 0;
 }
