@@ -126,6 +126,8 @@ float AStar::GetHeuristic(Node* i_StartNode, Node* i_EndNode)
 	case Heuristic::Manhattan:
 	case Heuristic::Default:
 		return Heuristics::Manhattan(i_StartNode, i_EndNode);
+	case Heuristic::Diagonal:
+		return Heuristics::Diagonal(i_StartNode, i_EndNode);
 	case Heuristic::Zero:
 		return 0;
 	}

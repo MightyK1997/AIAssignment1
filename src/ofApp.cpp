@@ -2,8 +2,6 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-
-	std::vector<Node*> nodeList;
 	Path o_path;
 
 	//Create Nodes
@@ -75,7 +73,7 @@ void ofApp::setup(){
 	pathfollow->UpdateGraph(m_Graph);
 	pathfollow->SetStartNode(nodeList[1]);
 	pathfollow->AddNewTargetForBoid(nodeList[5]);
-	pathfollow->CreateAndSetPathToFollow();
+	//pathfollow->CreateAndSetPathToFollow();
 
 }
 
@@ -168,8 +166,13 @@ void ofApp::mousePressed(int x, int y, int button){
 	//{
 	//	flock->SetLeaderPosition(ofVec2f(x, y));
 	//}
-	//pathfollow->AddNewTargetForBoid(x, y);
-	//pathfollow->CreateAndSetPathToFollow();
+	Node* tempNode = new Node(10000, ofVec2f(x, y));
+
+	pathfollow->AddNewTargetForBoid(tempNode);
+
+	DirectedWeightedEdge* p15 = new DirectedWeightedEdge(2, nodeList[0], tempNode);
+	m_Graph->AddEdgeToGraph(p15);
+	pathfollow->CreateAndSetPathToFollow();
 }
 
 //--------------------------------------------------------------

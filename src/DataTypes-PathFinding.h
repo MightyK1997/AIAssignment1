@@ -1,6 +1,8 @@
 #pragma once
 #include <vector>
+#include <cmath>
 #include "ofVec2f.h"
+#include <algorithm>
 
 struct Node
 {
@@ -82,12 +84,20 @@ enum class Heuristic
 {
 	Manhattan,
 	Euclidean,
+	Diagonal,
 	Default,
 	Zero
 };
 
 struct Heuristics
 {
-	static float Manhattan(Node* i_StartNode, Node* i_EndNode) { return (i_StartNode->m_Position.x - i_EndNode->m_Position.x) + (i_StartNode->m_Position.y - i_EndNode->m_Position.y); }
+	//TODO:Need to fix manhattan distance
+	static float Manhattan(Node* i_StartNode, Node* i_EndNode) { return abs(i_StartNode->m_Position.x - i_EndNode->m_Position.x) + abs(i_StartNode->m_Position.y - i_EndNode->m_Position.y); }
 	static float Euclidean(Node* i_StartNode, Node* i_EndNode) { return i_StartNode->m_Position.distance(i_EndNode->m_Position); }
+	static float Diagonal(Node* i_StartNode, Node* i_EndNode)
+	{
+		float dx = abs(i_StartNode->m_Position.x - i_EndNode->m_Position.x);
+		float dy = abs(i_StartNode->m_Position.y - i_EndNode->m_Position.y);
+		return (dx + dy) + std::min(dx, dy);
+	}
 };

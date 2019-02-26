@@ -33,7 +33,7 @@ class ofApp : public ofBaseApp{
 
 
 private:
-	AStarPathFollow* pathfollow = new AStarPathFollow(Heuristic::Euclidean, m_Graph,50, 50, 0.1);
+	AStarPathFollow* pathfollow = new AStarPathFollow(Heuristic::Diagonal, m_Graph,5, 10, 0.1);
 	Graph* m_Graph = new Graph();
 	KinematicSeek kSeek;
 	BasicMotion* basicMotion = new BasicMotion(5000);
@@ -41,4 +41,5 @@ private:
 	WanderDynamic* dynamicWander = new WanderDynamic();
 	Flocking* flock = new Flocking(10);
 	int SelectedIndex = 4;
+	std::vector<Node*> nodeList;
 };
