@@ -5,6 +5,7 @@
 
 void AStarPathFollow::Update()
 {
+	if (!m_Movement) return;
 	m_Boid.Update(follow.GetSteering(m_Path, m_Boid.GetBoidKinematicData(), m_maxSpeed, 5.0f, 20.0f, m_MaxAcceleration, m_TimeToTarget));
 }
 
@@ -29,12 +30,12 @@ void AStarPathFollow::CreateAndSetPathToFollow()
 {
 	//m_StartNode->m_Position = m_Boid.GetBoidKinematicData().Position;
 	m_Path = m_LocalAStar->GetPath(m_WorldGraph, m_StartNode, m_EndNode);
-	follow.ResetCount();
+	ResetPath();
 }
 
 void AStarPathFollow::CreateAndSetPathToFollow(Grid* m_Grid, Node* i_Node)
 {
 	m_StartNode = m_Grid->GetNodeByPosition(m_Boid.GetBoidKinematicData().Position);
 	m_Path = m_LocalAStar->GetPath(m_Grid, m_StartNode, m_EndNode);
-	follow.ResetCount();
+	ResetPath();
 }

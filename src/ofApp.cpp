@@ -92,89 +92,71 @@ void ofApp::setup(){
 		DirectedWeightedEdge* d19 = new DirectedWeightedEdge(14, nodeList[0], nodeList[10]);
 		m_Graph->AddEdgeToGraph(d19);
 	}
-	//pathfollow->UpdateGraph(m_Graph);
-	//pathfollow->SetStartNode(nodeList[0]);
-	//pathfollow->AddNewTargetForBoid(nodeList[6]);
-	//pathfollow->CreateAndSetPathToFollow();
+	pathfollow->UpdateGraph(m_Graph);
+	pathfollow->SetStartNode(nodeList[0]);
+	pathfollow->AddNewTargetForBoid(nodeList[6]);
+	pathfollow->CreateAndSetPathToFollow();
 
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-	/*switch (SelectedIndex)
-	{
-	case 1:
-		basicMotion->Update();
-		break;
-	case 2:
-		seekArrive->Update();
-		break;
-	case 3:
-		dynamicWander->Update();
-		break;
-	case 4:
-		flock->Update();
-		break;
-	default:
-		basicMotion->Update();
-		break;
-	}*/
 	pathfollow->Update();
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-	m_Grid->Draw();
-	ofSetColor(255, 0, 0);
+	switch (SelectedIndex)
+	{
+	case 1:
+	case 2:
+		for (auto x : nodeList)
+		{
+			ofDrawCircle(x->m_Position, 5);
+			for (auto connection : m_Graph->GetConnections(x))
+			{
+				ofDrawArrow(ofVec3f(x->m_Position), ofVec3f(connection->m_Sink->m_Position));
+			}
+		}
+		break;
+	case 3:
+		//ofSetBackgroundColor(0, 0, 0);
+		m_Grid->Draw();
+		ofSetColor(255, 0, 0);
+	default:
+		break;
+	}
 	pathfollow->Draw();
-
-	//for(auto x:nodeList)
-	//{
-	//	ofDrawCircle(x->m_Position, 5);
-	//	for (auto connection : m_Graph->GetConnections(x))
-	//	{
-	//		ofDrawArrow(ofVec3f(x->m_Position), ofVec3f(connection->m_Sink->m_Position));
-	//	}
-	//}
-	
-	//switch (SelectedIndex)
-	//{
-	//case 1:
-	//	basicMotion->Draw();
-	//	break;
-	//case 2:
-	//	seekArrive->Draw();
-	//	break;
-	//case 3:
-	//	dynamicWander->Draw();
-	//	break;
-	//case 4:
-	//	flock->Draw();
-	//	break;
-	//default:
-	//	basicMotion->Draw();
-	//	break;
-	//}
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-	//if (key == 'n' && SelectedIndex == 4)
-	//{
-	//	flock->SetNextLeader();
-	//}
-	//else if (key == 'k' && SelectedIndex == 4)
-	//{
-	//	flock->EnableSecondLeader(true);
-	//}
-	//else if (key == 'l' && SelectedIndex == 4)
-	//{
-	//	flock->EnableSecondLeader(false);
-	//}
-	//else
-	//	SelectedIndex = key > 48 && key < 53 ? key - 48 : 0;
-
-
+	SelectedIndex = key > 48 && key < 53 ? key - 48 : 0;
+	pathfollow->ResetPath();
+	switch (SelectedIndex)
+	{
+	//Dijkstra
+	case 1:
+		pathfollow->MovementInput(true);
+		pathfollow->UpdateAStarHeuristic(Heuristic::Zero);
+		pathfollow->SetStartNode(nodeList[0]);
+		pathfollow->AddNewTargetForBoid(nodeList[6]);
+		pathfollow->CreateAndSetPathToFollow();
+		break;
+	//AStar + Manhattan
+	case 2:
+		pathfollow->MovementInput(true);
+		pathfollow->UpdateAStarHeuristic(Heuristic::Manhattan);
+		pathfollow->SetStartNode(nodeList[0]);
+		pathfollow->AddNewTargetForBoid(nodeList[6]);
+		pathfollow->CreateAndSetPathToFollow();
+		break;
+	case 3:
+		pathfollow->MovementInput(false);
+		break;
+	default:
+		break;
+	}
 }
 
 //--------------------------------------------------------------
@@ -193,22 +175,12 @@ void ofApp::mouseDragged(int x, int y, int button){
 }
 
 //--------------------------------------------------------------
-void ofApp::mousePressed(int x, int y, int button){
-	//if (SelectedIndex == 2)
-	//{
-	//	seekArrive->SetPosition(ofVec2f(x, y));
-	//}
-	//if (SelectedIndex == 4)
-	//{
-	//	flock->SetLeaderPosition(ofVec2f(x, y));
-	//}
+void ofApp::mousePressed(int x, int y, int button)
+{
+	if (SelectedIndex != 3)return;
 	Node* tempNode = m_Grid->GetNodeByPosition(ofVec2f(x, y));
-
+	pathfollow->MovementInput(true);
 	pathfollow->AddNewTargetForBoid(tempNode);
-
-	//DirectedWeightedEdge* p15 = new DirectedWeightedEdge(2, nodeList[0], tempNode);
-	//m_Graph->AddEdgeToGraph(p15);
-//	pathfollow->CreateAndSetPathToFollow();
 	pathfollow->CreateAndSetPathToFollow(m_Grid, tempNode);
 }
 

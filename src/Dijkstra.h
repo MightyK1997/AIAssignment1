@@ -13,6 +13,7 @@ public:
 	~AStar() = default;
 	Path GetPath(Graph* i_WorldGraph, Node* i_StartNode, Node* i_EndNode);
 	Path GetPath(Grid* i_WorldGrid, Node* i_StartNode, Node* i_EndNode);
+	void UpdateHeuristic(Heuristic i_Heuristic) { m_Heuristic = i_Heuristic; }
 
 private:
 	float GetHeuristic(Node* i_StartNode, Node* i_EndNode);

@@ -36,6 +36,11 @@ public:
 	void AddNewTargetForBoid(Node* i_Node) { m_EndNode = i_Node; }
 	void CreateAndSetPathToFollow();
 	void CreateAndSetPathToFollow(Grid* m_Grid, Node* i_Node);
+	void UpdateAStarHeuristic(Heuristic i_Heuristic) const { m_LocalAStar->UpdateHeuristic(i_Heuristic); }
+	void ResetPath(){ follow.ResetCount(); }
+	void MovementInput(bool i_MovementInput) { m_Movement = i_MovementInput; }
+
+
 
 private:
 	Boid m_Boid;
@@ -47,4 +52,5 @@ private:
 	Node* m_EndNode = nullptr;
 	Node* m_StartNode = nullptr;
 	float m_maxSpeed, m_MaxAcceleration, m_TimeToTarget;
+	bool m_Movement = true;
 };

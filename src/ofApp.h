@@ -34,7 +34,7 @@ class ofApp : public ofBaseApp{
 
 
 private:
-	AStarPathFollow* pathfollow = new AStarPathFollow(Heuristic::Manhattan, m_Graph,5, 10, 0.1);
+	AStarPathFollow* pathfollow = new AStarPathFollow(Heuristic::Zero, m_Graph,5, 10, 0.1);
 	Graph* m_Graph = new Graph();
 	Grid* m_Grid = new Grid("grid.png", true);
 	KinematicSeek kSeek;
@@ -42,6 +42,6 @@ private:
 	SeekSteeringArrive* seekArrive = new SeekSteeringArrive(50, 50, 0.1);
 	WanderDynamic* dynamicWander = new WanderDynamic();
 	Flocking* flock = new Flocking(10);
-	int SelectedIndex = 4;
+	int SelectedIndex = 1;
 	std::vector<Node*> nodeList;
 };
