@@ -43,3 +43,6 @@ which is used to implement the click to move seek steering behavior. The update 
 
 Special Instructions for compilation: 1. Requires openframeworks to be installed in the destination computer.
 2. Copy "AIAssignment1" folder to openframeworks_path\apps\MyApps
+
+
+Link to Blogpost :http://sai-upadhyayula.com/2019/02/28/pathfinding-for-ai/
