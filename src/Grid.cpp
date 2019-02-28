@@ -32,7 +32,7 @@ void Grid::Load(std::string i_ImagePath)
 					if (color == ofColor::black) obstaclePixelCount++;
 				}
 			}
-			Node* tile = new Node(tileIndex, ofVec2f(x * PixelsPerTile, y* PixelsPerTile), obstaclePixelCount > pow(PixelsPerTile, 2) / 2);
+			Node* tile = new Node(tileIndex, ofVec2f(x * PixelsPerTile, y* PixelsPerTile), !(obstaclePixelCount > pow(PixelsPerTile, 2) / 2));
 			m_GraphNodes.push_back(tile);
 		}
 	}
@@ -98,7 +98,7 @@ std::vector<Node*> Grid::GetNeighboringNodesOfNode(int i_Index) const
 	return returnVector;
 }
 
-std::vector<Node*> Grid::GetNeighboringNodesOfNode(const Node*& i_Node) const
+std::vector<Node*> Grid::GetNeighboringNodesOfNode(Node*& i_Node) const
 {
 	return GetNeighboringNodesOfNode(i_Node->m_Index);
 }
@@ -106,6 +106,7 @@ std::vector<Node*> Grid::GetNeighboringNodesOfNode(const Node*& i_Node) const
 void Grid::Draw()
 {
 	if (!m_bShouldVisualizeGraph) return;
+	m_Image.draw(0, 0);
 	for (auto node : m_GraphNodes)
 	{
 		if (node->b_IsWalkable)

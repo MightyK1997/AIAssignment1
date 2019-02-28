@@ -7,125 +7,171 @@
     <ClCompile Include="src\main.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\Boid.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\DataTypes.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\KinematicSeek.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\basic-motion.cpp" />
-    <ClCompile Include="src\Seek-Steering.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Seek-Steering-Arrive.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Wander-Steering-Kinematic.cpp" />
-    <ClCompile Include="src\Wander-Steering-Dynamic.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\DynamicAlign.cpp">
-      <Filter>src</Filter>
+      <Filter>src\Movement</Filter>
     </ClCompile>
     <ClCompile Include="src\DynamicArrive.cpp">
-      <Filter>src</Filter>
+      <Filter>src\Movement</Filter>
     </ClCompile>
     <ClCompile Include="src\DynamicLookWhereYouAreGoing.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\DynamicFace.cpp" />
-    <ClCompile Include="src\DynamicSeek.cpp" />
-    <ClCompile Include="src\DynamicVelocityMatch.cpp" />
-    <ClCompile Include="src\DynamicWander.cpp" />
-    <ClCompile Include="src\DynamicSeperation.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Flocking-behavior.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\DataTypes-PathFinding.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Dijkstra.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Graph.cpp">
-      <Filter>src</Filter>
+      <Filter>src\Movement</Filter>
     </ClCompile>
     <ClCompile Include="src\DynamicPathFollow.cpp">
-      <Filter>src</Filter>
+      <Filter>src\Movement</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DynamicSeperation.cpp">
+      <Filter>src\Movement</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Boid.cpp">
+      <Filter>src\Boids</Filter>
     </ClCompile>
     <ClCompile Include="src\AStarPathFollow.cpp">
-      <Filter>src</Filter>
+      <Filter>src\Boids</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Flocking-behavior.cpp">
+      <Filter>src\Boids</Filter>
+    </ClCompile>
+    <ClCompile Include="src\KinematicSeek.cpp">
+      <Filter>src\Boids</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Seek-Steering.cpp">
+      <Filter>src\Boids</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Seek-Steering-Arrive.cpp">
+      <Filter>src\Boids</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Wander-Steering-Dynamic.cpp">
+      <Filter>src\Boids</Filter>
+    </ClCompile>
+    <ClCompile Include="src\basic-motion.cpp">
+      <Filter>src\Boids</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Wander-Steering-Kinematic.cpp">
+      <Filter>src\Boids</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DynamicFace.cpp">
+      <Filter>src\Movement</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DynamicSeek.cpp">
+      <Filter>src\Movement</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DynamicVelocityMatch.cpp">
+      <Filter>src\Movement</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DynamicWander.cpp">
+      <Filter>src\Movement</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DataTypes.cpp">
+      <Filter>src\DataTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DataTypes-PathFinding.cpp">
+      <Filter>src\DataTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Dijkstra.cpp">
+      <Filter>src\PathFinding\Algorithms</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graph.cpp">
+      <Filter>src\PathFinding\Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Grid.cpp">
+      <Filter>src\PathFinding\Graph</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
       <UniqueIdentifier>{d8376475-7454-4a24-b08a-aac121d3ad6f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\PathFinding">
+      <UniqueIdentifier>{1e515883-96c3-415e-a3ce-10f0c4d9ad63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Movement">
+      <UniqueIdentifier>{9a622d1f-fa26-43c1-80b6-80666c8f573e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Boids">
+      <UniqueIdentifier>{9d806fdf-1483-4bad-a653-d2f75675ef5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\DataTypes">
+      <UniqueIdentifier>{3732e4b7-3ef8-4ef0-9530-484d9b3654a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\PathFinding\Algorithms">
+      <UniqueIdentifier>{91824294-09ae-47e5-b970-a074e40267ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\PathFinding\Graph">
+      <UniqueIdentifier>{e6de3846-af49-4ffd-9737-1b7069f4ea21}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ofApp.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\DataTypes.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Boid.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\KinematicSeek.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\basic-motion.h" />
-    <ClInclude Include="src\Seek-Steering.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Seek-Steering-Arrive.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Wander-Steering-Kinematic.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Wander-Steering-Dynamic.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="src\DynamicAlign.h">
-      <Filter>src</Filter>
+      <Filter>src\Movement</Filter>
     </ClInclude>
     <ClInclude Include="src\DynamicArrive.h">
-      <Filter>src</Filter>
+      <Filter>src\Movement</Filter>
     </ClInclude>
     <ClInclude Include="src\DynamicLookWhereYouAreGoing.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\DynamicFace.h" />
-    <ClInclude Include="src\DynamicSeek.h" />
-    <ClInclude Include="src\DynamicVelocityMatch.h" />
-    <ClInclude Include="src\DynamicWander.h" />
-    <ClInclude Include="src\DynamicSeperation.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Flocking-Behavior.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\DataTypes-PathFinding.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Dijkstra.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Graph.h">
-      <Filter>src</Filter>
+      <Filter>src\Movement</Filter>
     </ClInclude>
     <ClInclude Include="src\DynamicPathFollow.h">
-      <Filter>src</Filter>
+      <Filter>src\Movement</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DynamicSeperation.h">
+      <Filter>src\Movement</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Boid.h">
+      <Filter>src\Boids</Filter>
     </ClInclude>
     <ClInclude Include="src\AStarPathFollow.h">
-      <Filter>src</Filter>
+      <Filter>src\Boids</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Flocking-Behavior.h">
+      <Filter>src\Boids</Filter>
+    </ClInclude>
+    <ClInclude Include="src\KinematicSeek.h">
+      <Filter>src\Boids</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Seek-Steering.h">
+      <Filter>src\Boids</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Seek-Steering-Arrive.h">
+      <Filter>src\Boids</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Wander-Steering-Kinematic.h">
+      <Filter>src\Boids</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Wander-Steering-Dynamic.h">
+      <Filter>src\Boids</Filter>
+    </ClInclude>
+    <ClInclude Include="src\basic-motion.h">
+      <Filter>src\Boids</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DynamicFace.h">
+      <Filter>src\Movement</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DynamicSeek.h">
+      <Filter>src\Movement</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DynamicVelocityMatch.h">
+      <Filter>src\Movement</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DynamicWander.h">
+      <Filter>src\Movement</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DataTypes.h">
+      <Filter>src\DataTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DataTypes-PathFinding.h">
+      <Filter>src\DataTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Dijkstra.h">
+      <Filter>src\PathFinding\Algorithms</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graph.h">
+      <Filter>src\PathFinding\Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Grid.h">
+      <Filter>src\PathFinding\Graph</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

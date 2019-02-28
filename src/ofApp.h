@@ -11,6 +11,7 @@
 
 #include "Dijkstra.h"
 #include "AStarPathFollow.h"
+#include "Grid.h"
 
 class ofApp : public ofBaseApp{
 
@@ -35,6 +36,7 @@ class ofApp : public ofBaseApp{
 private:
 	AStarPathFollow* pathfollow = new AStarPathFollow(Heuristic::Diagonal, m_Graph,5, 10, 0.1);
 	Graph* m_Graph = new Graph();
+	Grid* m_Grid = new Grid("grid.png", true);
 	KinematicSeek kSeek;
 	BasicMotion* basicMotion = new BasicMotion(5000);
 	SeekSteeringArrive* seekArrive = new SeekSteeringArrive(50, 50, 0.1);

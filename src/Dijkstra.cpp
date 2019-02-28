@@ -1,4 +1,5 @@
 #include "Dijkstra.h"
+#include "Grid.h"
 #include <algorithm>
 
 namespace
@@ -92,6 +93,82 @@ Path AStar::GetPath(Graph* i_WorldGraph, Node* i_StartNode, Node* i_EndNode)
 				else
 				{
 					NodeRecord* newRecord = new NodeRecord(endNode, connection, endNodeCost, endNodeCost + GetHeuristic(endNode, i_EndNode));
+					openList.emplace_back(newRecord);
+				}
+				std::sort(openList.begin(), openList.end(), SortHelperFunction);
+			}
+		}
+		RemoveElementFromList(openList, currentNode);
+		closeList.emplace_back(currentNode);
+		std::sort(closeList.begin(), closeList.end(), SortHelperFunction);
+	}
+	if (currentNode->m_Node->m_Index != i_EndNode->m_Index)
+	{
+	}
+	else
+	{
+		while (currentNode->m_Node->m_Index != i_StartNode->m_Index)
+		{
+			returnPath.m_Path.push_back(currentNode->m_IncomingEdge);
+			currentNode = GetNodeRecordForNode(closeList, currentNode->m_IncomingEdge->m_Source);
+		}
+		std::reverse(returnPath.m_Path.begin(), returnPath.m_Path.end());
+	}
+	for (auto node : openList)
+	{
+		if (node)
+		{
+			delete(node);
+		}
+	}
+	for (auto node : closeList)
+	{
+		if (node)
+		{
+			delete(node);
+		}
+	}
+	return returnPath;
+}
+
+Path AStar::GetPath(Grid* i_WorldGrid, Node* i_StartNode, Node* i_EndNode)
+{
+	Path returnPath;
+	NodeRecord* startRecord = new NodeRecord(i_StartNode, nullptr, 0, GetHeuristic(i_StartNode, i_EndNode));
+
+	auto openList = std::vector<NodeRecord*>();
+	auto closeList = std::vector<NodeRecord*>();
+
+	openList.emplace_back(startRecord);
+	NodeRecord* currentNode;
+
+	while (!openList.empty())
+	{
+		currentNode = openList[0];
+		if (currentNode->m_Node == i_EndNode) break;
+		std::vector<Node*> Neighbors = i_WorldGrid->GetNeighboringNodesOfNode(currentNode->m_Node);
+		for (auto neighbor : Neighbors)
+		{
+			Node* endNode = neighbor;
+			float endNodeCost = currentNode->m_CostSoFar + Grid::TileCost;
+			if (!endNode->b_IsWalkable || DoesListContainElement(closeList, endNode))
+			{
+				continue;
+			}
+			else
+			{
+				if (DoesListContainElement(openList, endNode))
+				{
+					auto record = GetNodeRecordForNode(openList, endNode);
+					if (endNodeCost < record->m_CostSoFar)
+					{
+						record->m_CostSoFar = endNodeCost;
+					}
+				}
+				else
+				{
+					DirectedWeightedEdge* temp = new DirectedWeightedEdge(Grid::TileCost, currentNode->m_Node, endNode);
+					NodeRecord* newRecord = new NodeRecord(endNode, temp, endNodeCost, endNodeCost + GetHeuristic(endNode, i_EndNode));
 					openList.emplace_back(newRecord);
 				}
 				std::sort(openList.begin(), openList.end(), SortHelperFunction);

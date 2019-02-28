@@ -27,7 +27,7 @@ struct Node
 
 struct DirectedWeightedEdge
 {
-	DirectedWeightedEdge() {}
+	DirectedWeightedEdge() = default;
 	DirectedWeightedEdge(float i_Cost, Node* i_Source, Node* i_Sink) : m_Cost(i_Cost), m_Source(i_Source), m_Sink(i_Sink) {}
 	~DirectedWeightedEdge() = default;
 
@@ -51,7 +51,7 @@ struct NodeRecord
 
 	//ctor and dtor
 
-	NodeRecord() {}
+	NodeRecord() = default;
 	NodeRecord(Node* i_Node, DirectedWeightedEdge* i_Edge, float i_Cost, float i_TotalCost) :
 		m_Node(i_Node),
 		m_IncomingEdge(i_Edge),
@@ -93,7 +93,6 @@ enum class Heuristic
 
 struct Heuristics
 {
-	//TODO:Need to fix manhattan distance
 	static float Manhattan(Node* i_StartNode, Node* i_EndNode) { return abs(i_StartNode->m_Position.x - i_EndNode->m_Position.x) + abs(i_StartNode->m_Position.y - i_EndNode->m_Position.y); }
 	static float Euclidean(Node* i_StartNode, Node* i_EndNode) { return i_StartNode->m_Position.distance(i_EndNode->m_Position); }
 	static float Diagonal(Node* i_StartNode, Node* i_EndNode)

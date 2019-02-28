@@ -102,7 +102,8 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-	pathfollow->Draw();
+	//pathfollow->Draw();
+	m_Grid->Draw();
 	//switch (SelectedIndex)
 	//{
 	//case 1:

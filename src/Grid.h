@@ -22,7 +22,7 @@ public:
 	Node* GetNodeByPosition(ofVec2f i_Position);
 	std::vector<int> GetNeighboringTileIndices(int i_Index) const;
 	std::vector<Node*> GetNeighboringNodesOfNode(int i_Index) const;
-	std::vector<Node*> GetNeighboringNodesOfNode(const Node*& i_Node) const;
+	std::vector<Node*> GetNeighboringNodesOfNode(Node*& i_Node) const;
 
 	void VisualizeGraph(bool i_Option) { m_bShouldVisualizeGraph = i_Option; }
 
