@@ -35,16 +35,16 @@ void ofApp::setup(){
 		DirectedWeightedEdge* d1 = new DirectedWeightedEdge(7, nodeList[0], nodeList[1]);
 		m_Graph->AddEdgeToGraph(d1);
 
-		DirectedWeightedEdge* d2 = new DirectedWeightedEdge(8, nodeList[1], nodeList[2]);
+		DirectedWeightedEdge* d2 = new DirectedWeightedEdge(2, nodeList[1], nodeList[2]);
 		m_Graph->AddEdgeToGraph(d2);
 
-		DirectedWeightedEdge* d14 = new DirectedWeightedEdge(8, nodeList[1], nodeList[6]);
+		DirectedWeightedEdge* d14 = new DirectedWeightedEdge(25, nodeList[1], nodeList[6]);
 		m_Graph->AddEdgeToGraph(d14);
 
-		DirectedWeightedEdge* d3 = new DirectedWeightedEdge(7, nodeList[2], nodeList[3]);
+		DirectedWeightedEdge* d3 = new DirectedWeightedEdge(2, nodeList[2], nodeList[3]);
 		m_Graph->AddEdgeToGraph(d3);
 
-		DirectedWeightedEdge* d4 = new DirectedWeightedEdge(9, nodeList[3], nodeList[4]);
+		DirectedWeightedEdge* d4 = new DirectedWeightedEdge(2, nodeList[3], nodeList[4]);
 		m_Graph->AddEdgeToGraph(d4);
 
 		DirectedWeightedEdge* d5 = new DirectedWeightedEdge(10, nodeList[4], nodeList[5]);
@@ -94,7 +94,7 @@ void ofApp::setup(){
 	}
 	//pathfollow->UpdateGraph(m_Graph);
 	//pathfollow->SetStartNode(nodeList[0]);
-	//pathfollow->AddNewTargetForBoid(nodeList[5]);
+	//pathfollow->AddNewTargetForBoid(nodeList[6]);
 	//pathfollow->CreateAndSetPathToFollow();
 
 }

@@ -29,7 +29,7 @@ public:
 
 public:
 	//Change this value for more precision
-	static const uint8_t PixelsPerTile = 3;
+	static const uint8_t PixelsPerTile = 4;
 	static const uint8_t TileCost = 1;
 
 private:

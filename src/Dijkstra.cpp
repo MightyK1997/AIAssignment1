@@ -85,9 +85,11 @@ Path AStar::GetPath(Graph* i_WorldGraph, Node* i_StartNode, Node* i_EndNode)
 			{
 				if (DoesListContainElement(openList, endNode))
 				{
-					if (endNodeCost < connection->m_Cost)
+					auto record = GetNodeRecordForNode(openList, endNode);
+					if (endNodeCost < record->m_CostSoFar)
 					{
-						connection->m_Cost = endNodeCost;
+						record->m_CostSoFar = endNodeCost;
+						record->m_IncomingEdge = connection;
 					}
 				}
 				else
@@ -163,6 +165,7 @@ Path AStar::GetPath(Grid* i_WorldGrid, Node* i_StartNode, Node* i_EndNode)
 					if (endNodeCost < record->m_CostSoFar)
 					{
 						record->m_CostSoFar = endNodeCost;
+						record->m_IncomingEdge = new DirectedWeightedEdge(Grid::TileCost, currentNode->m_Node, endNode);
 					}
 				}
 				else

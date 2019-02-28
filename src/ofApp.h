@@ -34,7 +34,7 @@ class ofApp : public ofBaseApp{
 
 
 private:
-	AStarPathFollow* pathfollow = new AStarPathFollow(Heuristic::Diagonal, m_Graph,5, 10, 0.1);
+	AStarPathFollow* pathfollow = new AStarPathFollow(Heuristic::Manhattan, m_Graph,5, 10, 0.1);
 	Graph* m_Graph = new Graph();
 	Grid* m_Grid = new Grid("grid.png", true);
 	KinematicSeek kSeek;
