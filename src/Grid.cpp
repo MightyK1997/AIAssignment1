@@ -10,18 +10,13 @@ void Grid::Load(std::string i_ImagePath)
 
 	m_GridWidth = numberOfPixelsX / PixelsPerTile;
 	m_GridHeight = numberOfPixelsY / PixelsPerTile;
-
-	//create tiles according to the image
-	auto& pixels = m_Image.getPixels();
-
-	//check every tile
+	auto pixels = m_Image.getPixels();
 	for (int y = 0; y < m_GridHeight; ++y)
 	{
 		for (int x = 0; x < m_GridWidth; ++x)
 		{
 			int tileIndex = m_GridWidth * y + x;
 			int obstaclePixelCount = 0;
-			//check all pixels in the tile
 			for (int i = 0; i < PixelsPerTile; ++i)
 			{
 				for (int j = 0; j < PixelsPerTile; ++j)
@@ -36,7 +31,6 @@ void Grid::Load(std::string i_ImagePath)
 			m_GraphNodes.push_back(tile);
 		}
 	}
-
 }
 
 Node* Grid::GetNodeByPosition(ofVec2f i_Position)
@@ -44,15 +38,15 @@ Node* Grid::GetNodeByPosition(ofVec2f i_Position)
 	auto gridX = i_Position.x / PixelsPerTile;
 	auto gridY = i_Position.y / PixelsPerTile;
 
-	return m_GraphNodes[(gridY * (m_GridWidth * gridX))];
+	return m_GraphNodes[m_GridWidth * (int)gridY + (int)gridX];
 }
 
 std::vector<int> Grid::GetNeighboringTileIndices(int i_Index) const
 {
 	std::vector<int> returnVector;
 
-	auto gridX = i_Index % m_GridWidth;
-	auto gridY = i_Index / m_GridHeight;
+	int gridX = i_Index % m_GridWidth;
+	int gridY = i_Index / m_GridHeight;
 
 	if (gridX > 0)
 	{

@@ -1,10 +1,11 @@
 #include "AStarPathFollow.h"
+#include "Grid.h"
 #include "DynamicPathFollow.h"
 #include "Graph.h"
 
 void AStarPathFollow::Update()
 {
-	m_Boid.Update(follow.GetSteering(m_Path, m_Boid.GetBoidKinematicData(), m_maxSpeed, 5.0f, 50.0f, m_MaxAcceleration, m_TimeToTarget));
+	m_Boid.Update(follow.GetSteering(m_Path, m_Boid.GetBoidKinematicData(), m_maxSpeed, 5.0f, 20.0f, m_MaxAcceleration, m_TimeToTarget));
 }
 
 void AStarPathFollow::Draw()
@@ -33,7 +34,7 @@ void AStarPathFollow::CreateAndSetPathToFollow()
 
 void AStarPathFollow::CreateAndSetPathToFollow(Grid* m_Grid, Node* i_Node)
 {
-	m_StartNode->m_Position = m_Boid.GetBoidKinematicData().Position;
+	m_StartNode = m_Grid->GetNodeByPosition(m_Boid.GetBoidKinematicData().Position);
 	m_Path = m_LocalAStar->GetPath(m_Grid, m_StartNode, m_EndNode);
 	follow.ResetCount();
 }

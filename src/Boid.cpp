@@ -42,7 +42,7 @@ void Boid::SetBoidOrientation(float i_Orientation)
 void Boid::Draw()
 {
 	ofSetColor(m_Color.x, m_Color.y, m_Color.z);
-	ofSetBackgroundColor(255, 0, 0);
+	//ofSetBackgroundColor(255, 0, 0);
 	ofDrawCircle(boidKinematicData.Position, circleRadius);
 
 	auto triangleHeight = sqrt(3) * 10;

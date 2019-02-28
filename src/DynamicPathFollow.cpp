@@ -16,7 +16,7 @@ DynamicSteeringOutput DynamicPathFollow::GetSteering(Path i_Path, Kinematic i_Ch
 	tempKinematic.Position = tempPoint;
 	DynamicArrive arrive;
 	DLookWhereYouAreGoing lwyg;
-	auto arr = arrive.GetSteering(i_Character, tempKinematic, i_maxSpeed, i_TargetRadius, i_SlowRadius, i_MaxAcceleration, i_maxSpeed);
+	auto arr = arrive.GetSteering(i_Character, tempKinematic, i_maxSpeed, i_TargetRadius, i_SlowRadius, i_MaxAcceleration, i_TimeToTarget);
 	auto look = lwyg.GetSteering(i_Character);
 	if (IsPointInsideSlowRadius(tempPoint, i_Character.Position, i_SlowRadius) && (currentPointCount < i_Path.m_Path.size() -1))
 	{
