@@ -6,8 +6,8 @@
 
 struct Node
 {
-	Node() {}
-	Node(int i_index, ofVec2f i_pos) : m_Index(i_index), m_Position(i_pos) {}
+	Node() = default;
+	Node(int i_index, ofVec2f i_pos, bool i_bIsWalkable = false) : m_Index(i_index), m_Position(i_pos), b_IsWalkable(i_bIsWalkable) {}
 	~Node() = default;
 
 	bool operator==(const Node* i_Node) const
@@ -21,6 +21,8 @@ struct Node
 
 	int m_Index = 0;
 	ofVec2f m_Position;
+	bool b_IsWalkable = false;
+
 };
 
 struct DirectedWeightedEdge

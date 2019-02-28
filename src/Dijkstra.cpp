@@ -72,49 +72,62 @@ Path AStar::GetPath(Graph* i_WorldGraph, Node* i_StartNode, Node* i_EndNode)
 		currentNode = openList[0];
 		if (currentNode->m_Node == i_EndNode) break;
 		std::vector<DirectedWeightedEdge*> connections = i_WorldGraph->GetConnections(currentNode->m_Node);
-		for (auto connection:connections)
+		for (auto connection : connections)
 		{
 			Node* endNode = connection->m_Sink;
 			float endNodeCost = currentNode->m_CostSoFar + connection->m_Cost;
-			//if (DoesListContainElement(closeList, endNode))
-			//{
-			//	NodeRecord* endNodeRecord = GetNodeRecordForNode(closeList, endNode);
-			//	if (endNodeRecord && (endNodeRecord->m_CostSoFar < endNodeCost))
-			//		continue;
-			//	RemoveElementFromList(closeList, endNodeRecord);
-			//}
-			//else if (DoesListContainElement(openList, endNode))
-			//{
-			//	NodeRecord* endNodeRecord = GetNodeRecordForNode(closeList, endNode);
-			//	if (endNodeRecord && (endNodeRecord->m_CostSoFar < endNodeCost))
-			//		continue;
-			//}
-			//else
-			//{
-				NodeRecord* newRecord = new NodeRecord(endNode, connection, endNodeCost, endNodeCost + GetHeuristic(endNode, i_EndNode));
-				openList.emplace_back(newRecord);
+			if (DoesListContainElement(closeList, endNode))
+			{
+				continue;
+			}
+			else
+			{
+				if (DoesListContainElement(openList, endNode))
+				{
+					if (endNodeCost < connection->m_Cost)
+					{
+						connection->m_Cost = endNodeCost;
+					}
+				}
+				else
+				{
+					NodeRecord* newRecord = new NodeRecord(endNode, connection, endNodeCost, endNodeCost + GetHeuristic(endNode, i_EndNode));
+					openList.emplace_back(newRecord);
+				}
 				std::sort(openList.begin(), openList.end(), SortHelperFunction);
-			//}
-			RemoveElementFromList(openList, currentNode);
-			closeList.emplace_back(currentNode);
-			std::sort(closeList.begin(), closeList.end(), SortHelperFunction);
+			}
 		}
+		RemoveElementFromList(openList, currentNode);
+		closeList.emplace_back(currentNode);
+		std::sort(closeList.begin(), closeList.end(), SortHelperFunction);
 	}
 	if (currentNode->m_Node->m_Index != i_EndNode->m_Index)
 	{
-		return returnPath;
 	}
 	else
 	{
 		while (currentNode->m_Node->m_Index != i_StartNode->m_Index)
 		{
-			returnPath.m_Path.emplace_back(currentNode->m_IncomingEdge);
+			returnPath.m_Path.push_back(currentNode->m_IncomingEdge);
 			currentNode = GetNodeRecordForNode(closeList, currentNode->m_IncomingEdge->m_Source);
 		}
 		std::reverse(returnPath.m_Path.begin(), returnPath.m_Path.end());
-		delete(currentNode);
-		return returnPath;
 	}
+	for (auto node : openList)
+	{
+		if (node)
+		{
+			delete(node);
+		}
+	}
+	for (auto node : closeList)
+	{
+		if (node)
+		{
+			delete(node);
+		}
+	}
+	return returnPath;
 }
 
 float AStar::GetHeuristic(Node* i_StartNode, Node* i_EndNode)
