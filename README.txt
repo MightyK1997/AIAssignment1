@@ -28,6 +28,18 @@ which is used to implement the click to move seek steering behavior. The update 
 23. DynamicWander.h: Contains the DynamicWander class and also contains the details of various offsets used for wander.
 24. DynamicWander.cpp: Contains implementation of GetSteering for DynamicWander class.
 
+// Update for Path Finding
+
+1. Boids/AStarPathFollow.h and cpp : Contains the Implementations of Draw and Update function for boids. Also contains functions to change the path follow heuristics and whether to use the grid or not.
+2. DataTypes/DataTypes-PathFinding.h : Contains the Structs for Node, NodeRecord, DirectedWeightedEdge, Path and Heuristics. Also contains the enum specifying the different heuristics that are supported.
+3. Movement/DynamicPathFollow.h and cpp : Contains the DynamicPathFollow class used to implement Dynamic path follow.
+4. PathFinding/Algorithms/Dijkstra.h : Contains the definition for the AStar class, which is used to implement both AStar and Dijkstra.
+5. PathFinding/Algorithms/Dijkstra.cpp : Contains the implementation of GetPath function for AStar which is used to get Path from either a Graph or Grid. Also contains helper functions to work with vectors.
+6. PathFinding/Graph/Graph.h and Graph.cpp: Contains the Graph class which is used to implement the Graph for AStar.
+7. PathFinding/Graph/Grid.h and Grid.cpp: Contains the Grid class which reads in a black and white image file and quantizes it into tiles.
+
+
 
 
 Special Instructions for compilation: 1. Requires openframeworks to be installed in the destination computer.
+2. Copy "AIAssignment1" folder to openframeworks_path\apps\MyApps
