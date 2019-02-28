@@ -30,3 +30,10 @@ void AStarPathFollow::CreateAndSetPathToFollow()
 	m_Path = m_LocalAStar->GetPath(m_WorldGraph, m_StartNode, m_EndNode);
 	follow.ResetCount();
 }
+
+void AStarPathFollow::CreateAndSetPathToFollow(Grid* m_Grid, Node* i_Node)
+{
+	m_StartNode->m_Position = m_Boid.GetBoidKinematicData().Position;
+	m_Path = m_LocalAStar->GetPath(m_Grid, m_StartNode, m_EndNode);
+	follow.ResetCount();
+}

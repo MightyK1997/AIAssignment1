@@ -33,6 +33,7 @@ public:
 	void AddNewTargetForBoid(float i_X, float i_Y);
 	void AddNewTargetForBoid(Node* i_Node) { m_EndNode = i_Node; }
 	void CreateAndSetPathToFollow();
+	void CreateAndSetPathToFollow(Grid* m_Grid, Node* i_Node);
 
 private:
 	Boid m_Boid;

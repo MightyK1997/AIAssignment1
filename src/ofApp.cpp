@@ -140,6 +140,8 @@ void ofApp::keyPressed(int key){
 	//}
 	//else
 	//	SelectedIndex = key > 48 && key < 53 ? key - 48 : 0;
+
+
 }
 
 //--------------------------------------------------------------
@@ -167,13 +169,14 @@ void ofApp::mousePressed(int x, int y, int button){
 	//{
 	//	flock->SetLeaderPosition(ofVec2f(x, y));
 	//}
-	Node* tempNode = new Node(10000, ofVec2f(x, y));
+	Node* tempNode = m_Grid->GetNodeByPosition(ofVec2f(x, y));
 
 	pathfollow->AddNewTargetForBoid(tempNode);
 
-	DirectedWeightedEdge* p15 = new DirectedWeightedEdge(2, nodeList[0], tempNode);
-	m_Graph->AddEdgeToGraph(p15);
-	pathfollow->CreateAndSetPathToFollow();
+	//DirectedWeightedEdge* p15 = new DirectedWeightedEdge(2, nodeList[0], tempNode);
+	//m_Graph->AddEdgeToGraph(p15);
+	//pathfollow->CreateAndSetPathToFollow();
+	pathfollow->CreateAndSetPathToFollow(tempNode);
 }
 
 //--------------------------------------------------------------
