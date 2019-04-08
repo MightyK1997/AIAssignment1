@@ -11,23 +11,23 @@ void Grid::Load(std::string i_ImagePath)
 	m_GridWidth = numberOfPixelsX / PixelsPerTile;
 	m_GridHeight = numberOfPixelsY / PixelsPerTile;
 	auto pixels = m_Image.getPixels();
-	for (int y = 0; y < m_GridHeight; ++y)
+	for (int x = 0; x < m_GridHeight; ++x)
 	{
-		for (int x = 0; x < m_GridWidth; ++x)
+		for (int y = 0; y < m_GridWidth; ++y)
 		{
-			int tileIndex = m_GridWidth * y + x;
+			int nodeIndex = m_GridWidth * x + y;
 			int obstaclePixelCount = 0;
 			for (int i = 0; i < PixelsPerTile; ++i)
 			{
 				for (int j = 0; j < PixelsPerTile; ++j)
 				{
-					auto pixelX = x * PixelsPerTile + j;
-					auto pixelY = y * PixelsPerTile + i;
+					auto pixelX = y * PixelsPerTile + j;
+					auto pixelY = x * PixelsPerTile + i;
 					auto color = pixels.getColor(pixelX, pixelY);
 					if (color == ofColor::black) obstaclePixelCount++;
 				}
 			}
-			Node* tile = new Node(tileIndex, ofVec2f(x * PixelsPerTile, y* PixelsPerTile), !(obstaclePixelCount > pow(PixelsPerTile, 2) / 2));
+			Node* tile = new Node(nodeIndex, ofVec2f(y * PixelsPerTile, x* PixelsPerTile), !(obstaclePixelCount > pow(PixelsPerTile, 2) / 2));
 			m_GraphNodes.push_back(tile);
 		}
 	}
@@ -38,7 +38,7 @@ Node* Grid::GetNodeByPosition(ofVec2f i_Position)
 	auto gridX = i_Position.x / PixelsPerTile;
 	auto gridY = i_Position.y / PixelsPerTile;
 
-	return m_GraphNodes[m_GridWidth * (int)gridY + (int)gridX];
+	return m_GraphNodes[m_GridWidth * static_cast<int>(gridY) + static_cast<int>(gridX)];
 }
 
 std::vector<int> Grid::GetNeighboringTileIndices(int i_Index) const

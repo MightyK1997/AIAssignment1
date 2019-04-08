@@ -76,6 +76,21 @@
     <ClCompile Include="src\Grid.cpp">
       <Filter>src\PathFinding\Graph</Filter>
     </ClCompile>
+    <ClCompile Include="src\Action.cpp">
+      <Filter>src\Decision Making</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ActionManager.cpp">
+      <Filter>src\Decision Making</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ActionNode.cpp">
+      <Filter>src\Decision Making</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DecisionNode.cpp">
+      <Filter>src\Decision Making</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DecisionTree.cpp">
+      <Filter>src\Decision Making</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -98,6 +113,9 @@
     </Filter>
     <Filter Include="src\PathFinding\Graph">
       <UniqueIdentifier>{e6de3846-af49-4ffd-9737-1b7069f4ea21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Decision Making">
+      <UniqueIdentifier>{d5a337c4-5171-42cc-b5c5-fe0ec5e35db1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -172,6 +190,27 @@
     </ClInclude>
     <ClInclude Include="src\Grid.h">
       <Filter>src\PathFinding\Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Action.h">
+      <Filter>src\Decision Making</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ActionManager.h">
+      <Filter>src\Decision Making</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DecisionTreeNode.h">
+      <Filter>src\Decision Making</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ActionNode.h">
+      <Filter>src\Decision Making</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DecisionNode.h">
+      <Filter>src\Decision Making</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DecisionMakingBehavior.h">
+      <Filter>src\Decision Making</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DecisionTree.h">
+      <Filter>src\Decision Making</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

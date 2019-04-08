@@ -1,49 +1,12 @@
-﻿  DataTypes-PathFinding.cpp
-  Dijkstra.cpp
-c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.16.27023\include\xhash(113): error C2064: term does not evaluate to a function taking 1 arguments (compiling source file src\DataTypes-PathFinding.cpp)
-  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.16.27023\include\xhash(112): note: while compiling class template member function 'size_t std::_Uhash_compare<_Kty,_Hasher,_Keyeq>::operator ()(const _Kty &) const'
-          with
-          [
-              _Kty=NodeRecord,
-              _Hasher=std::hash<NodeRecord>,
-              _Keyeq=std::equal_to<NodeRecord>
-          ] (compiling source file src\DataTypes-PathFinding.cpp)
-  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.16.27023\include\xhash(1125): note: see reference to function template instantiation 'size_t std::_Uhash_compare<_Kty,_Hasher,_Keyeq>::operator ()(const _Kty &) const' being compiled
-          with
-          [
-              _Kty=NodeRecord,
-              _Hasher=std::hash<NodeRecord>,
-              _Keyeq=std::equal_to<NodeRecord>
-          ] (compiling source file src\DataTypes-PathFinding.cpp)
-  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.16.27023\include\unordered_map(29): note: see reference to class template instantiation 'std::_Uhash_compare<_Kty,_Hasher,_Keyeq>' being compiled
-          with
-          [
-              _Kty=NodeRecord,
-              _Hasher=std::hash<NodeRecord>,
-              _Keyeq=std::equal_to<NodeRecord>
-          ] (compiling source file src\DataTypes-PathFinding.cpp)
-  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.16.27023\include\xhash(159): note: see reference to class template instantiation 'std::_Umap_traits<_Kty,_Ty,std::_Uhash_compare<_Kty,_Hasher,_Keyeq>,_Alloc,false>' being compiled
-          with
-          [
-              _Kty=NodeRecord,
-              _Ty=std::vector<DirectedWeightedEdge *,std::allocator<DirectedWeightedEdge *>>,
-              _Hasher=std::hash<NodeRecord>,
-              _Keyeq=std::equal_to<NodeRecord>,
-              _Alloc=std::allocator<std::pair<const NodeRecord,std::vector<DirectedWeightedEdge *,std::allocator<DirectedWeightedEdge *>>>>
-          ] (compiling source file src\DataTypes-PathFinding.cpp)
-  c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.16.27023\include\unordered_map(97): note: see reference to class template instantiation 'std::_Hash<std::_Umap_traits<_Kty,_Ty,std::_Uhash_compare<_Kty,_Hasher,_Keyeq>,_Alloc,false>>' being compiled
-          with
-          [
-              _Kty=NodeRecord,
-              _Ty=std::vector<DirectedWeightedEdge *,std::allocator<DirectedWeightedEdge *>>,
-              _Hasher=std::hash<NodeRecord>,
-              _Keyeq=std::equal_to<NodeRecord>,
-              _Alloc=std::allocator<std::pair<const NodeRecord,std::vector<DirectedWeightedEdge *,std::allocator<DirectedWeightedEdge *>>>>
-          ] (compiling source file src\DataTypes-PathFinding.cpp)
-  c:\users\ukoun\source\repos\of_v0.10.1_vs2017_release\apps\myapps\aiassignment1\src\datatypes-pathfinding.h(50): note: see reference to class template instantiation 'std::unordered_map<NodeRecord,std::vector<DirectedWeightedEdge *,std::allocator<_Ty>>,std::hash<_Kty>,std::equal_to<_Kty>,std::allocator<std::pair<const _Kty,std::vector<_Ty,std::allocator<_Ty>>>>>' being compiled
-          with
-          [
-              _Ty=DirectedWeightedEdge *,
-              _Kty=NodeRecord
-          ] (compiling source file src\DataTypes-PathFinding.cpp)
-c:\users\ukoun\source\repos\of_v0.10.1_vs2017_release\apps\myapps\aiassignment1\src\dijkstra.cpp(16): error C4716: 'Dijkstra::GetSteering': must return a value
+﻿  main.cpp
+  ofApp.cpp
+c:\users\ukoun\source\repos\of_v0.10.1_vs2017_release\apps\myapps\aiassignment1\src\flocking-behavior.h(12): warning C4018: '<': signed/unsigned mismatch (compiling source file src\main.cpp)
+c:\users\ukoun\source\repos\of_v0.10.1_vs2017_release\apps\myapps\aiassignment1\src\flocking-behavior.h(12): warning C4018: '<': signed/unsigned mismatch (compiling source file src\ofApp.cpp)
+  AIAssignment1.vcxproj -> C:\Users\ukoun\source\repos\of_v0.10.1_vs2017_release\apps\myApps\AIAssignment1\bin\AIAssignment1_debug.exe
+  
+  	                   2	C:\Users\ukoun\source\repos\of_v0.10.1_vs2017_release\libs\fmodex\lib\vs\Win32\
+  	  *EXTRA File 		 6018560	C:\Users\ukoun\source\repos\of_v0.10.1_vs2017_release\apps\myApps\AIAssignment1\bin\FreeImage.dll
+  
+  	                   1	C:\Users\ukoun\source\repos\of_v0.10.1_vs2017_release\libs\FreeImage\lib\vs\Win32\
+  	  *EXTRA File 		 1266176	C:\Users\ukoun\source\repos\of_v0.10.1_vs2017_release\apps\myApps\AIAssignment1\bin\fmodex.dll
+  	  *EXTRA File 		 1312768	C:\Users\ukoun\source\repos\of_v0.10.1_vs2017_release\apps\myApps\AIAssignment1\bin\fmodexL.dll
