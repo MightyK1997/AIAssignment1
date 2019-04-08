@@ -6,8 +6,8 @@ class ActionNode : DecisionTreeNode
 {
 public:
 	DecisionTreeNode* MakeDecision() override;
-	Action* GetNodeAction() const { return m_NodeAction; }
+	Action* GetAction() override { return m_NodeAction; }
 
 private:
-	Action* m_NodeAction;
+	Action* m_NodeAction = nullptr;
 };

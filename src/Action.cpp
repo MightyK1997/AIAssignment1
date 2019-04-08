@@ -5,7 +5,7 @@ bool Action::CanInterrupt()
 	return true;
 }
 
-bool Action::CanInterruptAction(Action* i_Action)
+bool Action::CanInterrupt(Action* i_Action)
 {
 	return true;
 }
@@ -22,4 +22,10 @@ bool Action::IsComplete()
 
 void Action::ExecuteAction()
 {
+	m_Function();
+}
+
+void Action::IncrementQueuedTime(float i_DeltaTime)
+{
+	m_QueuedTime += i_DeltaTime;
 }

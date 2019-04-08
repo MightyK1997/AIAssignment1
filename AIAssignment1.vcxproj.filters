@@ -91,6 +91,12 @@
     <ClCompile Include="src\DecisionTree.cpp">
       <Filter>src\Decision Making</Filter>
     </ClCompile>
+    <ClCompile Include="src\PriorityQueue.cpp">
+      <Filter>src\PriorityQueue</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AI.cpp">
+      <Filter>src\Decision Making</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -116,6 +122,9 @@
     </Filter>
     <Filter Include="src\Decision Making">
       <UniqueIdentifier>{d5a337c4-5171-42cc-b5c5-fe0ec5e35db1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\PriorityQueue">
+      <UniqueIdentifier>{dc1d4df6-c8e5-4973-b63c-1ac7f0310cf9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -210,6 +219,12 @@
       <Filter>src\Decision Making</Filter>
     </ClInclude>
     <ClInclude Include="src\DecisionTree.h">
+      <Filter>src\Decision Making</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PriorityQueue.h">
+      <Filter>src\PriorityQueue</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AI.h">
       <Filter>src\Decision Making</Filter>
     </ClInclude>
   </ItemGroup>

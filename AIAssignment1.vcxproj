@@ -183,6 +183,7 @@
     <ClCompile Include="src\Action.cpp" />
     <ClCompile Include="src\ActionManager.cpp" />
     <ClCompile Include="src\ActionNode.cpp" />
+    <ClCompile Include="src\AI.cpp" />
     <ClCompile Include="src\AStarPathFollow.cpp" />
     <ClCompile Include="src\basic-motion.cpp" />
     <ClCompile Include="src\Boid.cpp" />
@@ -206,6 +207,7 @@
     <ClCompile Include="src\KinematicSeek.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
+    <ClCompile Include="src\PriorityQueue.cpp" />
     <ClCompile Include="src\Seek-Steering-Arrive.cpp" />
     <ClCompile Include="src\Seek-Steering.cpp" />
     <ClCompile Include="src\Wander-Steering-Dynamic.cpp" />
@@ -215,6 +217,7 @@
     <ClInclude Include="src\Action.h" />
     <ClInclude Include="src\ActionManager.h" />
     <ClInclude Include="src\ActionNode.h" />
+    <ClInclude Include="src\AI.h" />
     <ClInclude Include="src\AStarPathFollow.h" />
     <ClInclude Include="src\basic-motion.h" />
     <ClInclude Include="src\Boid.h" />
@@ -239,6 +242,7 @@
     <ClInclude Include="src\Grid.h" />
     <ClInclude Include="src\KinematicSeek.h" />
     <ClInclude Include="src\ofApp.h" />
+    <ClInclude Include="src\PriorityQueue.h" />
     <ClInclude Include="src\Seek-Steering-Arrive.h" />
     <ClInclude Include="src\Seek-Steering.h" />
     <ClInclude Include="src\Wander-Steering-Dynamic.h" />
