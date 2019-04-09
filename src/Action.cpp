@@ -17,7 +17,7 @@ bool Action::CanDoBoth(Action* i_Action)
 
 bool Action::IsComplete()
 {
-	return true;
+	return false;
 }
 
 void Action::ExecuteAction()

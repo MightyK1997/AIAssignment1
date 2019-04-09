@@ -12,6 +12,9 @@
 #include "Dijkstra.h"
 #include "AStarPathFollow.h"
 #include "Grid.h"
+#include "AI.h"
+#include "DecisionTree.h"
+#include "ActionNode.h"
 
 class ofApp : public ofBaseApp{
 
@@ -44,4 +47,10 @@ private:
 	Flocking* flock = new Flocking(10);
 	int SelectedIndex = 1;
 	std::vector<Node*> nodeList;
+
+	AI* m_WanderAI = new AI();
+	ActionManager* m_WanderAIManager = new ActionManager();
+	ActionNode* m_WanderActionNode = new ActionNode();
+	Action* m_WanderAction = new Action();
+	DecisionTree* m_DecisionTree = new DecisionTree(m_WanderActionNode);
 };

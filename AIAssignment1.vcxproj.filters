@@ -97,6 +97,9 @@
     <ClCompile Include="src\AI.cpp">
       <Filter>src\Decision Making</Filter>
     </ClCompile>
+    <ClCompile Include="src\World.cpp">
+      <Filter>src\World</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -125,6 +128,9 @@
     </Filter>
     <Filter Include="src\PriorityQueue">
       <UniqueIdentifier>{dc1d4df6-c8e5-4973-b63c-1ac7f0310cf9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\World">
+      <UniqueIdentifier>{fa1bb41e-fe24-4b99-8ba0-aea7f4c9369b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -226,6 +232,9 @@
     </ClInclude>
     <ClInclude Include="src\AI.h">
       <Filter>src\Decision Making</Filter>
+    </ClInclude>
+    <ClInclude Include="src\World.h">
+      <Filter>src\World</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

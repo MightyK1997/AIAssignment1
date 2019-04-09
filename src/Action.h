@@ -12,7 +12,7 @@ public:
 	bool CanInterrupt(Action* i_Action);
 	bool CanDoBoth(Action* i_Action);
 	bool IsComplete();
-	void SetAction(std::function<void()> i_Function) { m_Function = i_Function; }
+	void SetAction(std::function<void(void)> i_Function) { m_Function = i_Function; }
 	void ExecuteAction();
 	void IncrementQueuedTime(float i_DeltaTime);
 	float GetPriority() const { return m_Priority; }

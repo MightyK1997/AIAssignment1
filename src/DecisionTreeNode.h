@@ -4,6 +4,6 @@
 class DecisionTreeNode
 {
 public:
-	virtual DecisionTreeNode* MakeDecision();
-	virtual Action* GetAction();
+	virtual DecisionTreeNode* MakeDecision() = 0;
+	virtual Action* GetAction() = 0;
 };

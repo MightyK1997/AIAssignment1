@@ -212,6 +212,7 @@
     <ClCompile Include="src\Seek-Steering.cpp" />
     <ClCompile Include="src\Wander-Steering-Dynamic.cpp" />
     <ClCompile Include="src\Wander-Steering-Kinematic.cpp" />
+    <ClCompile Include="src\World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Action.h" />
@@ -247,6 +248,7 @@
     <ClInclude Include="src\Seek-Steering.h" />
     <ClInclude Include="src\Wander-Steering-Dynamic.h" />
     <ClInclude Include="src\Wander-Steering-Kinematic.h" />
+    <ClInclude Include="src\World.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="$(OF_ROOT)\libs\openFrameworksCompiled\project\vs\openframeworksLib.vcxproj">
