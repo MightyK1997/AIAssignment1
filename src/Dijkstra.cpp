@@ -1,36 +1,11 @@
 #include "Dijkstra.h"
 #include "Grid.h"
 #include <algorithm>
+#include "PriorityQueue.h"
 
 namespace
 {
 	bool SortHelperFunction(NodeRecord* n1, NodeRecord* n2) { return n1->m_EstimatedTotalCost < n2->m_EstimatedTotalCost; }
-
-	void RemoveElementFromList(std::vector<NodeRecord*>& i_List, NodeRecord* i_Node)
-	{
-		auto it = i_List.begin();
-		while (it!=i_List.end())
-		{
-			if ((*it) == i_Node)
-			{
-				it = i_List.erase(it);
-				continue;
-			}
-			++it;
-		}
-	}
-
-	bool DoesListContainElement(std::vector<NodeRecord*> i_List, NodeRecord* i_NodeRecord)
-	{
-		for (auto listelement:i_List)
-		{
-			if (listelement == i_NodeRecord)
-			{
-				return true;
-			}
-		}
-		return false;
-	}
 
 	bool DoesListContainElement(std::vector<NodeRecord*> i_List, Node* i_NodeRecord)
 	{
@@ -62,13 +37,13 @@ Path AStar::GetPath(Graph* i_WorldGraph, Node* i_StartNode, Node* i_EndNode)
 	Path returnPath;
 	NodeRecord* startRecord = new NodeRecord(i_StartNode, nullptr, 0, GetHeuristic(i_StartNode, i_EndNode));
 
-	auto openList = std::vector<NodeRecord*>();
-	auto closeList = std::vector<NodeRecord*>();
+	auto openList = PriorityQueue<NodeRecord*>(SortHelperFunction);
+	auto closeList = PriorityQueue<NodeRecord*>(SortHelperFunction);
 
-	openList.emplace_back(startRecord);
+	openList.Insert(startRecord);
 	NodeRecord* currentNode;
 
-	while (!openList.empty())
+	while (!openList.Empty())
 	{
 		currentNode = openList[0];
 		if (currentNode->m_Node == i_EndNode) break;
@@ -77,15 +52,15 @@ Path AStar::GetPath(Graph* i_WorldGraph, Node* i_StartNode, Node* i_EndNode)
 		{
 			Node* endNode = connection->m_Sink;
 			float endNodeCost = currentNode->m_CostSoFar + connection->m_Cost;
-			if (DoesListContainElement(closeList, endNode))
+			if (DoesListContainElement(closeList.GetUnderlyingQueue(), endNode))
 			{
 				continue;
 			}
 			else
 			{
-				if (DoesListContainElement(openList, endNode))
+				if (DoesListContainElement(openList.GetUnderlyingQueue(), endNode))
 				{
-					auto record = GetNodeRecordForNode(openList, endNode);
+					auto record = GetNodeRecordForNode(openList.GetUnderlyingQueue(), endNode);
 					if (endNodeCost < record->m_CostSoFar)
 					{
 						record->m_CostSoFar = endNodeCost;
@@ -95,14 +70,12 @@ Path AStar::GetPath(Graph* i_WorldGraph, Node* i_StartNode, Node* i_EndNode)
 				else
 				{
 					NodeRecord* newRecord = new NodeRecord(endNode, connection, endNodeCost, endNodeCost + GetHeuristic(endNode, i_EndNode));
-					openList.emplace_back(newRecord);
+					openList.Insert(newRecord);
 				}
-				std::sort(openList.begin(), openList.end(), SortHelperFunction);
 			}
 		}
-		RemoveElementFromList(openList, currentNode);
-		closeList.emplace_back(currentNode);
-		std::sort(closeList.begin(), closeList.end(), SortHelperFunction);
+		openList.Remove(currentNode);
+		closeList.Insert(currentNode);
 	}
 	if (currentNode->m_Node->m_Index != i_EndNode->m_Index)
 	{
@@ -112,24 +85,12 @@ Path AStar::GetPath(Graph* i_WorldGraph, Node* i_StartNode, Node* i_EndNode)
 		while (currentNode->m_Node->m_Index != i_StartNode->m_Index)
 		{
 			returnPath.m_Path.push_back(currentNode->m_IncomingEdge);
-			currentNode = GetNodeRecordForNode(closeList, currentNode->m_IncomingEdge->m_Source);
+			currentNode = GetNodeRecordForNode(closeList.GetUnderlyingQueue(), currentNode->m_IncomingEdge->m_Source);
 		}
 		std::reverse(returnPath.m_Path.begin(), returnPath.m_Path.end());
 	}
-	for (auto node : openList)
-	{
-		if (node)
-		{
-			delete(node);
-		}
-	}
-	for (auto node : closeList)
-	{
-		if (node)
-		{
-			delete(node);
-		}
-	}
+	openList.Clear();
+	closeList.Clear();
 	return returnPath;
 }
 
@@ -138,13 +99,13 @@ Path AStar::GetPath(Grid* i_WorldGrid, Node* i_StartNode, Node* i_EndNode)
 	Path returnPath;
 	NodeRecord* startRecord = new NodeRecord(i_StartNode, nullptr, 0, GetHeuristic(i_StartNode, i_EndNode));
 
-	auto openList = std::vector<NodeRecord*>();
-	auto closeList = std::vector<NodeRecord*>();
+	auto openList = PriorityQueue<NodeRecord*>(SortHelperFunction);
+	auto closeList = PriorityQueue<NodeRecord*>(SortHelperFunction);
 
-	openList.emplace_back(startRecord);
+	openList.Insert(startRecord);
 	NodeRecord* currentNode;
 
-	while (!openList.empty())
+	while (!openList.Empty())
 	{
 		currentNode = openList[0];
 		if (currentNode->m_Node == i_EndNode) break;
@@ -153,15 +114,15 @@ Path AStar::GetPath(Grid* i_WorldGrid, Node* i_StartNode, Node* i_EndNode)
 		{
 			Node* endNode = neighbor;
 			float endNodeCost = currentNode->m_CostSoFar + Grid::TileCost;
-			if (!endNode->b_IsWalkable || DoesListContainElement(closeList, endNode))
+			if (!endNode->b_IsWalkable || DoesListContainElement(closeList.GetUnderlyingQueue(), endNode))
 			{
 				continue;
 			}
 			else
 			{
-				if (DoesListContainElement(openList, endNode))
+				if (DoesListContainElement(openList.GetUnderlyingQueue(), endNode))
 				{
-					auto record = GetNodeRecordForNode(openList, endNode);
+					auto record = GetNodeRecordForNode(openList.GetUnderlyingQueue(), endNode);
 					if (endNodeCost < record->m_CostSoFar)
 					{
 						record->m_CostSoFar = endNodeCost;
@@ -172,14 +133,12 @@ Path AStar::GetPath(Grid* i_WorldGrid, Node* i_StartNode, Node* i_EndNode)
 				{
 					DirectedWeightedEdge* temp = new DirectedWeightedEdge(Grid::TileCost, currentNode->m_Node, endNode);
 					NodeRecord* newRecord = new NodeRecord(endNode, temp, endNodeCost, endNodeCost + GetHeuristic(endNode, i_EndNode));
-					openList.emplace_back(newRecord);
+					openList.Insert(newRecord);
 				}
-				std::sort(openList.begin(), openList.end(), SortHelperFunction);
 			}
 		}
-		RemoveElementFromList(openList, currentNode);
-		closeList.emplace_back(currentNode);
-		std::sort(closeList.begin(), closeList.end(), SortHelperFunction);
+		openList.Remove(currentNode);
+		closeList.Insert(currentNode);
 	}
 	if (currentNode->m_Node->m_Index != i_EndNode->m_Index)
 	{
@@ -189,24 +148,12 @@ Path AStar::GetPath(Grid* i_WorldGrid, Node* i_StartNode, Node* i_EndNode)
 		while (currentNode->m_Node->m_Index != i_StartNode->m_Index)
 		{
 			returnPath.m_Path.push_back(currentNode->m_IncomingEdge);
-			currentNode = GetNodeRecordForNode(closeList, currentNode->m_IncomingEdge->m_Source);
+			currentNode = GetNodeRecordForNode(closeList.GetUnderlyingQueue(), currentNode->m_IncomingEdge->m_Source);
 		}
 		std::reverse(returnPath.m_Path.begin(), returnPath.m_Path.end());
 	}
-	for (auto node : openList)
-	{
-		if (node)
-		{
-			delete(node);
-		}
-	}
-	for (auto node : closeList)
-	{
-		if (node)
-		{
-			delete(node);
-		}
-	}
+	openList.Clear();
+	closeList.Clear();
 	return returnPath;
 }
 
