@@ -202,6 +202,7 @@
     <ClCompile Include="src\DynamicVelocityMatch.cpp" />
     <ClCompile Include="src\DynamicWander.cpp" />
     <ClCompile Include="src\Flocking-behavior.cpp" />
+    <ClCompile Include="src\GameManager.cpp" />
     <ClCompile Include="src\Graph.cpp" />
     <ClCompile Include="src\Grid.cpp" />
     <ClCompile Include="src\KinematicSeek.cpp" />
@@ -239,6 +240,7 @@
     <ClInclude Include="src\DynamicVelocityMatch.h" />
     <ClInclude Include="src\DynamicWander.h" />
     <ClInclude Include="src\Flocking-Behavior.h" />
+    <ClInclude Include="src\GameManager.h" />
     <ClInclude Include="src\Graph.h" />
     <ClInclude Include="src\Grid.h" />
     <ClInclude Include="src\KinematicSeek.h" />

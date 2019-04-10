@@ -8,6 +8,7 @@ namespace
 void ActionManager::AddToPending(Action* i_Action)
 {
 	if (m_PendingActions.Contains(i_Action)) return;
+	i_Action->SetQueuedTime(0);
 	m_PendingActions.Insert(i_Action);
 }
 

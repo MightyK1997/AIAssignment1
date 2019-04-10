@@ -83,9 +83,6 @@ bool PriorityQueue<T>::Contains(const T& i_Element) const
 template <typename T>
 bool PriorityQueue<T>::Clear()
 {
-	/*for (auto i : m_UnderlyingQueue)
-	{
-		if (i != nullptr) delete(i);
-	}*/
+	m_UnderlyingQueue.clear();
 	return true;
 }

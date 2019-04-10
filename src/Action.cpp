@@ -2,12 +2,12 @@
 
 bool Action::CanInterrupt()
 {
-	return true;
+	return false;
 }
 
 bool Action::CanInterrupt(Action* i_Action)
 {
-	return true;
+	return m_CanInterrupt;
 }
 
 bool Action::CanDoBoth(Action* i_Action)
@@ -17,7 +17,7 @@ bool Action::CanDoBoth(Action* i_Action)
 
 bool Action::IsComplete()
 {
-	return false;
+	return m_CheckCompleteFunction();
 }
 
 void Action::ExecuteAction()

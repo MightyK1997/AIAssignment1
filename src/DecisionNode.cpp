@@ -7,7 +7,7 @@ DecisionTreeNode* DecisionNode::MakeDecision()
 
 bool DecisionNode::IsTrue()
 {
-	return true;
+	return m_DecisionFunction();
 }
 
 DecisionTreeNode* DecisionNode::GetBranch()

@@ -96,12 +96,25 @@ void ofApp::setup(){
 	//pathfollow->SetStartNode(nodeList[0]);
 	//pathfollow->AddNewTargetForBoid(nodeList[6]);
 	//pathfollow->CreateAndSetPathToFollow();
+	dynamicWander->SetBoid(m_WanderBoid);
+	m_GameManager->SetPlayer(m_Player);
+	m_GameManager->SetWanderNPC(m_WanderBoid);
 
 	std::function<void(void)> temp = std::bind(&WanderDynamic::Update, dynamicWander);
 	m_WanderAction->SetAction(temp);
+	std::function<bool()> checkFunction = std::bind(&WanderDynamic::HasArrived, dynamicWander);
+	m_WanderAction->SetCompleteFunction(checkFunction);
+	temp = std::bind(&SeekSteeringArrive::Update, seekArrive);
+	checkFunction = std::bind(&SeekSteeringArrive::HasArrived, seekArrive);
+	m_SeekAction->SetAction(temp);
+	m_SeekAction->SetCompleteFunction(checkFunction);
+	m_SeekAction->SetCanInterrupt(true);
 	m_WanderActionNode->SetAction(m_WanderAction);
+	m_SeekActionNode->SetAction(m_SeekAction);
 	m_WanderAIManager->Start();
-	m_WanderAIManager->AddToPending(m_WanderAction);
+	std::function<bool()> temp2 = std::bind(&GameManager::CheckIfPlayerIsInRange, m_GameManager);
+	m_DecisionNode->SetDecisionFunction(temp2);
+	m_DecisionNode->SetNodes(m_SeekActionNode, m_WanderActionNode);
 	m_WanderAI->m_AIActionManager = m_WanderAIManager;
 	m_WanderAI->m_DecisionMakingBehavior = m_DecisionTree;
 
@@ -109,6 +122,7 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
+	seekArrive->SetPosition(m_Player->GetBoidKinematicData().Position);
 	m_WanderAI->Update(0.01f);
 	//pathfollow->Update();
 }
@@ -137,6 +151,7 @@ void ofApp::draw(){
 	}
 	pathfollow->Draw();*/
 	dynamicWander->Draw();
+	m_Player->Draw();
 }
 
 //--------------------------------------------------------------
@@ -187,11 +202,12 @@ void ofApp::mouseDragged(int x, int y, int button){
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button)
 {
-	if (SelectedIndex != 3)return;
-	Node* tempNode = m_Grid->GetNodeByPosition(ofVec2f(x, y));
-	pathfollow->MovementInput(true);
-	pathfollow->AddNewTargetForBoid(tempNode);
-	pathfollow->CreateAndSetPathToFollow(m_Grid, tempNode);
+	m_Player->SetBoidPosition(ofVec2f(x, y));
+	//if (SelectedIndex != 3)return;
+	//Node* tempNode = m_Grid->GetNodeByPosition(ofVec2f(x, y));
+	//pathfollow->MovementInput(true);
+	//pathfollow->AddNewTargetForBoid(tempNode);
+	//pathfollow->CreateAndSetPathToFollow(m_Grid, tempNode);
 }
 
 //--------------------------------------------------------------
