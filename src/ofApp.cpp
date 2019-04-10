@@ -92,29 +92,30 @@ void ofApp::setup(){
 		DirectedWeightedEdge* d19 = new DirectedWeightedEdge(14, nodeList[0], nodeList[10]);
 		m_Graph->AddEdgeToGraph(d19);
 	}
-	pathfollow->UpdateGraph(m_Graph);
-	pathfollow->SetStartNode(nodeList[0]);
-	pathfollow->AddNewTargetForBoid(nodeList[6]);
-	pathfollow->CreateAndSetPathToFollow();
+	//pathfollow->UpdateGraph(m_Graph);
+	//pathfollow->SetStartNode(nodeList[0]);
+	//pathfollow->AddNewTargetForBoid(nodeList[6]);
+	//pathfollow->CreateAndSetPathToFollow();
 
-	//std::function<void(void)> temp = std::bind(&WanderDynamic::Update, dynamicWander);
-	//m_WanderAction->SetAction(temp);
-	//m_WanderActionNode->SetAction(m_WanderAction);
-	//m_WanderAIManager->AddToPending(m_WanderAction);
-	//m_WanderAI->m_AIActionManager = m_WanderAIManager;
-	//m_WanderAI->m_DecisionMakingBehavior = m_DecisionTree;
+	std::function<void(void)> temp = std::bind(&WanderDynamic::Update, dynamicWander);
+	m_WanderAction->SetAction(temp);
+	m_WanderActionNode->SetAction(m_WanderAction);
+	m_WanderAIManager->Start();
+	m_WanderAIManager->AddToPending(m_WanderAction);
+	m_WanderAI->m_AIActionManager = m_WanderAIManager;
+	m_WanderAI->m_DecisionMakingBehavior = m_DecisionTree;
 
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-	//m_WanderAI->Update(0.01f);
-	pathfollow->Update();
+	m_WanderAI->Update(0.01f);
+	//pathfollow->Update();
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-	switch (SelectedIndex)
+	/*switch (SelectedIndex)
 	{
 	case 1:
 	case 2:
@@ -128,14 +129,14 @@ void ofApp::draw(){
 		}
 		break;
 	case 3:
-		//ofSetBackgroundColor(0, 0, 0);
+		ofSetBackgroundColor(0, 0, 0);
 		m_Grid->Draw();
 		ofSetColor(255, 0, 0);
 	default:
 		break;
 	}
-	pathfollow->Draw();
-	//dynamicWander->Draw();
+	pathfollow->Draw();*/
+	dynamicWander->Draw();
 }
 
 //--------------------------------------------------------------

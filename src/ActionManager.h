@@ -1,6 +1,7 @@
 #pragma once
 #include "Action.h"
 #include <queue>
+#include "PriorityQueue.h"
 
 class ActionManager
 {
@@ -11,10 +12,11 @@ public:
 	void RemoveFromPending(Action* i_Action);
 	void AddToActive(Action* i_Action);
 	void RemoveFromActive(Action* i_Action);
+	void Start();
 	void Update(float i_DeltaTime);
 
 private:
 	bool CheckCanDoBoth(Action* i_Action);
-	std::vector<Action*> m_PendingActions;
-	std::vector<Action*> m_ActiveActions;
+	PriorityQueue<Action*> m_PendingActions;
+	PriorityQueue<Action*> m_ActiveActions;
 };

@@ -21,7 +21,7 @@ public:
 
 private:
 	float m_QueuedTime = 0.0f;
-	float m_ExpiryTime = 0.0f;
-	float m_Priority = 0.0f;
+	float m_ExpiryTime = 1.0f;
+	float m_Priority = 1.0f;
 	std::function<void()> m_Function;
 };

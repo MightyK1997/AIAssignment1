@@ -3,10 +3,14 @@
 #include <functional>
 
 template <typename T>
-class PriorityQueue
+class PriorityQueue : std::iterator<std::input_iterator_tag, T>
 {
 public:
+	PriorityQueue<T>() = default;
+	PriorityQueue<T>(const PriorityQueue<T>& i_Other);
+	PriorityQueue<T>& operator=(const PriorityQueue<T>&i_Other);
 	PriorityQueue<T>(std::function<bool(T, T)> i_ComparatorFunction) : m_ComparatorFunction(i_ComparatorFunction) {};
+	~PriorityQueue<T>() = default;
 
 public:
 	bool Insert(const T& i_Element);
@@ -14,6 +18,8 @@ public:
 	bool Contains(const T& i_Element) const;
 	bool Empty() const { return m_UnderlyingQueue.empty(); }
 	bool Clear();
+	void SetComparatorFunction(std::function<bool(T, T)> i_ComparatorFunction) { m_ComparatorFunction = i_ComparatorFunction; }
+	bool IsComparatorEmpty() { return m_ComparatorFunction == nullptr; }
 	T& operator[](std::size_t idx) { return m_UnderlyingQueue[idx]; }
 	const T& operator[](std::size_t idx) const { return m_UnderlyingQueue[idx]; }
 	const std::vector<T>& GetUnderlyingQueue() { return m_UnderlyingQueue; }
@@ -22,6 +28,19 @@ private:
 	std::vector<T> m_UnderlyingQueue;
 	std::function<bool(T,T)> m_ComparatorFunction;
 };
+
+template <typename T>
+PriorityQueue<T>::PriorityQueue(const PriorityQueue<T>& i_Other)
+{
+	m_UnderlyingQueue = *i_Other.m_UnderlyingQueue;
+}
+
+template <typename T>
+PriorityQueue<T>& PriorityQueue<T>::operator=(const PriorityQueue<T>& i_Other)
+{
+	m_UnderlyingQueue = i_Other.m_UnderlyingQueue;
+	return *this;
+}
 
 template <typename T>
 bool PriorityQueue<T>::Insert(const T& i_Element)
@@ -41,6 +60,7 @@ bool PriorityQueue<T>::Remove(const T& i_Element)
 		if ((*it) == i_Element)
 		{
 			it = m_UnderlyingQueue.erase(it);
+			continue;
 		}
 		++it;
 	}
@@ -63,9 +83,9 @@ bool PriorityQueue<T>::Contains(const T& i_Element) const
 template <typename T>
 bool PriorityQueue<T>::Clear()
 {
-	for (auto i : m_UnderlyingQueue)
+	/*for (auto i : m_UnderlyingQueue)
 	{
 		if (i != nullptr) delete(i);
-	}
+	}*/
 	return true;
 }
