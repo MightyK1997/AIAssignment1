@@ -1,7 +1,7 @@
 #pragma once
 #include "Task.h"
 
-class Selector : protected Task
+class Selector : public Task
 {
 public:
 	virtual TaskStatus OnEnter(Tick* i_Tick) override;

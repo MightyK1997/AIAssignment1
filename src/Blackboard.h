@@ -1,6 +1,5 @@
 #pragma once
 #include <map>
-
 #include "Action.h"
 #include "Task.h"
 
@@ -13,7 +12,7 @@ public:
 	void SetAction(std::string i_Key, Action* i_Action);
 	void SetTask(std::string i_Key, Task* i_Task);
 	void SetChild(uint8_t i_CurrentRunningChild) { m_RunningChild = i_CurrentRunningChild; }
-	Action* GetAction(const std::string&i_Key);
+	Action* GetAction(const std::string& i_Key);
 	Task* GetTask(const std::string& i_Key);
 	uint8_t GetChild() const { return m_RunningChild; }
 private:

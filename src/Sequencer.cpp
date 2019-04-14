@@ -2,62 +2,53 @@
 #include "Sequencer.h"
 #include "Tick.h"
 
-namespace AIForGames
+TaskStatus Sequencer::OnEnter(Tick* i_Tick)
 {
-	namespace DecisionMaking
+	return e_SUCCESS;
+}
+
+TaskStatus Sequencer::OnExit(Tick* i_Tick)
+{
+	return e_SUCCESS;
+}
+
+TaskStatus Sequencer::OnOpen(Tick* i_Tick)
+{
+	i_Tick->GetBlackboard()->SetChild(0);
+	return e_SUCCESS;
+}
+
+TaskStatus Sequencer::OnClose(Tick* i_Tick)
+{
+	return e_SUCCESS;
+}
+
+TaskStatus Sequencer::OnExecute(Tick* i_Tick)
+{
+	uint8_t runningChild = i_Tick->GetBlackboard()->GetChild();
+	for (int i = runningChild; i < m_ChildTasks.size(); i++)
 	{
-		namespace BehaviorTrees
+		Task* childTask = GetChildren()[i];
+		TaskStatus childStatus = childTask->Run(i_Tick);
+		if (childStatus != e_SUCCESS)
 		{
-			TaskStatus Sequencer::OnEnter(Tick* i_tick)
+			if (childStatus == e_RUNNING)
 			{
-				return e_SUCCESS;
+				i_Tick->GetBlackboard()->SetChild(0);
 			}
-
-			TaskStatus Sequencer::OnExit(Tick* i_tick)
-			{
-				return e_SUCCESS;
-			}
-
-			TaskStatus Sequencer::OnOpen(Tick* i_tick)
-			{
-				i_tick->GetBlackboard()->SetChild(0);
-				return e_SUCCESS;
-			}
-
-			TaskStatus Sequencer::OnClose(Tick* i_tick)
-			{
-				return e_SUCCESS;
-			}
-
-			TaskStatus Sequencer::OnExecute(Tick* i_tick)
-			{
-				uint8_t runningChild = i_tick->GetBlackboard()->GetChild();
-				for (int i = runningChild; i < m_ChildTasks.size(); i++)
-				{
-					Task* childTask = GetChildren()[i];
-					TaskStatus childStatus = childTask->Run(i_tick);
-					if (childStatus != e_SUCCESS)
-					{
-						if (childStatus == e_RUNNING)
-						{
-							i_tick->GetBlackboard()->SetChild(0);
-						}
-						return childStatus;
-					}
-				}
-				return e_FAILURE;
-			}
-
-			Action* Sequencer::GetAction()
-			{
-				return nullptr;
-			}
-
-			TaskStatus Sequencer::Run(Tick* i_tick)
-			{
-				OnOpen(i_tick);
-				return OnExecute(i_tick);
-			}
+			return childStatus;
 		}
 	}
+	return e_FAILURE;
+}
+
+Action* Sequencer::GetAction()
+{
+	return nullptr;
+}
+
+TaskStatus Sequencer::Run(Tick* i_Tick)
+{
+	OnOpen(i_Tick);
+	return OnExecute(i_Tick);
 }

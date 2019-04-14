@@ -186,8 +186,10 @@
     <ClCompile Include="src\AI.cpp" />
     <ClCompile Include="src\AStarPathFollow.cpp" />
     <ClCompile Include="src\basic-motion.cpp" />
+    <ClCompile Include="src\BehaviorTree.cpp" />
     <ClCompile Include="src\Blackboard.cpp" />
     <ClCompile Include="src\Boid.cpp" />
+    <ClCompile Include="src\CheckDistanceTask.cpp" />
     <ClCompile Include="src\DataTypes-PathFinding.cpp" />
     <ClCompile Include="src\DataTypes.cpp" />
     <ClCompile Include="src\DecisionNode.cpp" />
@@ -206,6 +208,7 @@
     <ClCompile Include="src\GameManager.cpp" />
     <ClCompile Include="src\Graph.cpp" />
     <ClCompile Include="src\Grid.cpp" />
+    <ClCompile Include="src\Inverter.cpp" />
     <ClCompile Include="src\KinematicSeek.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
@@ -216,6 +219,7 @@
     <ClCompile Include="src\Sequencer.cpp" />
     <ClCompile Include="src\Wander-Steering-Dynamic.cpp" />
     <ClCompile Include="src\Wander-Steering-Kinematic.cpp" />
+    <ClCompile Include="src\WanderTask.cpp" />
     <ClCompile Include="src\World.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -225,8 +229,10 @@
     <ClInclude Include="src\AI.h" />
     <ClInclude Include="src\AStarPathFollow.h" />
     <ClInclude Include="src\basic-motion.h" />
+    <ClInclude Include="src\BehaviorTree.h" />
     <ClInclude Include="src\Blackboard.h" />
     <ClInclude Include="src\Boid.h" />
+    <ClInclude Include="src\CheckDistanceTask.h" />
     <ClInclude Include="src\DataTypes-PathFinding.h" />
     <ClInclude Include="src\DataTypes.h" />
     <ClInclude Include="src\DecisionMakingBehavior.h" />
@@ -248,6 +254,7 @@
     <ClInclude Include="src\GameManager.h" />
     <ClInclude Include="src\Graph.h" />
     <ClInclude Include="src\Grid.h" />
+    <ClInclude Include="src\Inverter.h" />
     <ClInclude Include="src\KinematicSeek.h" />
     <ClInclude Include="src\ofApp.h" />
     <ClInclude Include="src\PriorityQueue.h" />
@@ -259,6 +266,7 @@
     <ClInclude Include="src\Tick.h" />
     <ClInclude Include="src\Wander-Steering-Dynamic.h" />
     <ClInclude Include="src\Wander-Steering-Kinematic.h" />
+    <ClInclude Include="src\WanderTask.h" />
     <ClInclude Include="src\World.h" />
   </ItemGroup>
   <ItemGroup>

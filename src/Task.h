@@ -17,6 +17,7 @@ public:
 	virtual size_t GetChildrenCount() { return m_ChildTasks.size(); }
 	virtual Action* GetAction() = 0;
 	virtual TaskStatus Run(Tick* i_tick) = 0;
+	virtual void AddChild(Task* i_Action) { m_ChildTasks.push_back(i_Action); }
 
 	bool operator ==(Task& i_Other);
 	bool operator!=(Task& i_Other);

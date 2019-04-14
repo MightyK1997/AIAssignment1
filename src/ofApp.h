@@ -18,6 +18,11 @@
 #include "GameManager.h"
 #include "DecisionNode.h"
 
+#include "BehaviorTree.h"
+#include "CheckDistanceTask.h"
+#include "WanderTask.h"
+#include "Selector.h"
+
 class ofApp : public ofBaseApp{
 
 	public:
@@ -63,4 +68,12 @@ private:
 	DecisionNode* m_DecisionNode = new DecisionNode();
 	GameManager* m_GameManager = new GameManager();
 	DecisionTree* m_DecisionTree = new DecisionTree(m_DecisionNode);
+
+
+	BooleanTask* m_DistanceCheckTask = new BooleanTask();
+	ActionTask* m_WanderTask = new ActionTask(m_WanderAction);
+	ActionTask* m_SeekTask = new ActionTask(m_SeekAction);
+	Selector* m_DistanceCheckSelectior = new Selector();
+	BehaviorTree* m_BehaviorTree = new BehaviorTree(m_DistanceCheckSelectior);
+
 };
