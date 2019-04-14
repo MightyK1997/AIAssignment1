@@ -204,6 +204,7 @@
     <ClCompile Include="src\DynamicSeperation.cpp" />
     <ClCompile Include="src\DynamicVelocityMatch.cpp" />
     <ClCompile Include="src\DynamicWander.cpp" />
+    <ClCompile Include="src\Entropy.cpp" />
     <ClCompile Include="src\Flocking-behavior.cpp" />
     <ClCompile Include="src\GameManager.cpp" />
     <ClCompile Include="src\Graph.cpp" />
@@ -250,6 +251,8 @@
     <ClInclude Include="src\DynamicSeperation.h" />
     <ClInclude Include="src\DynamicVelocityMatch.h" />
     <ClInclude Include="src\DynamicWander.h" />
+    <ClInclude Include="src\Entropy.h" />
+    <ClInclude Include="src\Example.h" />
     <ClInclude Include="src\Flocking-Behavior.h" />
     <ClInclude Include="src\GameManager.h" />
     <ClInclude Include="src\Graph.h" />
