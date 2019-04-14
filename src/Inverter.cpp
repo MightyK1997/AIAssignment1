@@ -26,14 +26,8 @@ TaskStatus Inverter::OnClose(Tick* i_Tick)
 
 TaskStatus Inverter::OnExecute(Tick* i_Tick)
 {
-	uint8_t childStatus = m_ChildTasks[0]->Run(i_Tick);
-	if (childStatus == e_FAILURE)
-		return e_SUCCESS;
-	else
-	{
-		i_Tick->GetBlackboard()->SetAction("Active", nullptr);
-		return e_FAILURE;
-	}
+	const auto childStatus = m_ChildTasks[0]->Run(i_Tick);
+	return childStatus == e_SUCCESS ? e_FAILURE : e_SUCCESS;
 }
 
 TaskStatus Inverter::Run(Tick* i_Tick)

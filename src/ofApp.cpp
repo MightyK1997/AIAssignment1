@@ -150,6 +150,11 @@ void ofApp::setup(){
 	m_DistanceCheckSelector->AddChild(m_CloseDistanceCheckTask);
 	m_DistanceCheckSelector->AddChild(m_BasicMotionCheckTask);
 
+	m_DistanceCheckInverter->AddChild(m_DistanceCheckSelector);
+
+	m_RootSequencer->AddChild(m_DistanceCheckInverter);
+	m_RootSequencer->AddChild(nullptr);
+
 
 	m_EnemyAI->m_AIActionManager = m_WanderAIManager;
 	m_EnemyAI->m_DecisionMakingBehavior = m_BehaviorTree;

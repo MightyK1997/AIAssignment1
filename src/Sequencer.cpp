@@ -28,15 +28,13 @@ TaskStatus Sequencer::OnExecute(Tick* i_Tick)
 	for (int i = 0; i < m_ChildTasks.size(); i++)
 	{
 		Task* childTask = GetChildren()[i];
-		TaskStatus childStatus = childTask->Run(i_Tick);
-		if (childStatus != e_SUCCESS)
+		if (childTask == nullptr) return e_SUCCESS;
+		const TaskStatus childStatus = childTask->Run(i_Tick);
+		if (childStatus == e_SUCCESS)
 		{
-			if (childStatus == e_RUNNING)
-			{
-				i_Tick->GetBlackboard()->SetChild(0);
-			}
-			return childStatus;
+			continue;
 		}
+		return childStatus;
 	}
 	return e_FAILURE;
 }

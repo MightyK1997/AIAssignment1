@@ -22,6 +22,8 @@
 #include "Selector.h"
 #include "BooleanTask.h"
 #include "ActionTask.h"
+#include "Inverter.h"
+#include "Sequencer.h"
 
 class ofApp : public ofBaseApp{
 
@@ -96,8 +98,10 @@ private:
 	BooleanTask* m_FarDistanceCheckTask = new BooleanTask();
 	BooleanTask* m_BasicMotionCheckTask = new BooleanTask();
 	Selector* m_DistanceCheckSelector = new Selector();
+	Inverter* m_DistanceCheckInverter = new Inverter();
+	Sequencer* m_RootSequencer = new Sequencer();
 
 	//Other things
-	BehaviorTree* m_BehaviorTree = new BehaviorTree(m_DistanceCheckSelector);
+	BehaviorTree* m_BehaviorTree = new BehaviorTree(m_DistanceCheckInverter);
 
 };

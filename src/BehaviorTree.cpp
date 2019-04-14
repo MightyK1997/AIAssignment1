@@ -4,6 +4,10 @@
 #include "Tick.h"
 Action* BehaviorTree::GetAction()
 {
-	m_Root->Run(m_Tick);
+	auto result = m_Root->Run(m_Tick);
+	//if (result == e_FAILURE)
+	//{
+	//	return nullptr;
+	//}
 	return m_Blackboard->GetAction("Active");
 }
