@@ -1,6 +1,9 @@
 #include "ofApp.h"
 
 //--------------------------------------------------------------
+
+
+
 void ofApp::setup(){
 	Path o_path;
 
@@ -96,6 +99,9 @@ void ofApp::setup(){
 	//pathfollow->SetStartNode(nodeList[0]);
 	//pathfollow->AddNewTargetForBoid(nodeList[6]);
 	//pathfollow->CreateAndSetPathToFollow();
+
+	//Decision Making
+	seekToBegin->SetPosition(ofVec2f(25, ofGetHeight() - 25));
 	dynamicWander->SetBoid(m_WanderBoid);
 	m_GameManager->SetPlayer(m_Player);
 	m_GameManager->SetWanderNPC(m_WanderBoid);
@@ -109,50 +115,62 @@ void ofApp::setup(){
 	m_SeekAction->SetAction(temp);
 	m_SeekAction->SetCompleteFunction(checkFunction);
 	m_SeekAction->SetCanInterrupt(true);
+
+	temp = std::bind(&SeekSteeringArrive::Update, seekToBegin);
+	checkFunction = std::bind(&SeekSteeringArrive::HasArrived, seekToBegin);
+	m_SeekToBeginAction->SetAction(temp);
+	m_SeekToBeginAction->SetCompleteFunction(checkFunction);
+	m_SeekToBeginAction->SetCanInterrupt(true);
+
+	temp = std::bind(&BasicMotion::Update, basicMotion);
+	checkFunction = std::bind(&BasicMotion::HasArrived, basicMotion);
+	m_BasicMotionAction->SetAction(temp);
+	m_BasicMotionAction->SetCompleteFunction(checkFunction);
+	m_BasicMotionAction->SetCanInterrupt(true);
+
+
 	m_WanderActionNode->SetAction(m_WanderAction);
 	m_SeekActionNode->SetAction(m_SeekAction);
 	m_WanderAIManager->Start();
+	
 	std::function<bool()> temp2 = std::bind(&GameManager::CheckIfPlayerIsInRange, m_GameManager);
-	m_DistanceCheckTask->SetFunction(temp2);
-	m_DistanceCheckTask->SetTasks(m_SeekTask, m_WanderTask);
-	m_DistanceCheckSelectior->AddChild(m_DistanceCheckTask);
+
+	m_CloseDistanceCheckTask->SetFunction(temp2);
+	m_CloseDistanceCheckTask->SetTasks(m_SeekTask, m_FarDistanceCheckTask);
+
+	temp2 = std::bind(&GameManager::CheckIfPlayerIsInRanges, m_GameManager);
+
+	m_FarDistanceCheckTask->SetFunction(temp2);
+	m_FarDistanceCheckTask->SetTasks(m_WanderTask, m_GoToStartTask);
+	temp2 = std::bind(&ofApp::IsPlayerNearStart, this);
+
+	m_BasicMotionCheckTask->SetFunction(temp2);
+	m_BasicMotionCheckTask->SetTasks(m_BasicMotionTask, m_GoToStartTask);
+
+	m_DistanceCheckSelector->AddChild(m_CloseDistanceCheckTask);
+	m_DistanceCheckSelector->AddChild(m_BasicMotionCheckTask);
+
+
+	m_EnemyAI->m_AIActionManager = m_WanderAIManager;
+	m_EnemyAI->m_DecisionMakingBehavior = m_BehaviorTree;
+
+}
+
+void SetupDecisionTree()
+{
 	//m_DecisionNode->SetDecisionFunction(temp2);
 	//m_DecisionNode->SetNodes(m_SeekActionNode, m_WanderActionNode);
-	m_WanderAI->m_AIActionManager = m_WanderAIManager;
-	m_WanderAI->m_DecisionMakingBehavior = m_BehaviorTree;
-
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
 	seekArrive->SetPosition(m_Player->GetBoidKinematicData().Position);
-	m_WanderAI->Update(0.01f);
+	m_EnemyAI->Update(0.01f);
 	//pathfollow->Update();
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-	/*switch (SelectedIndex)
-	{
-	case 1:
-	case 2:
-		for (auto x : nodeList)
-		{
-			ofDrawCircle(x->m_Position, 5);
-			for (auto connection : m_Graph->GetConnections(x))
-			{
-				ofDrawArrow(ofVec3f(x->m_Position), ofVec3f(connection->m_Sink->m_Position));
-			}
-		}
-		break;
-	case 3:
-		ofSetBackgroundColor(0, 0, 0);
-		m_Grid->Draw();
-		ofSetColor(255, 0, 0);
-	default:
-		break;
-	}
-	pathfollow->Draw();*/
 	dynamicWander->Draw();
 	m_Player->Draw();
 }
@@ -236,6 +254,12 @@ void ofApp::windowResized(int w, int h){
 //--------------------------------------------------------------
 void ofApp::gotMessage(ofMessage msg){
 
+}
+
+bool ofApp::IsPlayerNearStart()
+{
+	auto pos = m_Player->GetBoidKinematicData().Position;
+	return  (pos.x - 25.f <= 5.f) && (pos.y - ofGetHeight() <= 5.0f);
 }
 
 //--------------------------------------------------------------

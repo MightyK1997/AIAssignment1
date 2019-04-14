@@ -30,20 +30,16 @@ TaskStatus Selector::OnExecute(Tick* i_Tick)
 	{
 		Task* childTask = GetChildren()[i];
 		TaskStatus childStatus = childTask->Run(i_Tick);
-		if (childStatus != e_FAILURE)
+		if (childStatus == e_FAILURE)
 		{
-			if (childStatus == e_RUNNING)
-			{
-				i_Tick->GetBlackboard()->SetChild(0);
-			}
-			return childStatus;
+			continue;
 		}
+		return childStatus;
 	}
 	return e_FAILURE;
 }
 
 TaskStatus Selector::Run(Tick* i_Tick)
 {
-	OnOpen(i_Tick);
 	return OnExecute(i_Tick);
 }

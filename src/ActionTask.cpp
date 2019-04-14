@@ -1,5 +1,5 @@
 #include "Tick.h"
-#include "WanderTask.h"
+#include "ActionTask.h"
 
 TaskStatus ActionTask::OnEnter(Tick* i_Tick)
 {
@@ -24,7 +24,7 @@ TaskStatus ActionTask::OnClose(Tick* i_Tick)
 
 TaskStatus ActionTask::OnExecute(Tick* i_Tick)
 {
-	return e_SUCCESS;
+	return m_Action->IsComplete() ? e_FAILURE : e_SUCCESS;
 }
 
 TaskStatus ActionTask::Run(Tick* i_Tick)

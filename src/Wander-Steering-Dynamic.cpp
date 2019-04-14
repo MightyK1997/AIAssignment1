@@ -9,5 +9,3 @@ void WanderDynamic::Draw()
 {
 	m_Boid->Draw();
 }
-
-

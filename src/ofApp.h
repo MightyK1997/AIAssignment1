@@ -19,9 +19,9 @@
 #include "DecisionNode.h"
 
 #include "BehaviorTree.h"
-#include "WanderTask.h"
 #include "Selector.h"
 #include "BooleanTask.h"
+#include "ActionTask.h"
 
 class ofApp : public ofBaseApp{
 
@@ -50,30 +50,54 @@ private:
 	KinematicSeek kSeek;
 	Boid* m_Player = new Boid();
 	Boid* m_WanderBoid = new Boid();
-	BasicMotion* basicMotion = new BasicMotion(5000);
-	SeekSteeringArrive* seekArrive = new SeekSteeringArrive(m_WanderBoid, 50, 50, 0.1);
-	WanderDynamic* dynamicWander = new WanderDynamic();
 	Flocking* flock = new Flocking(10);
 	int SelectedIndex = 1;
 	std::vector<Node*> nodeList;
 
+	//Decision Making stuff
+	SeekSteeringArrive* seekArrive = new SeekSteeringArrive(m_WanderBoid, 50, 50, 0.1);
+	SeekSteeringArrive* seekToBegin = new SeekSteeringArrive(m_WanderBoid, 50, 50, 0.1);
+	BasicMotion* basicMotion = new BasicMotion(m_WanderBoid, 5000);
+	WanderDynamic* dynamicWander = new WanderDynamic();
 
-
-	AI* m_WanderAI = new AI();
-	ActionManager* m_WanderAIManager = new ActionManager();
+	//Decision Tree
 	ActionNode* m_WanderActionNode = new ActionNode();
 	ActionNode* m_SeekActionNode = new ActionNode();
-	Action* m_WanderAction = new Action();
-	Action* m_SeekAction = new Action(5, 2);
 	DecisionNode* m_DecisionNode = new DecisionNode();
-	GameManager* m_GameManager = new GameManager();
 	DecisionTree* m_DecisionTree = new DecisionTree(m_DecisionNode);
 
+	bool IsPlayerNearStart();
 
-	BooleanTask* m_DistanceCheckTask = new BooleanTask();
+
+
+	//Other Common Things
+	AI* m_EnemyAI = new AI();
+	ActionManager* m_WanderAIManager = new ActionManager();
+	GameManager* m_GameManager = new GameManager();
+
+	//Actions
+	Action* m_WanderAction = new Action(5, 2);
+	Action* m_SeekToBeginAction = new Action(5, 2);
+	Action* m_SeekAction = new Action(5, 2);
+	Action* m_BasicMotionAction = new Action(5, 2);
+
+
+
+	//Behavior Tree
+
+	//Action Tasks
 	ActionTask* m_WanderTask = new ActionTask(m_WanderAction);
 	ActionTask* m_SeekTask = new ActionTask(m_SeekAction);
-	Selector* m_DistanceCheckSelectior = new Selector();
-	BehaviorTree* m_BehaviorTree = new BehaviorTree(m_DistanceCheckSelectior);
+	ActionTask* m_GoToStartTask = new ActionTask(m_SeekToBeginAction);
+	ActionTask* m_BasicMotionTask = new ActionTask(m_BasicMotionAction);
+
+	//Decision Tasks
+	BooleanTask* m_CloseDistanceCheckTask = new BooleanTask();
+	BooleanTask* m_FarDistanceCheckTask = new BooleanTask();
+	BooleanTask* m_BasicMotionCheckTask = new BooleanTask();
+	Selector* m_DistanceCheckSelector = new Selector();
+
+	//Other things
+	BehaviorTree* m_BehaviorTree = new BehaviorTree(m_DistanceCheckSelector);
 
 };

@@ -115,13 +115,13 @@
     <ClCompile Include="src\BehaviorTree.cpp">
       <Filter>src\Decision Making</Filter>
     </ClCompile>
-    <ClCompile Include="src\WanderTask.cpp">
-      <Filter>src\Decision Making</Filter>
-    </ClCompile>
     <ClCompile Include="src\Inverter.cpp">
       <Filter>src\Decision Making</Filter>
     </ClCompile>
     <ClCompile Include="src\BooleanTask.cpp">
+      <Filter>src\Decision Making</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ActionTask.cpp">
       <Filter>src\Decision Making</Filter>
     </ClCompile>
   </ItemGroup>
@@ -284,13 +284,13 @@
     <ClInclude Include="src\BehaviorTree.h">
       <Filter>src\Decision Making</Filter>
     </ClInclude>
-    <ClInclude Include="src\WanderTask.h">
-      <Filter>src\Decision Making</Filter>
-    </ClInclude>
     <ClInclude Include="src\Inverter.h">
       <Filter>src\Decision Making</Filter>
     </ClInclude>
     <ClInclude Include="src\BooleanTask.h">
+      <Filter>src\Decision Making</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ActionTask.h">
       <Filter>src\Decision Making</Filter>
     </ClInclude>
   </ItemGroup>

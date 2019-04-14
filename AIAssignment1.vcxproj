@@ -219,7 +219,7 @@
     <ClCompile Include="src\Sequencer.cpp" />
     <ClCompile Include="src\Wander-Steering-Dynamic.cpp" />
     <ClCompile Include="src\Wander-Steering-Kinematic.cpp" />
-    <ClCompile Include="src\WanderTask.cpp" />
+    <ClCompile Include="src\ActionTask.cpp" />
     <ClCompile Include="src\World.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -266,7 +266,7 @@
     <ClInclude Include="src\Tick.h" />
     <ClInclude Include="src\Wander-Steering-Dynamic.h" />
     <ClInclude Include="src\Wander-Steering-Kinematic.h" />
-    <ClInclude Include="src\WanderTask.h" />
+    <ClInclude Include="src\ActionTask.h" />
     <ClInclude Include="src\World.h" />
   </ItemGroup>
   <ItemGroup>

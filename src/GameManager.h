@@ -7,6 +7,7 @@ public:
 	ofVec2f GetPlayerPosition() const { return m_Player->GetBoidKinematicData().Position; }
 	float GetDistanceToPlayer(ofVec2f i_CurrentPosition) const { return i_CurrentPosition.distance(m_Player->GetBoidKinematicData().Position); }
 	bool CheckIfPlayerIsInRange();
+	bool CheckIfPlayerIsInRanges();
 	void SetPlayer(Boid* i_Player) { m_Player = i_Player; }
 	void SetWanderNPC(Boid* i_NPC) { m_WanderNPC = i_NPC; }
 	void SetNPCs(std::vector<Boid*> i_NPCs) { m_NPCs = i_NPCs; }
