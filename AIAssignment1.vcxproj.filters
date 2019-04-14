@@ -118,10 +118,10 @@
     <ClCompile Include="src\WanderTask.cpp">
       <Filter>src\Decision Making</Filter>
     </ClCompile>
-    <ClCompile Include="src\CheckDistanceTask.cpp">
+    <ClCompile Include="src\Inverter.cpp">
       <Filter>src\Decision Making</Filter>
     </ClCompile>
-    <ClCompile Include="src\Inverter.cpp">
+    <ClCompile Include="src\BooleanTask.cpp">
       <Filter>src\Decision Making</Filter>
     </ClCompile>
   </ItemGroup>
@@ -287,10 +287,10 @@
     <ClInclude Include="src\WanderTask.h">
       <Filter>src\Decision Making</Filter>
     </ClInclude>
-    <ClInclude Include="src\CheckDistanceTask.h">
+    <ClInclude Include="src\Inverter.h">
       <Filter>src\Decision Making</Filter>
     </ClInclude>
-    <ClInclude Include="src\Inverter.h">
+    <ClInclude Include="src\BooleanTask.h">
       <Filter>src\Decision Making</Filter>
     </ClInclude>
   </ItemGroup>

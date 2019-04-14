@@ -1,5 +1,5 @@
 #include "Tick.h"
-#include "CheckDistanceTask.h"
+#include "BooleanTask.h"
 
 TaskStatus BooleanTask::OnEnter(Tick* i_Tick)
 {
@@ -28,7 +28,15 @@ TaskStatus BooleanTask::OnExecute(Tick* i_Tick)
 
 TaskStatus BooleanTask::Run(Tick* i_Tick)
 {
-	OnEnter(i_Tick);
-	i_Tick->GetBlackboard()->SetTask("Running", this);
-	return OnExecute(i_Tick);
+	auto result = OnExecute(i_Tick);
+	if(result == e_SUCCESS)
+	{
+		result = m_TrueTask->Run(i_Tick);
+	}
+	else
+	{
+		result = m_FalseTask->Run(i_Tick);
+	}
+	return result;
+
 }

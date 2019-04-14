@@ -19,9 +19,9 @@
 #include "DecisionNode.h"
 
 #include "BehaviorTree.h"
-#include "CheckDistanceTask.h"
 #include "WanderTask.h"
 #include "Selector.h"
+#include "BooleanTask.h"
 
 class ofApp : public ofBaseApp{
 

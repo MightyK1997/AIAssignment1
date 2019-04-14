@@ -114,8 +114,8 @@ void ofApp::setup(){
 	m_WanderAIManager->Start();
 	std::function<bool()> temp2 = std::bind(&GameManager::CheckIfPlayerIsInRange, m_GameManager);
 	m_DistanceCheckTask->SetFunction(temp2);
+	m_DistanceCheckTask->SetTasks(m_SeekTask, m_WanderTask);
 	m_DistanceCheckSelectior->AddChild(m_DistanceCheckTask);
-	m_DistanceCheckSelectior->AddChild(m_WanderTask);
 	//m_DecisionNode->SetDecisionFunction(temp2);
 	//m_DecisionNode->SetNodes(m_SeekActionNode, m_WanderActionNode);
 	m_WanderAI->m_AIActionManager = m_WanderAIManager;

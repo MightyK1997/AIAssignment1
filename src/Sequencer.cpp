@@ -25,8 +25,7 @@ TaskStatus Sequencer::OnClose(Tick* i_Tick)
 
 TaskStatus Sequencer::OnExecute(Tick* i_Tick)
 {
-	uint8_t runningChild = i_Tick->GetBlackboard()->GetChild();
-	for (int i = runningChild; i < m_ChildTasks.size(); i++)
+	for (int i = 0; i < m_ChildTasks.size(); i++)
 	{
 		Task* childTask = GetChildren()[i];
 		TaskStatus childStatus = childTask->Run(i_Tick);

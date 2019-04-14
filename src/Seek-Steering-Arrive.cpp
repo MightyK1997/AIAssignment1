@@ -33,11 +33,7 @@ void SeekSteeringArrive::SetPosition(ofVec2f i_Position)
 
 bool SeekSteeringArrive::HasArrived()
 {
-	if (m_Boid->GetBoidKinematicData().Position.distance(finalPosition) < 5)
-	{
-		return true;
-	}
-	return false;
+	return (m_Boid->GetBoidKinematicData().Position.distance(finalPosition) < 5);
 }
 
 void SeekSteeringArrive::Draw()
