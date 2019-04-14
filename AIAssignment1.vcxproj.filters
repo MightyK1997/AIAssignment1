@@ -103,6 +103,15 @@
     <ClCompile Include="src\GameManager.cpp">
       <Filter>src\Decision Making</Filter>
     </ClCompile>
+    <ClCompile Include="src\Blackboard.cpp">
+      <Filter>src\Decision Making</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Selector.cpp">
+      <Filter>src\Decision Making</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Sequencer.cpp">
+      <Filter>src\Decision Making</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -240,6 +249,24 @@
       <Filter>src\World</Filter>
     </ClInclude>
     <ClInclude Include="src\GameManager.h">
+      <Filter>src\Decision Making</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Task.h">
+      <Filter>src\Decision Making</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DecisionMakingConstants.h">
+      <Filter>src\Decision Making</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Selector.h">
+      <Filter>src\Decision Making</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Tick.h">
+      <Filter>src\Decision Making</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Blackboard.h">
+      <Filter>src\Decision Making</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Sequencer.h">
       <Filter>src\Decision Making</Filter>
     </ClInclude>
   </ItemGroup>
