@@ -95,10 +95,10 @@ void ofApp::setup(){
 		DirectedWeightedEdge* d19 = new DirectedWeightedEdge(14, nodeList[0], nodeList[10]);
 		m_Graph->AddEdgeToGraph(d19);
 	}
-	//pathfollow->UpdateGraph(m_Graph);
-	//pathfollow->SetStartNode(nodeList[0]);
-	//pathfollow->AddNewTargetForBoid(nodeList[6]);
-	//pathfollow->CreateAndSetPathToFollow();
+	pathfollow->UpdateGraph(m_Graph);
+	pathfollow->SetStartNode(nodeList[0]);
+	pathfollow->AddNewTargetForBoid(nodeList[6]);
+	pathfollow->CreateAndSetPathToFollow();
 
 	//Decision Making
 	seekToBegin->SetPosition(ofVec2f(25, ofGetHeight() - 25));

@@ -1,13 +1,14 @@
 #pragma once
 #include <string>
 #include <map>
+#include <vector>
 
 class Example
 {
 public:
-	std::string GetValue(std::string i_Attribute) { return m_Attributes[i_Attribute]; }
+	std::string GetAttribute() { return m_Attribute; }
 	std::string GetAction() { return m_Action; }
 private:
 	std::string m_Action;
-	std::map<std::string, std::string> m_Attributes;
+	std::string m_Attribute;
 };

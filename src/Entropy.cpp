@@ -56,7 +56,7 @@ void Entropy::MakeDecisionTree(std::vector<Example*> i_Examples, std::vector<std
 	}
 	for (auto set:bestSets)
 	{
-		auto attributeValue = set[0]->GetValue(bestAttribute);
+		auto attributeValue = set[0]->GetAttribute();
 		DecisionNode* node = new DecisionNode();
 		i_RootNode->SetNodes(node, nullptr);
 		MakeDecisionTree(set, i_Attributes, node);
@@ -68,7 +68,14 @@ std::vector<std::vector<Example*>> Entropy::SplitByAttribute(std::vector<Example
 	std::vector<std::vector<Example*>> sets;
 	for (auto example : i_Examples)
 	{
-
+		if (example->GetAttribute() == i_Attribute)
+		{
+			sets[0].push_back(example);
+		}
+		else
+		{
+			sets[1].push_back(example);
+		}
 	}
 	return sets;
 }
