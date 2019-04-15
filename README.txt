@@ -39,6 +39,32 @@ which is used to implement the click to move seek steering behavior. The update 
 7. PathFinding/Graph/Grid.h and Grid.cpp: Contains the Grid class which reads in a black and white image file and quantizes it into tiles.
 
 
+//Update for Decision and Behavior Trees
+1. Action.h and Action.cpp : Contains details about a particular action including queued time, expiry time and priority.
+2. ActionManager.h and cpp : Is the main class which manages all the queued and active actions based on their priority and if they can interrupt each other.
+3. ActionNode.h and cpp: Derives from DecisionTreeNode. Used as a leaf node for DecisionTrees, it contains the action that that node can perform which is invoked from action manager.
+4. ActionTask.h and cpp: The behavior tree equivalent of ActionNode.
+5. AI.h and cpp: The AI manager class for each type of AI in the world.
+6. BehaviorTree.h and cpp: Contains the definition and implementation of the behavior tree.
+7. Blackboard.h and cpp: Contains the definition and implementation of Blackboard which is used to share data in the behavior tree.
+8. BooleanTask.h and cpp: Contains the definition and implementation of a boolean node. The boolean node is similar to a decision node in that it has two branches.
+9. DecisionMakingBehavior.h: Is the base class for both decision tree and behavior tree.
+10. DecisionNode.h and cpp: Is the node that makes decisions in the decision tree.
+11. DecisionTree.h and cpp: Contains the definition and implementation of the decision tree.
+12. DecisionTreeNode.h: Is the base class for allthe nodes in decision tree.
+13. GameManager.h and cpp: Is the manager for all game data and keeps track of the players and AI.
+14. Inverter.h and cpp: Inverts the input it gets from the nodes below it.
+15. Selector.h and cpp: Implementation of the selector node.
+16. Sequencer.h and cpp: Implementation of sequencer node/
+17. Task.h: Base class of all tasks in behavior trees.
+18. Tick.h: Used to share data between behavior tree and blackboard.
+19. BehaviorTreelearning/Entropy.h and cpp: Contains the definitions and implementations of various functions used to calculate entropy and create the behavior tree.
+20. Example.h: Contains the implementation of example class.
+
+
+Link to post:
+http://sai-upadhyayula.com/2019/04/14/decision-and-behavior-trees/
+
 
 
 Special Instructions for compilation: 1. Requires openframeworks to be installed in the destination computer.
