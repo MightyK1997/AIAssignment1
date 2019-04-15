@@ -96,9 +96,16 @@ void ofApp::setup(){
 		m_Graph->AddEdgeToGraph(d19);
 	}
 	pathfollow->UpdateGraph(m_Graph);
+	pathfollow->UpdateAStarHeuristic(Heuristic::Manhattan);
 	pathfollow->SetStartNode(nodeList[0]);
 	pathfollow->AddNewTargetForBoid(nodeList[6]);
 	pathfollow->CreateAndSetPathToFollow();
+
+	std::function<DecisionNode*(std::string)> temping = std::bind(&GameManager::GetDecisionNodeForAttribute, m_GameManager, "");
+	entropy.m_DecisionFunction = temping;
+
+	std::function<ActionNode*(std::string)> tempest = std::bind(&GameManager::GetActionNodeForAttribute, m_GameManager, "");
+	entropy.m_ActionFunction = tempest;
 
 	//Decision Making
 	seekToBegin->SetPosition(ofVec2f(25, ofGetHeight() - 25));
@@ -116,14 +123,14 @@ void ofApp::setup(){
 	m_SeekAction->SetCompleteFunction(checkFunction);
 	m_SeekAction->SetCanInterrupt(true);
 
-	temp = std::bind(&SeekSteeringArrive::Update, seekToBegin);
-	checkFunction = std::bind(&SeekSteeringArrive::HasArrived, seekToBegin);
+	temp = std::bind(&AStarPathFollow::Update, pathfollow);
+	checkFunction = std::bind(&AStarPathFollow::HasArrived, pathfollow);
 	m_SeekToBeginAction->SetAction(temp);
 	m_SeekToBeginAction->SetCompleteFunction(checkFunction);
 	m_SeekToBeginAction->SetCanInterrupt(true);
 
-	temp = std::bind(&BasicMotion::Update, basicMotion);
-	checkFunction = std::bind(&BasicMotion::HasArrived, basicMotion);
+	temp = std::bind(&AStarPathFollow::Update, pathfollow);
+	checkFunction = std::bind(&AStarPathFollow::HasArrived, pathfollow);
 	m_BasicMotionAction->SetAction(temp);
 	m_BasicMotionAction->SetCompleteFunction(checkFunction);
 	m_BasicMotionAction->SetCanInterrupt(true);
@@ -176,6 +183,8 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+	m_Grid->Draw();
+	m_WanderBoid->SetBoidColor(ofVec3f(255, 0, 0));
 	dynamicWander->Draw();
 	m_Player->Draw();
 }

@@ -17,8 +17,8 @@ public:
 	void SetNPCs(Boid* i_NPC) { m_NPCs.push_back(i_NPC); }
 	void AddActionNode(ActionNode* i_ActionNode,const std::string& i_Attribute) { m_ActionNodes[i_Attribute] = i_ActionNode; }
 	void AddDecisionNode(DecisionNode* i_DecisionNode,const std::string& i_Attribute) { m_DecisionNodes[i_Attribute] = i_DecisionNode; }
-	ActionNode* GetActionNodeForAttribute(const std::string& i_Attribute) { return m_ActionNodes[i_Attribute]; }
-	DecisionNode* GetDecisionNodeForAttribute(const std::string& i_Attribute) { return m_DecisionNodes[i_Attribute]; }
+	ActionNode* GetActionNodeForAttribute(std::string i_Attribute) { return m_ActionNodes[i_Attribute]; }
+	DecisionNode* GetDecisionNodeForAttribute(std::string i_Attribute) { return m_DecisionNodes[i_Attribute]; }
 private:
 	Boid* m_Player = nullptr;
 	Boid* m_WanderNPC = nullptr;

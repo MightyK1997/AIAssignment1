@@ -24,6 +24,7 @@
 #include "ActionTask.h"
 #include "Inverter.h"
 #include "Sequencer.h"
+#include "Entropy.h"
 
 class ofApp : public ofBaseApp{
 
@@ -46,12 +47,12 @@ class ofApp : public ofBaseApp{
 
 
 private:
-	AStarPathFollow* pathfollow = new AStarPathFollow(Heuristic::Zero, m_Graph,5, 10, 0.1);
+	Boid* m_Player = new Boid();
+	Boid* m_WanderBoid = new Boid();
+	AStarPathFollow* pathfollow = new AStarPathFollow(m_WanderBoid, Heuristic::Zero, m_Graph,5, 10, 0.1);
 	Graph* m_Graph = new Graph();
 	Grid* m_Grid = new Grid("grid.png", true);
 	KinematicSeek kSeek;
-	Boid* m_Player = new Boid();
-	Boid* m_WanderBoid = new Boid();
 	Flocking* flock = new Flocking(10);
 	int SelectedIndex = 1;
 	std::vector<Node*> nodeList;
@@ -103,5 +104,8 @@ private:
 
 	//Other things
 	BehaviorTree* m_BehaviorTree = new BehaviorTree(m_DistanceCheckInverter);
+
+	//Decision Tree learning
+	Entropy entropy;
 
 };
