@@ -1,5 +1,8 @@
 #pragma once
 #include "Boid.h"
+#include "ActionNode.h"
+#include "DecisionNode.h"
+#include <map>
 
 class GameManager
 {
@@ -12,8 +15,14 @@ public:
 	void SetWanderNPC(Boid* i_NPC) { m_WanderNPC = i_NPC; }
 	void SetNPCs(std::vector<Boid*> i_NPCs) { m_NPCs = i_NPCs; }
 	void SetNPCs(Boid* i_NPC) { m_NPCs.push_back(i_NPC); }
+	void AddActionNode(ActionNode* i_ActionNode,const std::string& i_Attribute) { m_ActionNodes[i_Attribute] = i_ActionNode; }
+	void AddDecisionNode(DecisionNode* i_DecisionNode,const std::string& i_Attribute) { m_DecisionNodes[i_Attribute] = i_DecisionNode; }
+	ActionNode* GetActionNodeForAttribute(const std::string& i_Attribute) { return m_ActionNodes[i_Attribute]; }
+	DecisionNode* GetDecisionNodeForAttribute(const std::string& i_Attribute) { return m_DecisionNodes[i_Attribute]; }
 private:
 	Boid* m_Player = nullptr;
 	Boid* m_WanderNPC = nullptr;
 	std::vector<Boid*> m_NPCs;
+	std::map<std::string, DecisionNode*> m_DecisionNodes;
+	std::map<std::string, ActionNode*> m_ActionNodes;
 };

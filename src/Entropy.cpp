@@ -23,8 +23,14 @@ void Entropy::MakeDecisionTree(std::vector<Example*> i_Examples, std::vector<std
 	DecisionNode* i_RootNode)
 {
 	auto initialEntropy = GetEntropy(i_Examples);
-	if (initialEntropy <= 0) return;
+	if (initialEntropy <= 0)
+	{
+		ActionNode* action = m_ActionFunction(i_Attributes[0]);
+		i_RootNode->SetNodes(action, nullptr);
+		return;
+	}
 	auto exampleCount = i_Examples.size();
+	float bestInfoGain = 0;
 	std::string bestAttribute = "";
 	std::vector<std::vector<Example*>> bestSets;
 	for (auto attribute : i_Attributes)
@@ -32,6 +38,28 @@ void Entropy::MakeDecisionTree(std::vector<Example*> i_Examples, std::vector<std
 		auto sets = SplitByAttribute(i_Examples, attribute);
 		auto overallEntropy = GetEntropyOfSets(sets, i_Examples.size());
 		auto infoGain = initialEntropy - overallEntropy;
+		if (infoGain > bestInfoGain)
+		{
+			bestInfoGain = infoGain;
+			bestAttribute = attribute;
+			bestSets = sets;
+		}
+	}
+	i_RootNode = m_DecisionFunction(bestAttribute);
+	auto it = i_Attributes.begin();
+	while (it!=i_Attributes.end())
+	{
+		if ((*it) == bestAttribute)
+		{
+			it = i_Attributes.erase(it);
+		}
+	}
+	for (auto set:bestSets)
+	{
+		auto attributeValue = set[0]->GetValue(bestAttribute);
+		DecisionNode* node = new DecisionNode();
+		i_RootNode->SetNodes(node, nullptr);
+		MakeDecisionTree(set, i_Attributes, node);
 	}
 }
 
